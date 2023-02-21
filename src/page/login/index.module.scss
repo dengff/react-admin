@@ -1,0 +1,14 @@
+
+.warp {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 68px 0;
+
+  .login {
+    padding: 22px 0;
+    background-color: transparent !important;
+    box-shadow: 2px 4px 7px rgb(0 0 0 / 20%);
+
+  }
+}

@@ -1,0 +1,17 @@
+
+.collapsed {
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    width: auto;
+    height: 70px;
+  }
+}
