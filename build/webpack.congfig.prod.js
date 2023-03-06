@@ -96,7 +96,7 @@ const proConfig = merge(baseConfig, {
       minRatio: 0.8,
       // deleteOriginalAssets: true // 删除源文件
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     // new SpeedMeasurePlugin(),
   ],
 });
