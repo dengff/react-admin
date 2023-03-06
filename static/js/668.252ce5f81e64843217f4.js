@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkadmin_fe=self.webpackChunkadmin_fe||[]).push([[668],{32668:(n,s,t)=>{t.r(s),t.d(s,{default:()=>h});var d=t(67294),e=t(85893);const h=()=>(0,e.jsx)("div",{style:{height:"100%",width:"100%"},children:(0,e.jsx)("img",{style:{height:"100%",width:"100%"},src:"https://cdn.pixabay.com/photo/2018/09/18/21/46/gear-3687358__480.png"})})}}]);
