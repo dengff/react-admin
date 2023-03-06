@@ -9,6 +9,9 @@ const initTabs = {
       closable: false,
     }],
   activeKey: '/home',
+  pageConfig: {
+    layoutItems: ['tabs', 'breadcrumb', 'logo', 'pageFooter'],
+  },
 };
 
 export default function reducer(state = initTabs, action) {
@@ -38,6 +41,13 @@ export default function reducer(state = initTabs, action) {
       return {
         ...state,
         activeKey: action.activeKey,
+      };
+    case actionsType.SET_PAGE_LAYOUT_ITEMS:
+      return {
+        ...state,
+        pageConfig: {
+          layoutItems: action.layoutItems,
+        },
       };
     default :
       return state;

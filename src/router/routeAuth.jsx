@@ -30,7 +30,7 @@ const RequireAuth = (props) => {
     if (token && pathname === '/login') {
       return navigate('/home', {replace: true});
     }
-    if (userInfo?.role !== "admin" && route?.meta?.roles?.length && !route?.meta?.roles?.includes(userInfo.role)) {
+    if (userInfo?.role !== "admin" && route?.meta?.auth?.roles?.length && !route?.meta?.auth?.roles?.includes(userInfo.role)) {
       return navigate('/error', {replace: true});
     }
   }, [token, pathname]);

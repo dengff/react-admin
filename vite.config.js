@@ -1,23 +1,35 @@
-import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
+import {fileURLToPath, URL} from 'node:url';
+import {defineConfig} from 'vite';
+import react from '@vitejs/plugin-react';
+import postcssPresetEnv from 'postcss-preset-env';
+import {visualizer} from 'rollup-plugin-visualizer';
 // https://vitejs.dev/config/
 export default defineConfig({
-  // server: {
+  server: {
+    host: true,
+    port: 8090,
     // proxy: {
     //   '/dev-api': {
-    //     target: 'http://localhost:3130/',
+    //     target: 'XXX.com',
     //     changeOrigin: true,
     //     rewrite: (path) => path.replace(/^\/dev-api/, '')
     //   }
     // }
-  // },
-  plugins: [react()],
+  },
+  plugins: [
+    react(),
+    // visualizer(),
+  ],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-      "src": fileURLToPath(new URL("./src", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'src': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+    extensions: ['.jsx', '.tsx', '.js', '.ts', '.json'],
+  },
+  css: {
+    postcss: {
+      plugins: [postcssPresetEnv()],
     },
   },
-})
+});

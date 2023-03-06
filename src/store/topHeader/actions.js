@@ -18,7 +18,7 @@ export const addTabs = (route, key) => {
 
 export const deleteCurrentTab = (key) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
-    if(key === "/home") return
+    if (key === '/home') return;
     const {topHeader} = getState();
     const {tabList} = topHeader;
     let preIndex = null;
@@ -30,8 +30,10 @@ export const deleteCurrentTab = (key) => (dispatch, getState) => {
         preIndex = index;
       }
     });
-    resolve(tabList[preIndex - 1]);
+    const preItem = tabList[preIndex - 1];
     dispatch(removeCurrentTabs(_tabList));
+    dispatch(setTabsActiveKey(preItem?.['key']));
+    resolve(preItem);
   });
 };
 export const deleteOtherTab = (key) => {
@@ -54,6 +56,10 @@ export const deleteAllTab = (key) => (dispatch, getState) => {
 
 };
 
+export const changeLayout = (items) => dispatch => {
+  dispatch(setLayoutItems(items));
+};
+
 const removeCurrentTabs = (tabList) => ({
   type: actionsType.DELETE_CURRENT_TAB,
   tabList: tabList,
@@ -74,5 +80,9 @@ const setTabs = (tabList) => ({
 const setTabsActiveKey = (activeKey) => ({
   type: actionsType.SET_TABS_ACTIVE_KEY,
   activeKey: activeKey,
+});
+const setLayoutItems = (layoutItems) => ({
+  type: actionsType.SET_PAGE_LAYOUT_ITEMS,
+  layoutItems: layoutItems,
 });
 

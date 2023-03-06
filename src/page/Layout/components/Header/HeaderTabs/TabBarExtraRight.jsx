@@ -1,12 +1,13 @@
-import {DownOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Dropdown, message, Space, Tooltip} from 'antd';
+import {DownOutlined} from '@ant-design/icons';
+import {Button, Dropdown, Space} from 'antd';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {
-  deleteCurrentTab,
   deleteAllTab,
+  deleteCurrentTab,
   deleteOtherTab,
 } from '@/store/topHeader/actions.js';
 import {connect} from 'react-redux';
+import React from 'react';
 
 const items = [
   {
@@ -33,7 +34,7 @@ const TabBarExtraRight = (props) => {
     if (key === 'other') return deleteOtherTab(pathname);
     if (key === 'all') return deleteAllTab(pathname).finally(navigate('/home'));
   };
-  return (<Space align={"center"}>
+  return (<Space align={'center'}>
     <Dropdown menu={{items, onClick}}>
       <Button>
         <Space>

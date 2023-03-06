@@ -32,7 +32,7 @@ const createAxiosByInterceptors = (
     headers: {
       'x-access-token': 'bqddxxwqmfncffacvbpkuxvwvqrhln',
     },
-    timeout: 1000,    //超时配置
+    timeout: 3000,    //超时配置
     withCredentials: true,  //跨域携带cookie
     ...config,   // 自定义配置覆盖基本配置
   });

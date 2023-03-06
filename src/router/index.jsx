@@ -1,9 +1,7 @@
-import {useRoutes, Navigate} from 'react-router-dom';
+import {Navigate, useRoutes} from 'react-router-dom';
+import {lazy} from 'react';
+import routes, {lazyLoad} from '@/router/routes/index.jsx';
 
-import Error from '@/page/error';
-import Login from '@/page/login/index';
-import Layout from "@/page/Layout/inde.jsx"
-import routes from '@/router/routes/index.jsx';
 export const routeConfig = [
   {
     path: '/',
@@ -11,22 +9,17 @@ export const routeConfig = [
   },
   {
     path: "/login",
-    element: <Login/>
+    element: lazyLoad(lazy(()=>import("@/page/Login/index")))
   },
-  //  {
-  //   path: '/',
-  //   element: <Navigate to="home" />
-  // },
   {
-    element: (<Layout/>),
+    element: lazyLoad(lazy(()=>import("@/page/Layout/index.jsx"))),
     children:[
       ...routes
     ]
   },
-
   {
     path:'*',
-    element: <Error/>
+    element: lazyLoad(lazy(()=>import("@/page/Error")))
   }
 
 ];

@@ -1,4 +1,4 @@
-import {reqLogin, reqUserInfo} from '@/api/index.js';
+import {reqLogin, reqUserInfo, reqLogout} from '@/api/index.js';
 import * as actionsType from './constants.js';
 import {setToken, setUserInfo as setInfo} from '@/utils/index.js';
 
@@ -30,10 +30,22 @@ export const getUserInfo = (token) => {
     });
   };
 };
+export const logout = (token) => {
+  return dispatch => new Promise((resolve, reject) => {
+    reqLogout(token).then(res => {
+      if (res?.status === 0) {
+        dispatch(setUserToken(undefined));
+        dispatch(resetUserInfo());
+        window.localStorage.clear();
+      }
+    });
 
+  });
+
+};
 export const updateCollapse = (isCollapse) => ({
   type: actionsType.UPDATE_COLLAPSE,
-  collapsed:isCollapse,
+  collapsed: isCollapse,
 });
 
 const setUserToken = (token) => ({

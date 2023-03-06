@@ -6,32 +6,25 @@ const tokens = {
 };
 
 const users = {
-  "superAdmin-token": {
-    id: "superAdmin",
-    role: "superAdmin",
-    name: "Super-Admin",
-    avatar: "https://s1.ax1x.com/2020/04/28/J5hUaT.jpg",
-    description: "拥有系统内所有菜单和路由权限",
-  },
   "admin-token": {
     id: "admin",
     role: "admin",
-    name: "难凉热血",
-    avatar: "https://s1.ax1x.com/2020/04/28/J5hUaT.jpg",
+    name: "Admin",
+    avatar: "https://img.zcool.cn/community/01e35e564c6f4432f87512f6a7b0a4.jpg@1280w_1l_2o_100sh.jpg",
     description: "拥有系统内所有菜单和路由权限",
   },
   "editor-token": {
     id: "editor",
     role: "editor",
     name: "编辑员",
-    avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+    avatar: "https://ts1.cn.mm.bing.net/th/id/R-C.459039f30e0cb09ba4e51528e644baf9?rik=QhVWJBtMUMsp9A&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f01514355cdbab56ac725baa0130899.jpg%401280w_1l_2o_100sh.jpg&ehk=UuPnllBZxS8kgx67AgpNwor%2fUc0SpTHAAVvXpEKFZwU%3d&risl=&pid=ImgRaw&r=0F",
     description:"可以看到除户管理页面之外的所有页面",
   },
   "guest-token": {
     id: "guest",
     role: "guest",
     name: "游客",
-    avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+    avatar: "https://joesch.moe/api/v1/random",
     description:"仅能看到Dashboard、作者博客、权限测试和关于作者四个页面",
   },
 };

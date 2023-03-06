@@ -1,10 +1,9 @@
 import {Breadcrumb} from 'antd';
-import {matchRoutes, useLocation, useNavigate} from 'react-router-dom';
+import React from 'react';
+import {matchRoutes, useLocation} from 'react-router-dom';
 import {routeConfig} from '@/router/index.jsx';
 
 const HeaderBreadcrumb = (props) => {
-  const {pathname} = useLocation();
-  const navigate = useNavigate();
   const location = useLocation();
   const match = matchRoutes(routeConfig, location);
   const routeMatch = match.filter(
@@ -20,7 +19,6 @@ const HeaderBreadcrumb = (props) => {
             <Breadcrumb.Item key={item?.pathname}>
               <span>{item?.route?.meta?.title}</span>
             </Breadcrumb.Item>
-
           ))
         }
       </Breadcrumb>
