@@ -24,6 +24,10 @@ const Warp = styled.div`
     height: calc(100vh - 48px);
     overflow-y: scroll;
   }
+
+  .layout-content::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const SideMenu = () => {
