@@ -25,7 +25,7 @@ const Warp = styled.div`
     overflow-y: scroll;
   }
 
-  .layout-content::-webkit-scrollbar {
+  .scrollbar::-webkit-scrollbar {
     width: 0;
   }
 `;
