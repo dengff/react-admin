@@ -19,6 +19,7 @@ export default function reducer(state = initTheme, action) {
       return {
         ...state,
         token: {
+          ...state.token,
           colorPrimary: action.colorPrimary,
         },
       };
