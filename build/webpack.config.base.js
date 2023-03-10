@@ -20,7 +20,7 @@ module.exports = {
   performance: {hints: false},
   entry: {
     // app: './src/main.js' // 编译文件入口
-    app: path.resolve(__dirname, '../src/main.tsx'), // 编译文件入口
+    app: path.resolve(__dirname, '../src/main.jsx'), // 编译文件入口
   },
   output: {
     path: path.resolve(__dirname, '../dist'), // 编译输出的静态资源根路径
