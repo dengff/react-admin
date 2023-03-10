@@ -23,9 +23,6 @@ const PermissionPage = (props) => {
       formRef={refFrom}
       layout={'horizontal'}
       title={'其他权限'}
-      initialValues={{
-        authPage: authPage,
-      }}
       submitter={{
         render: (props, doms) => null,
       }}
@@ -37,6 +34,7 @@ const PermissionPage = (props) => {
           name="authPage"
           label={`切换页面权限 --> 当前Role:[${authPage}]`}
           radioType="button"
+          initialValue={authPage}
           fieldProps={{
             onChange: (e) => handleChange(e),
           }}

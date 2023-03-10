@@ -1,12 +1,11 @@
-import type {ProColumnType} from "@ant-design/pro-components";
 import {EditableProTable} from '@ant-design/pro-components';
 import React, {useState} from "react";
 import {Button, message} from "antd";
 import {CopyOutlined} from "@ant-design/icons";
 
 const EditTable = () => {
-  const [dataSource, setDateSource] = useState<readonly any[]>([]);
-  const columns: ProColumnType<any>[] = [
+  const [dataSource, setDateSource] = useState([]);
+  const columns = [
     {
       title: "物料号",
       valueType: "text",
