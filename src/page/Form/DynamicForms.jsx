@@ -7,11 +7,10 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import {useRef} from 'react';
-import {apifoxRequest} from '@/api/index.js';
+import {request} from '@/common/api/index.js';
 
-//TODO 动态表单 详情页 详情页数据展示需要支持编辑 预览 禁用等状态
 const enumData = async (key) => {
-  const {data} = await apifoxRequest.post('/cityList', {key});
+  const {data} = await request.post('/cityList', {key});
   const filterData = data.filter(
     item => item.value.indexOf(key) > -1 || item.label.indexOf(key) > -1);
   if (filterData?.length) return filterData;
@@ -23,7 +22,10 @@ const DynamicForms = () => {
     <ProForm
       grid={true}
       rowProps={{
-        gutter: [0, 8],
+        gutter: [4, 12],
+      }}
+      colProps={{
+        lg: 8, xl: 7,
       }}
       formRef={formRef}
       title={'信息'}
@@ -50,9 +52,6 @@ const DynamicForms = () => {
             label: '禁用',
           },
         ]}
-        colProps={{
-          span: 6,
-        }}
       />
       <ProFormDependency name={['status']}>
         {(item) => {
@@ -62,9 +61,6 @@ const DynamicForms = () => {
               label="备注"
               name="remark"
               disabled={item?.status === 'disabled'}
-              colProps={{
-                span: 6,
-              }}
             />
           );
         }}
@@ -84,9 +80,6 @@ const DynamicForms = () => {
             label: '其他',
           },
         ]}
-        colProps={{
-          span: 6,
-        }}
       />
       <ProFormDependency name={['advanceType']}>
         {({advanceType}) => {
@@ -104,6 +97,11 @@ const DynamicForms = () => {
                 ]}
               >
                 <ProFormDigit
+                  colProps={{
+                    span: {
+                      lg: 8, xl: 7,
+                    },
+                  }}
                 />
               </ProForm.Item>
             );
@@ -112,27 +110,17 @@ const DynamicForms = () => {
         }
       </ProFormDependency>
       <ProFormSelect
-        label={'Select'}
+        label="城市"
         debounceTime={1000}
         request={({keyWords}) => enumData(keyWords)}
-        colProps={{
-          span: 6,
-        }}
       />
 
-      <ProFormText name={'type'} label={'类型'} colProps={{
-        span: 6,
-      }
-      }/>
-      <ProFormText colProps={{
-        span: 6,
-      }} name={'vendor'} label={'供应商'}/>
+      <ProFormText name={'type'} label={'类型'}
+      />
+      <ProFormText name={'vendor'} label={'供应商'}/>
       <ProFormDatePicker
         label="时间"
         name="date"
-        colProps={{
-          span: 6,
-        }}
       />
     </ProForm>
   </div>;

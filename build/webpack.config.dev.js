@@ -3,6 +3,7 @@
 const {merge} = require('webpack-merge')
 const baseConfig = require('./webpack.config.base');
 const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const HOST = 'localhost';
 const PORT = 8090;
@@ -40,5 +41,7 @@ module.exports = merge(baseConfig, {
     },*/
   },
 
-  plugins: [],
+  plugins: [
+    new ReactRefreshWebpackPlugin(),
+  ],
 });

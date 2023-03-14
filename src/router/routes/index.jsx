@@ -1,6 +1,5 @@
 import {lazy, Suspense} from 'react';
 import {Spin} from 'antd';
-import {GridLayout, SearchPanel2} from '@/page/Assembly/index.jsx';
 
 /*  element: lazyLoad(React.lazy(() => import('@/views/welcome'))),*/
 export function lazyLoad(Comp) {
@@ -159,29 +158,6 @@ const routes = [
 
   },
   {
-    path: '/assembly',
-    // element: <Navigate to="/assembly/grid-layout"/>,
-    meta: {
-      title: '常用组件',
-    },
-    children: [
-      {
-        path: '/assembly/grid-layout',
-        element: <GridLayout/>,
-        meta: {
-          title: '布局组件',
-        },
-      },
-      {
-        path: '/assembly/search-panel2',
-        element: <SearchPanel2/>,
-        meta: {
-          title: '查询组件2',
-        },
-      },
-    ],
-  },
-  {
     path: '/menu',
     meta: {
       title: '菜单嵌套',
@@ -232,22 +208,49 @@ const routes = [
     ],
   },
   {
-    path:"/other",
-    element: <>ss</>,
-    meta:{
-      title:"其他"
+    path: '/system',
+    meta: {
+      title: '系统管理',
     },
     children: [
       {
-        path: "/other/file-download",
-        element: <><h2>download</h2></>,
+        path: '/system/account-management',
+        element: <h2>账号管理</h2>,
         meta: {
-          title: "文件下载"
-        }
-      }
-    ]
-  }
-
+          title: '账号管理',
+        },
+      },
+      {
+        path: '/system/role-management',
+        element: <h2>角色管理</h2>,
+        meta: {
+          title: '角色管理',
+        },
+      },
+      {
+        path: '/system/department-management',
+        element: <h2>部门管理</h2>,
+        meta: {
+          title: '部门管理',
+        },
+      },
+    ],
+  },
+  {
+    path: '/other',
+    meta: {
+      title: '其他',
+    },
+    children: [
+      {
+        path: '/other/file-download',
+        element: <h2>文件下载</h2>,
+        meta: {
+          title: '文件下载',
+        },
+      },
+    ],
+  },
 
 ];
 

@@ -5,7 +5,6 @@ import {PersistGate} from "redux-persist/lib/integration/react"
 import {persistor} from "@/store";
 import store from "@/store"
 import App from "./App"
-import "./mock";
 
 const root = document.getElementById("root")
 createRoot(root).render(

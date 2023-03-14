@@ -59,6 +59,9 @@ export const deleteAllTab = (key) => (dispatch, getState) => {
 export const changeLayout = (items) => dispatch => {
   dispatch(setLayoutItems(items));
 };
+export const changeLayoutMode = layoutMode => dispatch => {
+  dispatch(setLayoutMode(layoutMode));
+};
 
 const removeCurrentTabs = (tabList) => ({
   type: actionsType.DELETE_CURRENT_TAB,
@@ -85,4 +88,12 @@ const setLayoutItems = (layoutItems) => ({
   type: actionsType.SET_PAGE_LAYOUT_ITEMS,
   layoutItems: layoutItems,
 });
+const setLayoutMode = (layoutMode) => ({
+  type: actionsType.SET_LAYOUT_MODE,
+  layoutMode: layoutMode,
+});
+export const resetTopHeaderState = () => ({
+  type: actionsType.RESET_TOP_HEADER_STATE,
+});
+
 

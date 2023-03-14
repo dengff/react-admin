@@ -1,18 +1,20 @@
-import {reqLogin, reqUserInfo, reqLogout} from '@/api/index.js';
+import {reqLogin, reqUserInfo, reqLogout} from '@/common/api/index.js';
 import * as actionsType from './constants.js';
 import {setToken, setUserInfo as setInfo} from '@/utils/index.js';
+import {resetTopHeaderState} from '@/store/topHeader/actions';
+import {resetThemeState} from '@/store/theme/actions';
 
 export const login = ({username, password}) => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       reqLogin({username, password}).then(res => {
-        const {status, token, message} = res;
+        const {status, token} = res.data;
         if (status === 0) {
           dispatch(setUserToken(token));
           setToken(token);
           resolve(res);
         } else {
-          reject(message);
+          reject();
         }
       });
     });
@@ -33,12 +35,15 @@ export const getUserInfo = (token) => {
 export const logout = (token) => {
   return dispatch => new Promise((resolve, reject) => {
     reqLogout(token).then(res => {
-      if (res?.status === 0) {
+      if (res?.data.status === 0) {
         dispatch(setUserToken(undefined));
         dispatch(resetUserInfo());
+        dispatch(resetTopHeaderState());
+        dispatch(resetThemeState());
         window.localStorage.clear();
+        resolve();
       }
-    });
+    }).catch(err => reject(err));
 
   });
 

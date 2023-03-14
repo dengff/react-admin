@@ -1,19 +1,19 @@
 import {DownloadOutlined} from '@ant-design/icons';
 import {ProTable} from '@ant-design/pro-components';
 import {Button, Table} from 'antd';
-import {progressEnum, provincesEnum} from '@/mock/Enum.js';
-import {apifoxRequest} from '@/api/index.js';
+import {progressEnum, provincesEnum} from '@/common/enum.js';
+import {request} from '@/common/api/index.js';
 import {useEffect, useRef, useState} from 'react';
 import dayjs from 'dayjs';
 import {useNavigate, useSearchParams} from 'react-router-dom';
 /*request*/
 const enumData = async () => {
 
-  const {data} = await apifoxRequest.post('/cityList');
+  const {data} = await request.post('/cityList');
   return data;
 };
 const fetchList = async (params) => {
-  const result = await apifoxRequest.post('/factory/list', params);
+  const result = await request.post('/factory/list', params);
   return {
     data: result.data.list,
     success: true,
@@ -96,7 +96,6 @@ const columns = [
     valueType: 'dateTimeRange',
     search: {
       transform: (value) => {
-        console.log(value, 'test');
         return ({startTime: value[0], endTime: value[1]});
       },
     },
@@ -167,7 +166,6 @@ const columns = [
     },
   },
 ];
-// TODO api请求单独成一个文件
 const SuperTable = () => {
   const navigate = useNavigate();
   const [getParams, setParams] = useSearchParams();

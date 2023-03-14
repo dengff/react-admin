@@ -8,7 +8,6 @@ const storageConfig = {
   key: 'root', // 必须有的
   storage: storage, // 缓存机制
   // blacklist: ['index'] // reducer 里不持久化的数据,除此外均为持久化数据
-  // 必须为跟store，不能是某个属性
   whitelist: ['topHeader',"theme"], // reducer 里持久化的数据,除此外均为不持久化数据
 };
 const myPersistReducer = persistReducer(storageConfig, reducer);

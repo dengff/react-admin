@@ -14,7 +14,7 @@ const PermissionPage = (props) => {
     const {value} = e.target;
     setAuthPage(value);
     login({username: value, password: '123456'}).then(res => {
-      const {token} = res;
+      const {token} = res?.data;
       getUserInfo(token);
     });
   };

@@ -1,12 +1,12 @@
-import {apifoxRequest} from '@/api/index.js';
+import {request} from '@/common/api/index.js';
 import {useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import {ProDescriptions} from '@ant-design/pro-components';
-import {progressEnum, provincesEnum} from '@/mock/Enum.js';
+import {progressEnum, provincesEnum} from '@/common/enum.js';
 import {Button, message} from 'antd';
 
 const DETAIL_INFO = async (id) => {
-  const {details} = await apifoxRequest.post('/detailInfo', {id: id});
+  const {details} = await request.post('/detailInfo', {id: id});
   return {
     data: details,
     success: true,

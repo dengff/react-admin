@@ -33,6 +33,11 @@ export default function reducer(state = initTheme, action) {
         ...state,
         themeMode: action.themeMode,
       };
+    case actionsType.RESET_THEME_STATE:
+      return {
+        ...state,
+        ...initTheme,
+      };
     default :
       return state;
   }

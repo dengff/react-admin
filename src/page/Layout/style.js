@@ -3,8 +3,38 @@ import styled from 'styled-components';
 export const Warp = styled.div`
   height: 100%;
 
+  .scrollbar {
+    height: calc(100vh - 48px);
+    overflow-y: scroll;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .site-layout {
+    .layout-header {
+      background: #fff;
+      height: auto;
+    }
+
+    .top-header-content {
+      padding: 0px 8px;
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      color: rgba(255, 255, 255, 0.65);
+      background: rgb(0, 21, 41);
+
+      .top-header-right {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+      }
+    }
+  }
+
   .layout-content {
-    margin: 18px 16px;
+    margin: 16px 14px;
     height: 100%;
     overflow-Y: auto;
     overflow-X: hidden;
@@ -35,9 +65,15 @@ export const Warp = styled.div`
   }
 
   .layout-content::-webkit-scrollbar-track {
-    /*滚动条里面轨道*/
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     background: #ededed;
     border-radius: 10px;
+  }
+
+  .layout-footer {
+    text-align: center;
+    background: rgb(240, 242, 245);
+    color: rgb(217, 217, 217);
+    padding: 0px 0px 20px;
   }
 `;

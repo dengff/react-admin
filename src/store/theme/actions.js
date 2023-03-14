@@ -32,5 +32,7 @@ const setComponentSize = (size) => ({
   type: actionsType.SET_COMPONENT_SIZE,
   componentSize: size,
 });
-
+export const resetThemeState = () => ({
+  type: actionsType.RESET_THEME_STATE,
+});
 

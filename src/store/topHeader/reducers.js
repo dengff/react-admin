@@ -11,6 +11,7 @@ const initTabs = {
   activeKey: '/home',
   pageConfig: {
     layoutItems: ['tabs', 'breadcrumb', 'logo', 'pageFooter'],
+    layoutMode: 'classicLayout',
   },
 };
 
@@ -46,8 +47,22 @@ export default function reducer(state = initTabs, action) {
       return {
         ...state,
         pageConfig: {
+          ...state.pageConfig,
           layoutItems: action.layoutItems,
         },
+      };
+    case actionsType.SET_LAYOUT_MODE:
+      return {
+        ...state,
+        pageConfig: {
+          ...state.pageConfig,
+          layoutMode: action.layoutMode,
+        },
+      };
+    case actionsType.RESET_TOP_HEADER_STATE:
+      return {
+        ...state,
+        ...initTabs
       };
     default :
       return state;
