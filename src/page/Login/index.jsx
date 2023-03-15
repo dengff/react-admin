@@ -1,25 +1,18 @@
 import {Divider, Form} from 'antd';
-import {useNavigate} from 'react-router-dom';
 import {Warp} from './style.js';
 import {connect} from 'react-redux';
 import {getUserInfo, login} from '@/store/global/actions.js';
-import {LoginFormPage, ProFormText,LoginForm} from '@ant-design/pro-components';
+import {LoginForm, ProFormText} from '@ant-design/pro-components';
 
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 
-const iconStyles = {
-  color: 'rgba(0, 0, 0, 0.2)',
-  fontSize: '18px',
-  verticalAlign: 'middle',
-  cursor: 'pointer',
-};
-const loginBackground = "https://cdn.pixabay.com/photo/2016/02/15/11/41/background-1201010__480.jpg"
+const loginBackground = 'https://cdn.pixabay.com/photo/2016/02/15/11/41/background-1201010__480.jpg';
 const Login = (props) => {
   const {login, getUserInfo} = props;
 
   const onFinish = (values) => {
     login(values).then(res => {
-      const {token} = res;
+      const {token} = res.data;
       getUserInfo(token);
     });
   };
