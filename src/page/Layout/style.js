@@ -34,13 +34,15 @@ export const Warp = styled.div`
   }
 
   .layout-content {
-    margin: 16px 14px;
+    min-width: 1100px;
+    padding: 16px 14px;
     height: 100%;
+    flex: 1;
     overflow-Y: auto;
-    overflow-X: hidden;
-    border-Radius: 4px;
-    box-Shadow: 0 2px 6px;
-    background: rgb(255, 255, 255);
+    overflow-X: auto;
+    //border-Radius: 4px;
+    //box-Shadow: 0 2px 6px;
+    //background: rgb(255, 255, 255);
 
   }
 

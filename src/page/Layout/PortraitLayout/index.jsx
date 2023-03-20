@@ -44,7 +44,7 @@ export const PortraitLayout = () => {
           </Sider>
           <Layout className="site-layout">
             <HeaderTabs style={{
-              padding: '0px 14px',
+              paddingRight: '14px',
               height: '38px',
               background: '#fff',
             }}/>

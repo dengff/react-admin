@@ -17,7 +17,7 @@ const RequireAuth = (props) => {
       return navigate('/login', {replace: true});
     }
     if (token && pathname === '/login') {
-      return navigate('/home', {replace: true});
+      return navigate('/', {replace: true});
     }
     if (userInfo?.role !== 'admin' && route?.meta?.auth?.roles?.length &&
       !route?.meta?.auth?.roles?.includes(userInfo.role)) {

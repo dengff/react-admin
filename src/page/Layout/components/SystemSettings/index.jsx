@@ -23,7 +23,7 @@ export const SystemSettings = (props) => {
         <SettingOutlined onClick={handleClick}/>
       </Tooltip>
       <Drawer title="系统设置" placement="right" onClose={onClose}
-              open={open} width={410}>
+              open={open}>
         <SettingPage/>
         <SettingTheme/>
 

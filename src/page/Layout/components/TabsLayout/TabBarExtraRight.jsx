@@ -36,12 +36,9 @@ const TabBarExtraRight = (props) => {
   };
   return (<Space align={'center'}>
     <Dropdown menu={{items, onClick}}>
-      <Button>
-        <Space>
-          更多
+        <Space style={{cursor:"pointer"}}>
           <DownOutlined/>
         </Space>
-      </Button>
     </Dropdown>
   </Space>);
 };

@@ -6,7 +6,6 @@ import {LoginForm, ProFormText} from '@ant-design/pro-components';
 
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 
-const loginBackground = 'https://cdn.pixabay.com/photo/2016/02/15/11/41/background-1201010__480.jpg';
 const Login = (props) => {
   const {login, getUserInfo} = props;
 
@@ -16,7 +15,7 @@ const Login = (props) => {
       getUserInfo(token);
     });
   };
-  return <Warp loginBackground={loginBackground}>
+  return <Warp>
     <div className={'login'}>
       <LoginForm
         onFinish={onFinish}

@@ -1,25 +1,6 @@
 import {lazy, Suspense} from 'react';
-import {Spin} from 'antd';
+import {lazyLoad} from '@/utils/lazyload';
 
-/*  element: lazyLoad(React.lazy(() => import('@/views/welcome'))),*/
-export function lazyLoad(Comp) {
-  return (
-    <Suspense
-      fallback={
-        <Spin
-          size="large"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        />
-      }
-    >
-      <Comp/>
-    </Suspense>
-  );
-}
 
 const routes = [
   {
@@ -28,6 +9,29 @@ const routes = [
     meta: {
       title: '首页',
     },
+  },
+  {
+    path: '/dashboard',
+    meta: {
+      title: '仪表盘',
+    },
+    children: [
+      {
+        path: "/dashboard/workplace",
+        element: lazyLoad(lazy(()=>import("@/page/Dashboard/Workplace"))),
+        meta: {
+          title: "工作台"
+        }
+      },
+      {
+        path: "/dashboard/analyse",
+        element: lazyLoad(lazy(()=>import("@/page/Dashboard/Analyse"))),
+        meta: {
+          title: "分析页"
+        }
+      },
+
+    ]
   },
   {
     // element: <>表单</>,

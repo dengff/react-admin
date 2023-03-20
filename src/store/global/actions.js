@@ -39,7 +39,7 @@ export const logout = (token) => {
         dispatch(setUserToken(undefined));
         dispatch(resetUserInfo());
         dispatch(resetTopHeaderState());
-        dispatch(resetThemeState());
+        // dispatch(resetThemeState());
         window.localStorage.clear();
         resolve();
       }

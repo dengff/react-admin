@@ -1,11 +1,12 @@
 import {Navigate, useRoutes} from 'react-router-dom';
 import {lazy} from 'react';
-import routes, {lazyLoad} from '@/router/routes/index.jsx';
+import routes from '@/router/routes/index.jsx';
+import {lazyLoad} from '@/utils/lazyload';
 
 export const routeConfig = [
   {
     path: '/',
-    element: (<Navigate to="/home"/>),
+    element: (<Navigate to="/dashboard/workplace"/>),
   },
   {
     path: "/login",

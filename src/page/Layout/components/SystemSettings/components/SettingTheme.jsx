@@ -1,10 +1,24 @@
-import {Divider, Form, Space, Switch} from 'antd';
+import {Divider, Form, Popover, Space, Switch} from 'antd';
 import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
 import React, {memo, useLayoutEffect} from 'react';
 import {changeColorPrimary, changeTheme} from '@/store/theme/actions';
 import {connect, shallowEqual, useSelector} from 'react-redux';
-import {HuePicker} from 'react-color';
+import {SketchPicker} from 'react-color';
+import {Warp} from '@/page/Layout/components/SystemSettings/style';
 
+const presetColors = [
+  '#409EFF',
+  '#DAA96E',
+  '#00cf74',
+  '#009688',
+  '#27ae60',
+  '#ff5c93',
+  '#e53935',
+  '#14c9c9',
+  '#e74c3c',
+  '#fd726d',
+  '#f39c12',
+  '#9b59b6'];
 const SettingTheme = memo((props) => {
 
   const {
@@ -28,7 +42,7 @@ const SettingTheme = memo((props) => {
   }, []);
 
   return (
-    <>
+    <Warp>
 
       <Divider>主题设置</Divider>
       <Form
@@ -38,6 +52,31 @@ const SettingTheme = memo((props) => {
           isColorWeakness: isColorWeakness,
         }}
       >
+        <Popover
+          overlayInnerStyle={{padding: '0'}}
+          trigger="click"
+          content={
+            <Form.Item valuePropName={'color'} name="colorPrimary"
+                       label="">
+              <SketchPicker
+                presetColors={presetColors}
+                onChange={({hex}) => changeColorPrimary(hex)}
+              />
+            </Form.Item>
+          }
+          placement={'bottom'}
+        >
+          <Form.Item label={'主题色'}>
+            <div className="theme-input">
+              <div className="theme-color"
+                   style={{
+                     background: colorPrimary,
+                   }}
+              ></div>
+              <span>{colorPrimary}</span>
+            </div>
+          </Form.Item>
+        </Popover>
         <Space style={{
           justifyContent: 'space-between',
           width: '100%',
@@ -47,7 +86,7 @@ const SettingTheme = memo((props) => {
             <Switch
               checkedChildren={<CheckOutlined/>}
               unCheckedChildren={<CloseOutlined/>}
-              checked={isGrey === true}
+              checked={isGrey}
               onChange={(value) =>
                 changeTheme({
                   'isGrey': value,
@@ -75,12 +114,8 @@ const SettingTheme = memo((props) => {
             />
           </Form.Item>
         </Space>
-        <Form.Item valuePropName={'color'} name="colorPrimary"
-                   label="主题色">
-          <HuePicker onChange={({hex}) => changeColorPrimary(hex)}/>
-        </Form.Item>
       </Form>
-    </>
+    </Warp>
   );
 });
 

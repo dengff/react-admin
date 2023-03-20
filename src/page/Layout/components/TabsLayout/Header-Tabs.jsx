@@ -38,6 +38,7 @@ const HeaderTabs = (props) => {
         size={'small'}
         onChange={() => {
         }}
+        tabBarGutter={-1}
         animated
         onEdit={onEdit}
         onTabClick={onTabClick}

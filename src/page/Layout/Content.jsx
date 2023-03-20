@@ -8,10 +8,7 @@ export default () => {
 
   return (
     <Content className={'layout-content'}>
-      <section className={'layout-content-section'}
-               style={{padding: '6px 6px', height: '100%'}}>
-        <Outlet/>
-      </section>
+      <Outlet/>
     </Content>
   );
 }

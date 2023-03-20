@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-const loginBackground = "https://cdn.pixabay.com/photo/2016/02/15/11/40/background-1201008__480.jpg?imageView&blur=40x20"
+import loginBackground from "@/static/img/loginBanner_2.jpg"
 // const loginBackground = "https://cdn.pixabay.com/photo/2022/09/11/11/32/project-planning-7446580__480.jpg"
 
 export const Warp = styled.div`
@@ -18,7 +18,7 @@ export const Warp = styled.div`
     overflow-y: hidden;
     position: relative;
     flex: none;
-    box-shadow: 2px 3px 8px #d9c3bf;
+    box-shadow: 2px 3px 8px rgba(60, 116, 220, 0.98);
     height: auto;
     border-radius: 8px;
   }
@@ -35,7 +35,7 @@ export const Warp = styled.div`
     background-size: cover;
   }
 
-  .ant-pro-form-login-logo  {
+  .ant-pro-form-login-logo {
     z-index: 1;
   }
 
