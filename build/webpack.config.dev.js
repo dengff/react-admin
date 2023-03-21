@@ -17,6 +17,9 @@ module.exports = merge(baseConfig, {
     poll: 1000,
     ignored: '**/node_modules',
   },
+  experiments: {
+    lazyCompilation: true,
+  },
   devServer: {
     hot: true,
     compress: true,

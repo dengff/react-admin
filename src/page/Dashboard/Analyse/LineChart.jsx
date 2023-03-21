@@ -1,6 +1,5 @@
 import {ProCard} from '@ant-design/pro-components';
 import {useEcharts} from '@/hooks';
-import * as echarts from 'echarts';
 
 export const LineChart = () => {
   const option = {

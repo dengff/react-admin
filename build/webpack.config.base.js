@@ -38,7 +38,9 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
     },
   },
-
+  externals: {
+    'echarts': 'echarts',
+  },
   module: {
     rules: [
       {
