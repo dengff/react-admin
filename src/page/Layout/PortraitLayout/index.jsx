@@ -27,7 +27,7 @@ export const PortraitLayout = () => {
       <Layout style={{height: '100%'}}>
         <Header style={{
           padding: '0 0px',
-          color: '#fff',
+          background: '#fff',
           height: 'auto',
         }}>
           <PortraitHeader/>

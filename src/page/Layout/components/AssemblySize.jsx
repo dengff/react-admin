@@ -1,8 +1,8 @@
-import {AppstoreOutlined} from '@ant-design/icons';
 import {Dropdown, Tooltip} from 'antd';
 import React, {memo} from 'react';
 import {changeComponentSize} from '@/store/theme/actions';
 import {connect} from 'react-redux';
+import {SizeIcon} from '@/components/Icon';
 
 const items = [
   {
@@ -36,7 +36,12 @@ export const AssemblySize = memo((props) => {
       },
     }}>
     <Tooltip placement={'left'} title={'组件尺寸'}>
-      <AppstoreOutlined/>
+      <span
+        tabIndex="-1"
+        className="anticon"
+      >
+        <SizeIcon/>
+      </span>
     </Tooltip>
   </Dropdown>);
 });

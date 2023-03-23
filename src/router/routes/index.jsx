@@ -8,12 +8,14 @@ const routes = [
     element: lazyLoad(lazy(() => import('@/page/Home/index'))),
     meta: {
       title: '首页',
+      icon: "HomeIcon"
     },
   },
   {
     path: '/dashboard',
     meta: {
       title: '仪表盘',
+      icon:"DashboardIcon"
     },
     children: [
       {
@@ -38,6 +40,7 @@ const routes = [
     path: '/form',
     meta: {
       title: '表单',
+      icon: "FormIcon"
     },
     children: [
       {
@@ -60,6 +63,7 @@ const routes = [
     path: '/table',
     meta: {
       title: '表格 Table',
+      icon: "TableIcon"
     },
     children: [
       {
@@ -92,6 +96,7 @@ const routes = [
     path: '/auth',
     meta: {
       title: '权限管理',
+      icon: "AuthIcon"
     },
     children: [
       {
@@ -165,6 +170,7 @@ const routes = [
     path: '/menu',
     meta: {
       title: '菜单嵌套',
+      icon: "MenuIcon"
     },
     children: [
       {
@@ -215,6 +221,7 @@ const routes = [
     path: '/system',
     meta: {
       title: '系统管理',
+      icon: "SystemIcon"
     },
     children: [
       {
@@ -244,6 +251,7 @@ const routes = [
     path: '/other',
     meta: {
       title: '其他',
+      icon: "OthIcon"
     },
     children: [
       {
@@ -255,6 +263,29 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/user",
+    meta: {
+      title: "个人中心",
+      icon: "UserIcon"
+    },
+    children: [
+      {
+        path: "/user/info",
+        element: lazyLoad(lazy(()=>import("@/page/User/Info/index"))),
+        meta: {
+          title: "用户信息"
+        }
+      },
+      {
+        path: "/user/setting",
+        element: lazyLoad(lazy(()=>import("@/page/User/Setting/index"))),
+        meta: {
+          title: "用户设置"
+        }
+      },
+    ]
+  }
 
 ];
 

@@ -5,6 +5,7 @@ import {changeColorPrimary, changeTheme} from '@/store/theme/actions';
 import {connect, shallowEqual, useSelector} from 'react-redux';
 import {SketchPicker} from 'react-color';
 import {Warp} from '@/page/Layout/components/SystemSettings/style';
+import {ThemeIcon} from '@/components/Icon';
 
 const presetColors = [
   '#409EFF',
@@ -44,7 +45,9 @@ const SettingTheme = memo((props) => {
   return (
     <Warp>
 
-      <Divider>主题设置</Divider>
+      <Divider><Space>
+        <ThemeIcon/>主题设置
+      </Space></Divider>
       <Form
         initialValues={{
           colorPrimary: colorPrimary,

@@ -30,7 +30,7 @@ const PermissionComponent = (props) => {
     setAuthStatus(permissionBtn);
   }, []);
 
-  return <div>
+  return <div style={{background:"#fff"}}>
     <ProForm
       formRef={refFrom}
       layout={'horizontal'}

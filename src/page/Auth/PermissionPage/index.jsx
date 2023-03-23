@@ -20,6 +20,7 @@ const PermissionPage = (props) => {
   };
   return (
     <ProForm
+      style={{background:"#fff"}}
       formRef={refFrom}
       layout={'horizontal'}
       title={'其他权限'}

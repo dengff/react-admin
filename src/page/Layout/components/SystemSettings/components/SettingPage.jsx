@@ -1,8 +1,9 @@
-import {Col, Divider, Row} from 'antd';
+import {Col, Divider, Row, Space} from 'antd';
 import React from 'react';
 import {CheckCard, ProForm, ProFormCheckbox} from '@ant-design/pro-components';
 import {changeLayout, changeLayoutMode} from '@/store/topHeader/actions.js';
 import {connect} from 'react-redux';
+import {LayoutIcon} from '@/components/Icon';
 
 const showComps = [
   {
@@ -33,7 +34,9 @@ const SettingPage = (props) => {
 
   return (
     <>
-      <Divider>界面显示</Divider>
+      <Divider><Space style={{alignItems:'center'}}>
+        <LayoutIcon/>界面显示
+      </Space></Divider>
       <ProForm
         layout={'horizontal'}
         submitter={{

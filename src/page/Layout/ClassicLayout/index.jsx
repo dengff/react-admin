@@ -27,11 +27,11 @@ export const ClassicLayout = () => {
 
     <Warp>
       <Layout style={{height: '100%'}}>
-        <Sider trigger={null} collapsible
+        <Sider style={{background:'#fff'}} trigger={null} collapsible
                collapsed={collapsed}>
           <Logo mode={'classicLayout'}/>
           <div className="scrollbar">
-            <MenuLayout ref={ref}/>
+            <MenuLayout ref={ref} theme={"light"}/>
           </div>
         </Sider>
         <Layout className="site-layout">

@@ -17,20 +17,7 @@ export const Warp = styled.div`
       background: #fff;
       height: auto;
     }
-
-    .top-header-content {
-      padding: 0px 8px;
-      display: grid;
-      grid-template-columns: 4fr 1fr;
-      color: rgba(255, 255, 255, 0.65);
-      background: rgb(0, 21, 41);
-
-      .top-header-right {
-        display: flex;
-        align-items: center;
-        justify-content: end;
-      }
-    }
+    
   }
 
   .layout-content {

@@ -1,6 +1,6 @@
 import {Menu} from 'antd';
 import React, {PureComponent} from 'react';
-import {MenuHoc} from './Hoc/Menu';
+import {withMenuHoc} from './Hoc';
 
 class MenuLayout extends PureComponent {
   render() {
@@ -8,4 +8,4 @@ class MenuLayout extends PureComponent {
   }
 }
 
-export default MenuHoc(MenuLayout);
+export default withMenuHoc(MenuLayout);

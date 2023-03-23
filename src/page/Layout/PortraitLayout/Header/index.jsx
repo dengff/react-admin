@@ -8,8 +8,8 @@ import Logo from '@/page/Layout/components/Logo';
 export default (props) => {
   return (
     <Warp>
-      <div className="classic-header">
-        <div className="classic-header-content">
+      <div className="portrait-header">
+        <div className="portrait-header-content">
           <div style={{
             display: 'flex',
             alignItems: 'center',

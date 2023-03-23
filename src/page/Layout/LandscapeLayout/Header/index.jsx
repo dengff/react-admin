@@ -18,6 +18,7 @@ export const LandscapeHeader = () => {
           <div style={{display: 'flex', overflow: 'hidden'}}>
             <Logo mode={'horizontal'}/>
             <MenuLayout
+              theme={"light"}
               ref={ref} mode={'horizontal'}
               style={{
                 height: '50px', lineHeight: '50px',

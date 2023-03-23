@@ -1,10 +1,11 @@
 import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {AppstoreOutlined} from '@ant-design/icons';
+import Icon ,{AppstoreOutlined} from '@ant-design/icons';
 import routes from '@/router/routes';
 import {shallowEqual, useSelector} from 'react-redux';
+import {menuIcon} from '@/components/Icon';
 
-export function MenuHoc(WrapComponent) {
+export function withMenuHoc(WrapComponent) {
   return forwardRef((props, ref) => {
     const navigate = useNavigate();
     const {userInfo, collapsed} = useSelector(state => state.global,
@@ -17,7 +18,7 @@ export function MenuHoc(WrapComponent) {
           label: item?.meta?.title,
           key: item.path,
           title: item?.meta?.title,
-          icon: <AppstoreOutlined/>,
+          icon: menuIcon[item?.meta?.icon]?<Icon component={menuIcon[item?.meta?.icon]}/>:null,
           children: item?.children?.length && toMenuList(item?.children),
         };
       }).filter(inner => {

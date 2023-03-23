@@ -21,7 +21,7 @@ const Login = (props) => {
         onFinish={onFinish}
         logo="https://www.logosc.cn/logomrdata/2017/12/13/ff616ad1-0a2e-40a4-8842-9b0b97ea55e4.png"
         title="Admin"
-        subTitle="--"
+        subTitle=" "
         initialValues={{
           username: 'admin',
           password: '123456',
@@ -65,7 +65,9 @@ const Login = (props) => {
         </>
       </LoginForm>
     </div>
-
+    <div className="g-polygon-1"></div>
+    <div className="g-polygon-2"></div>
+    <div className="g-polygon-3"></div>
   </Warp>;
 
 };
