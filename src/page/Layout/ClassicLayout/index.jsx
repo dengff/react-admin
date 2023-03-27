@@ -5,33 +5,24 @@ import MenuLayout from '@/page/Layout/components/MenuLayout';
 import ClassicHeader from './Header/index';
 import LayoutContent from '@/page/Layout/Content';
 import LayoutFooter from '@/page/Layout/Footer';
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import {shallowEqual, useSelector} from 'react-redux';
-import {useLocation} from 'react-router-dom';
+import {useDefaultOpenKeys} from '@/page/Layout/components/MenuLayout/hooks';
 
 const {Header, Sider} = Layout;
 
 export const ClassicLayout = () => {
-
-  const {collapsed} = useSelector(state => state.global,
-    shallowEqual);
-  const {pageConfig} = useSelector(state => state.topHeader);
-  const {layoutMode} = pageConfig ?? {};
-  const {pathname} = useLocation();
-  const ref = useRef(null);
-  useEffect(() => {
-    const keys = ref.current?.defaultOpenKeys();
-    ref.current?.setOpenKeys(keys);
-  }, [pathname, layoutMode]);
+  const {collapsed} = useSelector(state => state.global, shallowEqual);
+  const [ref] = useDefaultOpenKeys();
   return (
 
     <Warp>
       <Layout style={{height: '100%'}}>
-        <Sider style={{background:'#fff'}} trigger={null} collapsible
+        <Sider style={{background: '#fff'}} trigger={null} collapsible
                collapsed={collapsed}>
           <Logo mode={'classicLayout'}/>
           <div className="scrollbar">
-            <MenuLayout ref={ref} theme={"light"}/>
+            <MenuLayout menuRef={ref} theme={'light'}/>
           </div>
         </Sider>
         <Layout className="site-layout">

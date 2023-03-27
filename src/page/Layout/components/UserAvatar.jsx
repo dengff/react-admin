@@ -5,53 +5,53 @@ import {logout} from '@/store/global/actions.js';
 import {connect, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {LogoutIcon} from '@/components/Icon';
+
 const {confirm} = Modal;
 
-const UserAvatar = (props)=>{
+const UserAvatar = (props) => {
   const {userInfo, token} = useSelector(state => state.global);
   const {logout} = props;
-const navigator = useNavigate()
+  const navigator = useNavigate();
   const items = [
     {
-      label: '个人中心',
+      label: <span onClick={(e) => {
+        navigator('/user/info');
+      }
+      }>
+        个人中心
+      </span>,
       key: '/user/info',
-      icon: <UserOutlined/>
+      icon: <UserOutlined/>,
     },
     {
-      label: '退出登录',
+      label: <span onClick={() => {
+        confirm({
+          title: '温馨提示',
+          icon: <ExclamationCircleFilled/>,
+          content: '是否确认退出',
+          onOk() {
+            logout(token);
+          },
+        });
+      }}>
+        退出登录
+      </span>,
       key: 'logout',
-      icon: <LogoutIcon/>
+      icon: <LogoutIcon/>,
     },
   ];
-
-  function handleClick({key}) {
-    if (key === 'logout') {
-      confirm({
-        title: '温馨提示',
-        icon: <ExclamationCircleFilled/>,
-        content: '是否确认退出',
-        onOk() {
-          logout(token);
-        },
-        onCancel() {
-        },
-      });
-    }
-    if(key === "/user/info") return navigator(key)
-  }
-
   return (
-    <Dropdown placement={"bottomLeft"} menu={{items, onClick: handleClick}}>
+    <Dropdown trigger={['click']} placement={'bottomLeft'} menu={{items}}>
       <Avatar
         style={{
-          cursor:"pointer"
+          cursor: 'pointer',
         }}
         size={28}
         src={<img src={userInfo?.avatar} alt="avatar"/>}
       >
       </Avatar>
     </Dropdown>
-  )
-}
+  );
+};
 
-export default connect(null,{logout})(UserAvatar)
+export default connect(null, {logout})(UserAvatar);

@@ -8,6 +8,17 @@ import {
 } from '@ant-design/pro-components';
 import {useRef} from 'react';
 import {request} from '@/common/api/index.js';
+import styled from 'styled-components';
+
+const Warp = styled.div`
+  padding: 10px;
+  height: 100%;
+  background: #fff;
+
+  .ant-picker {
+    width: 100%;
+  }
+`;
 
 const enumData = async (key) => {
   const {data} = await request.post('/cityList', {key});
@@ -18,19 +29,21 @@ const enumData = async (key) => {
 };
 const DynamicForms = () => {
   const formRef = useRef();
-  return <div style={{padding: '6px 6px'}}>
+  return <Warp>
     <ProForm
       grid={true}
       rowProps={{
-        gutter: [4, 12],
+        gutter: [10, 4],
       }}
+
       colProps={{
-        lg: 8, xl: 7,
+        span: 8,
       }}
+      labelCol={{span: 6}}
       formRef={formRef}
       title={'信息'}
       readonly={false}
-      layout={'inline'}
+      layout={'horizontal'}
       onFinish={val => console.log(val)}
       submitter={{
         render: _ => null,
@@ -40,6 +53,8 @@ const DynamicForms = () => {
       <ProFormSelect
         label="状态"
         name="status"
+        tooltip="切换显示备注"
+        required
         options={[
           {
             value: 'hide',
@@ -66,6 +81,7 @@ const DynamicForms = () => {
         }}
       </ProFormDependency>
       <ProFormSelect
+        required
         name="advanceType"
         label={'预付类型'}
         options={[
@@ -85,7 +101,8 @@ const DynamicForms = () => {
         {({advanceType}) => {
           if (advanceType === 'other') {
             return (
-              <ProForm.Item
+              <ProFormDigit
+                className="digit-rate"
                 label={'预付比例'}
                 name={'advanceRate'}
                 rules={[
@@ -95,15 +112,7 @@ const DynamicForms = () => {
                     message: '请输入等于1 或小于 1 的两位小数',
                   },
                 ]}
-              >
-                <ProFormDigit
-                  colProps={{
-                    span: {
-                      lg: 8, xl: 7,
-                    },
-                  }}
-                />
-              </ProForm.Item>
+              />
             );
           }
         }
@@ -111,6 +120,7 @@ const DynamicForms = () => {
       </ProFormDependency>
       <ProFormSelect
         label="城市"
+        showSearch
         debounceTime={1000}
         request={({keyWords}) => enumData(keyWords)}
       />
@@ -119,11 +129,11 @@ const DynamicForms = () => {
       />
       <ProFormText name={'vendor'} label={'供应商'}/>
       <ProFormDatePicker
-        label="时间"
+        label="日期"
         name="date"
       />
     </ProForm>
-  </div>;
+  </Warp>;
 };
 
 export default DynamicForms;

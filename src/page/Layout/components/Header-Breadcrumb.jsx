@@ -10,23 +10,14 @@ const HeaderBreadcrumb = (props) => {
   const {layoutItems} = pageConfig ?? {};
   const location = useLocation();
   const match = matchRoutes(routeConfig, location);
-  const routeMatch = match.filter(
-    item => item.pathname !== '/' && item.pathname !== '/home');
+  const routeMatch = match.map(inner => ({title: inner.route?.meta?.title}));
   return (
     <Auth
       auth={layoutItems?.includes('breadcrumb')}
-      render={() => <Breadcrumb separator=">">
-        <Breadcrumb.Item>
-          <span>首页</span>
-        </Breadcrumb.Item>
-        {
-          routeMatch.map(item => (
-            <Breadcrumb.Item key={item?.pathname}>
-              <span>{item?.route?.meta?.title}</span>
-            </Breadcrumb.Item>
-          ))
-        }
-      </Breadcrumb>}
+      render={() => (
+        <Breadcrumb separator=">" items={routeMatch}>
+        </Breadcrumb>)
+      }
       fallback={<span></span>}
     />
   );

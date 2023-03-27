@@ -1,6 +1,5 @@
-import {lazy, Suspense} from 'react';
+import {lazy} from 'react';
 import {lazyLoad} from '@/utils/lazyload';
-
 
 const routes = [
   {
@@ -225,24 +224,24 @@ const routes = [
     },
     children: [
       {
-        path: '/system/account-management',
-        element: <h2>账号管理</h2>,
+        path: "/system/dept",
+        element: lazyLoad(lazy(()=>import("@/page/System/Dept"))),
         meta: {
-          title: '账号管理',
-        },
+          title: "部门管理",
+        }
       },
       {
         path: '/system/role-management',
-        element: <h2>角色管理</h2>,
+        element: lazyLoad(lazy(()=>import("@/page/System/Role"))),
         meta: {
           title: '角色管理',
         },
       },
       {
-        path: '/system/department-management',
-        element: <h2>部门管理</h2>,
+        path: '/system/menu',
+        element: lazyLoad(lazy(()=>import("@/page/System/Menu"))),
         meta: {
-          title: '部门管理',
+          title: '菜单管理',
         },
       },
     ],

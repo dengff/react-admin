@@ -1,11 +1,19 @@
 import {ProCard, StatisticCard} from '@ant-design/pro-components';
-import {AppstoreOutlined} from '@ant-design/icons';
 
 import React from 'react';
 import * as echarts from 'echarts';
 import {useEcharts} from '@/hooks';
-import {Avatar} from 'antd';
+import {Avatar, Space} from 'antd';
 import {useSelector} from 'react-redux';
+import {
+  CommentsIcon,
+  DataIcon,
+  DeliverIcon,
+  IncreaseIcon,
+  ItemsIcon,
+  MessageIcon,
+  TodoIcon,
+} from '@/components/Icon';
 
 const {Divider} = ProCard;
 
@@ -304,22 +312,45 @@ export const Overview = () => {
     </div>;
 
   };
-  const Extra = () => <div style={{minWidth: '300px'}}>
+  const Extra = () => <div style={{minWidth: '360px'}}>
     <ProCard ghost bordered={false}>
       <StatisticCard
+        ghost
+        layout={'center'}
         statistic={{
-          title: '项目数',
+          title: <Space>
+            <span style={{fontSize: '16px'}}>
+            <ItemsIcon/>
+          </span>
+            {'项目数'}
+          </Space>,
           value: 24,
         }}
       />
       <StatisticCard
+        ghost
+        layout={'center'}
         statistic={{
-          title: '待办',
+          title: <Space align={'center'}>
+            <span style={{fontSize: '16px'}}>
+            <TodoIcon/>
+          </span>
+            {'待办'}
+          </Space>,
           value: 15,
         }}
       /><StatisticCard
+      ghost
       statistic={{
-        title: '消息',
+        title: <Space>
+
+          <span style={{fontSize: '16px'}}>
+        <MessageIcon/>
+      </span>
+          <span>
+            消息
+          </span>
+        </Space>,
         value: 99,
       }}
     />
@@ -334,7 +365,7 @@ export const Overview = () => {
       title={<Title/>}
       extra={<Extra/>}
     >
-      <ProCard split={'horizontal'} gutter={[0,20]} ghost>
+      <ProCard split={'horizontal'} gutter={[0, 20]} ghost>
         <ProCard split={'vertical'}>
           <ProCard.Group title="">
             <ProCard hoverable>
@@ -343,7 +374,7 @@ export const Overview = () => {
                   title: '线上总数据',
                   value: 79.0,
                   icon: (
-                    <AppstoreOutlined/>
+                    <span style={{fontSize: '32px'}}><DataIcon/></span>
                   ),
                 }}
               />
@@ -352,9 +383,12 @@ export const Overview = () => {
             <ProCard hoverable>
               <StatisticCard
                 statistic={{
+                  style: {
+                    width: '89px',
+                  },
                   title: '投放中的内容',
                   value: 112893.0,
-                  icon: <AppstoreOutlined/>,
+                  icon: <span style={{fontSize: '32px'}}><DeliverIcon/></span>,
                 }}
               />
             </ProCard>
@@ -364,7 +398,8 @@ export const Overview = () => {
                 statistic={{
                   title: '日新增评论',
                   value: 93,
-                  icon: <AppstoreOutlined/>,
+                  icon: <span
+                    style={{fontSize: '32px'}}> <CommentsIcon/></span>,
                 }}
               />
             </ProCard>
@@ -374,8 +409,11 @@ export const Overview = () => {
                 statistic={{
                   title: '较昨日新增',
                   value: 112893.0,
-                  icon: <AppstoreOutlined/>,
+                  icon: <span style={{fontSize: '32px'}}>
+                    <IncreaseIcon/>
+                  </span>,
                 }}
+
               />
             </ProCard>
           </ProCard.Group>

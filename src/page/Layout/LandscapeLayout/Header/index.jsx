@@ -1,16 +1,14 @@
 import HeaderRight from '@/page/Layout/Header/HeaderRight';
 import {Divider} from 'antd';
 import HeaderTabs from '@/page/Layout/components/TabsLayout/Header-Tabs';
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import Logo from '@/page/Layout/components/Logo';
 import MenuLayout from '@/page/Layout/components/MenuLayout';
 import {Warp} from './style';
+import {useDefaultOpenKeys} from '@/page/Layout/components/MenuLayout/hooks';
 
 export const LandscapeHeader = () => {
-  const ref = useRef(null);
-  useEffect(() => {
-    ref.current?.setOpenKeys([]);
-  }, []);
+  const [ref] =  useDefaultOpenKeys(true)
   return (
     <Warp>
       <div className="horizontal-top-header">
@@ -19,7 +17,7 @@ export const LandscapeHeader = () => {
             <Logo mode={'horizontal'}/>
             <MenuLayout
               theme={"light"}
-              ref={ref} mode={'horizontal'}
+              menuRef={ref} mode={'horizontal'}
               style={{
                 height: '50px', lineHeight: '50px',
                 width: 'calc(100% - 200px)',

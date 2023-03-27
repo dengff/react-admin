@@ -1,9 +1,70 @@
 import {ProCard, StatisticCard} from '@ant-design/pro-components';
 import {Avatar, Progress, Space, Tooltip} from 'antd';
-import {AppstoreOutlined} from '@ant-design/icons';
 import {useEcharts} from '@/hooks';
+import {
+  AnalyseIcon,
+  BillIcon,
+  CommodityIcon,
+  DayIcon,
+  DispositionIcon,
+  LabelIcon,
+  MonthIcon,
+  OrderIcon,
+  ProcessIcon,
+  UserGroupsIcon,
+  WeekIcon,
+  YearIcon,
+} from '@/components/Icon';
+import styled from 'styled-components';
 
+const Warp = styled.div`
+
+  .anticon {
+    font-size: 30px;
+  }
+
+  .ant-pro-card-header {
+    padding-bottom: 4px;
+    padding-top: 4px;
+  }
+
+`;
 const {Statistic} = StatisticCard;
+
+const items = [
+  {
+    title: '用户',
+    icon: <UserGroupsIcon/>,
+  },
+  {
+    title: '分析',
+    icon: <AnalyseIcon/>,
+  },
+  {
+    title: '商品',
+    icon: <CommodityIcon/>,
+  },
+  {
+    title: '订单',
+    icon: <OrderIcon/>,
+  },
+  {
+    title: '票据',
+    icon: <BillIcon/>,
+  },
+  {
+    title: '标签',
+    icon: <LabelIcon/>,
+  },
+  {
+    title: '流程',
+    icon: <ProcessIcon/>,
+  },
+  {
+    title: '配置',
+    icon: <DispositionIcon/>,
+  },
+];
 
 const Overview = () => {
   const option = {
@@ -149,11 +210,20 @@ const Overview = () => {
     ],
   };
   const [echartsRef] = useEcharts(option);
-  return (<>
+  return (<Warp>
     <ProCard ghost>
       <ProCard split={'vertical'} gutter={[20, 10]} ghost>
-        <ProCard headerBordered title={'访问量'} extra={'年'}
-                 split={'horizontal'}>
+        <ProCard
+          headerBordered
+          title={'访问量'}
+          extra={
+            <span
+              role={'img'} className="anticon"
+            >
+             <YearIcon/>
+            </span>
+          }
+          split={'horizontal'}>
           <StatisticCard
             statistic={{
               value: 82.6,
@@ -170,28 +240,39 @@ const Overview = () => {
           <ProCard title={'总访问量'} extra={'280万'}></ProCard>
 
         </ProCard>
-        <ProCard headerBordered title={'销售额'} extra={'月'}
+        <ProCard headerBordered title={'销售额'}
+                 extra={
+                   <span role={'img'} className="anticon">
+                     <MonthIcon/>
+                   </span>}
                  split={'horizontal'}>
           <StatisticCard
             statistic={{
-              value: '12,000',
+              value: '2.69',
               suffix: '亿',
             }}
             chart={
-              <Progress style={{
-                height: '50px',
-                display: 'flex',
-                alignItems: 'center',
-                margin: '0',
-              }} percent={68}
-                        strokeColor={{'0%': '#108ee9', '100%': '#87d068'}}
-                        size="small"/>
+              <Progress
+                style={{
+                  height: '50px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  margin: '0',
+                }}
+                percent={68}
+                strokeColor={{'0%': '#108ee9', '100%': '#87d068'}}
+                size="small"/>
             }
           >
           </StatisticCard>
           <ProCard title={'总销售额'} extra={'68万'}></ProCard>
         </ProCard>
-        <ProCard headerBordered title={'订单量'} extra={'日'}
+        <ProCard headerBordered
+                 title={'订单量'}
+                 extra={
+                   <span role={'img'} className="anticon">
+                     <DayIcon/>
+                   </span>}
                  split={'horizontal'}>
           <StatisticCard
             statistic={{
@@ -200,13 +281,19 @@ const Overview = () => {
             }}
             chart={
               <div style={{width: '100%', height: '50px'}}
-                   ref={echartsRef}></div>
+                   ref={echartsRef}>
+
+              </div>
             }
           >
           </StatisticCard>
           <ProCard title={'转化率'} extra={'60%'}></ProCard>
         </ProCard>
-        <ProCard headerBordered title={'新增用户'} extra={'周'}
+        <ProCard headerBordered title={'新增用户'}
+                 extra={
+                   <span role={'img'} className="anticon"
+                   ><WeekIcon/>
+                   </span>}
                  split={'horizontal'}>
           <StatisticCard
             statistic={{
@@ -263,57 +350,19 @@ const Overview = () => {
 
     </ProCard>
 
-    <ProCard ghost split={'vertical'} bordered={false} gutter={[20, 20]}>
-      <ProCard bordered={false} hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>用户</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>分析</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>商品</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>订单</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>票据</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>标签</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>流程</div>
-        </Space>
-      </ProCard>
-      <ProCard hoverable>
-        <Space style={{flexDirection: 'column', width: '100%'}}>
-          <AppstoreOutlined/>
-          <div>配置</div>
-        </Space>
-      </ProCard>
+    <ProCard ghost split={'vertical'} bordered={false} className="link-item" gutter={[20, 20]}>
+      {
+        items.map(item => <ProCard hoverable key={item.title}>
+          <Space style={{flexDirection: 'column', width: '100%'}}>
+            <span role="img" className="anticon" style={{fontSize: '30px'}}>
+              {item.icon}
+            </span>
+            <div>{item.title}</div>
+          </Space>
+        </ProCard>)
+      }
     </ProCard>
-  </>);
+  </Warp>);
 };
 
 export default Overview;
