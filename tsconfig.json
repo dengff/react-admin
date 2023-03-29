@@ -1,11 +1,14 @@
 /*https://jkchao.github.io/typescript-book-chinese/project/compilationContext.html#tsconfig-json*/
 {
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
-  "exclude": ["src/**/__tests__/*"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "experimentalDecorators":true,
     "composite": true,
     "target": "es5",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
     "lib": [
       "dom",
       "dom.iterable",
@@ -15,7 +18,5 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true
   }
 }
