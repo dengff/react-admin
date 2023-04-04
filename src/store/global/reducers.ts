@@ -28,12 +28,13 @@ const initUserInfo: GlobalState = {
   name: "",
   role: "",
   avatar: "",
-  token: token,
+  token: "",
   userInfo: userInfo,
   collapsed: false,
 };
 
 const reducer: Reducer<GlobalState, GlobalAction> = (state = initUserInfo, action) => {
+  debugger
   switch (action.type) {
     case globalAction.USER_SET_USER_TOKEN:
       return {

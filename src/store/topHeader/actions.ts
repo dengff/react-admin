@@ -19,7 +19,7 @@ export const addTabs = (route: AgnosticRouteMatch<string, RouteObj>, key: string
       const babInfo = {
         key: route.pathname,
         label: route?.route?.meta?.title!,
-        closable: false
+        closable: true
       };
       dispatch(setTabs([...tabList, babInfo]));
     }
