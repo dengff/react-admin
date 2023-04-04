@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import * as echarts from 'echarts';
+import {useEffect, useRef} from "react";
+import * as echarts from "echarts";
 import type {EChartsCoreOption} from "echarts";
 
-export const useEcharts = (options:EChartsCoreOption, data?:any) => {
+export const useEcharts = (options: EChartsCoreOption, data?: any) => {
   const _chart = useRef<any>();
   const echartsRef = useRef(null);
   const echartsResize = () => {

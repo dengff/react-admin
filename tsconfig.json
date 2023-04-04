@@ -6,8 +6,13 @@
     "experimentalDecorators":true,
     "composite": true,
     "target": "es5",
+    "module": "esnext",
     "jsx": "react",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "noUnusedLocals": false,
     "lib": [
       "dom",
@@ -17,6 +22,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
+    }
   }
 }

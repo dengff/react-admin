@@ -1,17 +1,19 @@
-import {Avatar, Space, Tag} from 'antd';
-import {GithubOutlined, UserOutlined} from '@ant-design/icons';
-import {LocationIcon} from '@/components/Icon';
-import styled from 'styled-components';
-import {useSelector} from 'react-redux';
-import {useMemo} from 'react';
-import {getLightColor} from '@/utils/colorTools';
-import React from 'react';
+import {Avatar, Space, Tag} from "antd";
+import {GithubOutlined, UserOutlined} from "@ant-design/icons";
+import {LocationIcon} from "@/components/Icon";
+import styled from "styled-components";
+import {useSelector} from "react-redux";
+import {useMemo} from "react";
+import {getLightColor} from "@/utils/colorTools";
+import React from "react";
+import {selectGlobal} from "@/store/global/selectors";
+import {selectTheme} from "@/store/theme/selectors";
 
-const Warp = styled.div`
+const Warp = styled.div<{ BGColor?: string | false }>`
   height: 240px;
   display: flex;
   position: relative;
-  background: ${(props: any) => `linear-gradient(128deg, ${props?.BGColor}, #72ece933)`};
+  background: ${(props) => `linear-gradient(128deg, ${props?.BGColor}, #72ece933)`};
 
   .user-mes {
     width: 100%;
@@ -23,48 +25,48 @@ const Warp = styled.div`
 
 const tagList = [
   {
-    tagColor: 'rgba(180,129,224,0.26)',
-    text: 'react 18',
-    textColor: '#752aa8',
+    tagColor: "rgba(180,129,224,0.26)",
+    text: "react 18",
+    textColor: "#752aa8",
   },
   {
-    tagColor: 'rgba(125,234,154,0.37)',
-    text: 'redux',
-    textColor: '#17d543',
+    tagColor: "rgba(125,234,154,0.37)",
+    text: "redux",
+    textColor: "#17d543",
   },
   {
-    tagColor: 'rgba(222,116,105,0.29)',
-    text: 'react-router V6',
-    textColor: 'rgba(213,39,23,0.82)',
+    tagColor: "rgba(222,116,105,0.29)",
+    text: "react-router V6",
+    textColor: "rgba(213,39,23,0.82)",
   },
   {
-    tagColor: 'rgba(252,129,171,0.36)',
-    text: 'antd design',
-    textColor: '#FF5C93',
+    tagColor: "rgba(252,129,171,0.36)",
+    text: "antd design",
+    textColor: "#FF5C93",
   },
   {
-    tagColor: 'rgba(152,236,220,0.47)',
-    text: 'vite',
-    textColor: '#14c9c9',
+    tagColor: "rgba(152,236,220,0.47)",
+    text: "vite",
+    textColor: "#14c9c9",
   },
   {
-    tagColor: '#bdcef5',
-    text: 'webpack 5',
-    textColor: '#165dff',
+    tagColor: "#bdcef5",
+    text: "webpack 5",
+    textColor: "#165dff",
   },
 
 ];
 const UserPanel = () => {
-  const {userInfo} = useSelector((state: any) => state.global);
-  const {token: {colorPrimary}} = useSelector((state: any) => state.theme);
+  const {userInfo} = useSelector(selectGlobal);
+  const {token: {colorPrimary}} = useSelector(selectTheme);
   const BGColor = useMemo(() => getLightColor(colorPrimary, 0.82), [colorPrimary]);
 
   return (
-    <Warp BGColor={BGColor} style={{}}>
-      <Space direction={'horizontal'} className="user-mes">
+    <Warp BGColor={BGColor}>
+      <Space direction={"horizontal"} className="user-mes">
         <Avatar size={66} src={userInfo?.avatar}></Avatar>
         <span>{userInfo?.name}</span>
-        <div style={{display: 'flex', gap: '32px'}}>
+        <div style={{display: "flex", gap: "32px"}}>
           <Space>
             <UserOutlined/>
             前端开发工程师

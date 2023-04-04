@@ -8,9 +8,9 @@ import {
   ProFormText,
   ProFormTextArea,
   StepsForm,
-} from '@ant-design/pro-components';
-import {Button, message} from 'antd';
-import React from 'react';
+} from "@ant-design/pro-components";
+import {Button, message} from "antd";
+import React from "react";
 
 const waitTime = (time = 100) => {
   return new Promise((resolve) => {
@@ -20,18 +20,18 @@ const waitTime = (time = 100) => {
   });
 };
 
- const StepsFormComp = () => {
+const StepsFormComp = () => {
   return (
     <ProCard>
       <StepsForm
         onFinish={async (values) => {
           console.log(values);
           await waitTime(1000);
-          message.success('提交成功');
+          message.success("提交成功");
         }}
         formProps={{
           validateMessages: {
-            required: '此项为必填项',
+            required: "此项为必填项",
           },
         }}
         submitter={{
@@ -39,7 +39,7 @@ const waitTime = (time = 100) => {
             if (props.step === 0) {
               return (
                 <Button type="primary" onClick={() => props.onSubmit?.()}>
-                  去第二步 {'>'}
+                  去第二步 {">"}
                 </Button>
               );
             }
@@ -51,14 +51,14 @@ const waitTime = (time = 100) => {
                 </Button>,
                 <Button type="primary" key="goToTree"
                         onClick={() => props.onSubmit?.()}>
-                  去第三步 {'>'}
+                  去第三步 {">"}
                 </Button>,
               ];
             }
 
             return [
               <Button key="gotoTwo" onClick={() => props.onPre?.()}>
-                {'<'} 返回第二步
+                {"<"} 返回第二步
               </Button>,
               <Button type="primary" key="goToTree"
                       onClick={() => props.onSubmit?.()}>
@@ -98,7 +98,7 @@ const waitTime = (time = 100) => {
             name="checkbox"
             label="迁移类型"
             width="lg"
-            options={['结构迁移', '全量迁移', '增量迁移', '全量校验']}
+            options={["结构迁移", "全量迁移", "增量迁移", "全量校验"]}
           />
           <ProForm.Group>
             <ProFormText name="dbname" label="业务 DB 用户名"/>
@@ -106,7 +106,7 @@ const waitTime = (time = 100) => {
             <ProFormCheckbox.Group
               name="checkbox"
               label="迁移类型"
-              options={['完整 LOB', '不同步 LOB', '受限制 LOB']}
+              options={["完整 LOB", "不同步 LOB", "受限制 LOB"]}
             />
           </ProForm.Group>
         </StepsForm.StepForm>
@@ -119,7 +119,7 @@ const waitTime = (time = 100) => {
                 required: true,
               },
             ]}
-            options={['部署单元1', '部署单元2', '部署单元3']}
+            options={["部署单元1", "部署单元2", "部署单元3"]}
           />
           <ProFormSelect
             label="部署分组策略"
@@ -132,10 +132,10 @@ const waitTime = (time = 100) => {
             initialValue="1"
             options={[
               {
-                value: '1',
-                label: '策略一',
+                value: "1",
+                label: "策略一",
               },
-              {value: '2', label: '策略二'},
+              {value: "2", label: "策略二"},
             ]}
           />
           <ProFormSelect
@@ -144,10 +144,10 @@ const waitTime = (time = 100) => {
             initialValue="2"
             options={[
               {
-                value: '1',
-                label: '策略一',
+                value: "1",
+                label: "策略一",
               },
-              {value: '2', label: '策略二'},
+              {value: "2", label: "策略二"},
             ]}
           />
         </StepsForm.StepForm>

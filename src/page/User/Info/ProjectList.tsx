@@ -1,7 +1,7 @@
-import {ProCard, StatisticCard} from '@ant-design/pro-components';
-import {Avatar} from 'antd';
-import React from 'react';
-import styled from 'styled-components';
+import {ProCard, StatisticCard} from "@ant-design/pro-components";
+import {Avatar} from "antd";
+import React from "react";
+import styled from "styled-components";
 
 const Warp = styled.div`
   display: grid;
@@ -19,10 +19,10 @@ const Warp = styled.div`
     align-items: center;
   }
 `;
-const data:any[] = [...Array(6)].map((item, index) => ({
-  title: '企业级产品设计系统',
-  subTitle: 'A System',
-  description: '是一个面向开源及私有软件项目的托管平台',
+const data: any[] = [...Array(6)].map((item, index) => ({
+  title: "企业级产品设计系统",
+  subTitle: "A System",
+  description: "是一个面向开源及私有软件项目的托管平台",
   avatars: [
     `https://api.uomg.com/api/rand.avatar?sort=%E5%8A%A8%E6%BC%AB%E5%A5%B3&format=images&key=${index}`,
     `https://api.uomg.com/api/rand.avatar?sort=%E5%8A%A8%E6%BC%AB%E5%A5%B3&format=images&key=${index +
@@ -43,7 +43,7 @@ const Avatars = ({avatars = []}) => {
         src={item}
         size={28}
         style={{
-          background: '#bbc3cb',
+          background: "#bbc3cb",
         }}
       />)
     }
@@ -52,8 +52,8 @@ const Avatars = ({avatars = []}) => {
 
 const ProjectList = () => {
   return (
-    <ProCard headerBordered title={'项目'} extra={<a>更多</a>}
-             split={'horizontal'}>
+    <ProCard headerBordered title={"项目"} extra={<a>更多</a>}
+             split={"horizontal"}>
 
       <Warp>
         {data.map(item =>
@@ -62,10 +62,10 @@ const ProjectList = () => {
             hoverable
             title={item.title}
             subTitle={item.subTitle}
-            size={'small'}
+            size={"small"}
             bordered
             statistic={{
-              value: ' ',
+              value: " ",
               description: item.description,
             }}
             chart={
@@ -75,8 +75,8 @@ const ProjectList = () => {
                   <Avatars avatars={item.avatars}/>
                 </Avatar.Group>
                 <span style={{
-                  color: '#909399',
-                  fontSize: '12px',
+                  color: "#909399",
+                  fontSize: "12px",
                 }}>用户数: {item.userActivities}</span></>
             }
           >

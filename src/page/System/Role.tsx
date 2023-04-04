@@ -4,37 +4,33 @@ import {
   ProFormText,
   ProFormTextArea,
   ProTable,
-} from '@ant-design/pro-components';
-import {Button, message, Popconfirm, Space} from 'antd';
-import {DeleteOutlined, PlusOutlined} from '@ant-design/icons';
-import {useImperativeHandle, useRef, useState} from 'react';
-import React from 'react';
-import type {ProColumns,ProFormInstance} from "@ant-design/pro-components"
+} from "@ant-design/pro-components";
+import {Button, message, Popconfirm, Space} from "antd";
+import {DeleteOutlined, PlusOutlined} from "@ant-design/icons";
+import {useImperativeHandle, useRef, useState} from "react";
+import React from "react";
+import type {ProColumns} from "@ant-design/pro-components";
+import type {ModalFormProps, SetModalVisit} from "@/page/System/type";
 
-interface InformRef extends ProFormInstance{
-  setModalVisit: (b: boolean)=>void
-}
-
-
-const ModalFormComp = ({formRef, ...args}) => {
+const ModalFormComp = ({modalFormRef}: ModalFormProps) => {
   const [modalVisit, setModalVisit] = useState(false);
-  useImperativeHandle(formRef, () => {
+  useImperativeHandle(modalFormRef, () => {
     return {
       setModalVisit,
     };
   });
   return <ModalForm
 
-    title={'新增角色'}
+    title={"新增角色"}
     open={modalVisit}
-    layout={'horizontal'}
+    layout={"horizontal"}
     onOpenChange={setModalVisit}
     modalProps={{
       destroyOnClose: true,
     }}
     labelCol={{span: 3}}
     onFinish={async (values) => {
-      message.success('提交成功');
+      message.success("提交成功");
       return true;
     }}
   >
@@ -60,7 +56,7 @@ const result = [
   {
     key: 1,
     role: `Admin`,
-    roleDesc: '拥有系统全部操作权限',
+    roleDesc: "拥有系统全部操作权限",
     status: 0,
     id: 97,
     creationTime: 1602572994055,
@@ -68,58 +64,58 @@ const result = [
   {
     key: 2,
     role: `Guest`,
-    roleDesc: '拥有系统全部操作权限',
+    roleDesc: "拥有系统全部操作权限",
     status: 1,
     id: 103,
     creationTime: 1603698994055,
   },
 ];
 const Role = () => {
-  const formRef = useRef<InformRef>();
+  const modalFormRef = useRef<SetModalVisit>(null);
   const columns: ProColumns[] = [
     {
-      title: '序号',
-      dataIndex: 'key',
+      title: "序号",
+      dataIndex: "key",
     },
 
     {
-      title: '角色名称',
-      valueType: 'text',
-      dataIndex: 'role',
+      title: "角色名称",
+      valueType: "text",
+      dataIndex: "role",
     },
     {
-      title: '状态',
-      valueType: 'select',
-      dataIndex: 'status',
+      title: "状态",
+      valueType: "select",
+      dataIndex: "status",
       valueEnum: {
-        0: {text: '启用', status: 'success'},
-        1: {text: '禁用', status: 'Error'},
+        0: {text: "启用", status: "success"},
+        1: {text: "禁用", status: "Error"},
       },
     },
     {
-      title: '角色描述',
-      valueType:"textarea",
-      dataIndex: 'roleDesc',
+      title: "角色描述",
+      valueType: "textarea",
+      dataIndex: "roleDesc",
     },
     {
-      title: '创建时间',
-      valueType: 'date',
-      dataIndex: 'creationTime',
+      title: "创建时间",
+      valueType: "date",
+      dataIndex: "creationTime",
     },
 
     {
-      title: '操作',
-      key: 'option',
-      valueType: 'option',
-      fixed: 'right',
+      title: "操作",
+      key: "option",
+      valueType: "option",
+      fixed: "right",
       render: (_, row, index, action) => {
         return <Space>
           <Button
-            type={'text'}
+            type={"text"}
             key="edit"
-            size={'small'}
-            icon={<PlusOutlined style={{color: '#9b59b6'}}/>} onClick={() => {
-            formRef.current?.setModalVisit(true);
+            size={"small"}
+            icon={<PlusOutlined style={{color: "#9b59b6"}}/>} onClick={() => {
+            modalFormRef.current?.setModalVisit(true);
           }
           }></Button>
 
@@ -127,13 +123,13 @@ const Role = () => {
             title="删除此行"
           >
             <Button
-              type={'text'}
-              size={'small'}
+              type={"text"}
+              size={"small"}
               danger icon={<DeleteOutlined/>}
               key="delete"></Button>
           </Popconfirm>
 
-        </Space>
+        </Space>;
 
       },
     },
@@ -157,9 +153,9 @@ const Role = () => {
           <Button
             icon={<PlusOutlined/>}
             key="set"
-            type={'primary'}
+            type={"primary"}
             onClick={() => {
-              formRef.current?.setModalVisit(true);
+              modalFormRef.current?.setModalVisit(true);
             }}
           >
             新增角色
@@ -168,7 +164,7 @@ const Role = () => {
         options={false}
         dateFormatter="string"
       />
-      <ModalFormComp {...{formRef}}/>
+      <ModalFormComp modalFormRef={modalFormRef}/>
 
     </>
 

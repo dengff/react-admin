@@ -1,12 +1,12 @@
-import {Drawer, Tooltip} from 'antd';
-import {SettingOutlined} from '@ant-design/icons';
-import React, {useState} from 'react';
+import {Drawer, Tooltip} from "antd";
+import {SettingOutlined} from "@ant-design/icons";
+import React, {useState} from "react";
 import SettingPage
-  from '@/page/Layout/components/SettingsDrawer/SettingPage';
+  from "@/page/Layout/components/SettingsDrawer/SettingPage";
 import SettingTheme
-  from '@/page/Layout/components/SettingsDrawer/SettingTheme';
+  from "@/page/Layout/components/SettingsDrawer/SettingTheme";
 
-export const SystemSettings = (props) => {
+export const SystemSettings = () => {
   const [open, setOpen] = useState(false);
 
   const onClose = () => {
@@ -20,9 +20,9 @@ export const SystemSettings = (props) => {
   return (
     <>
       <Tooltip
-        style={{display: 'flex', alignItems: 'center'}}
+        style={{display: "flex", alignItems: "center"}}
         placement="bottom"
-        title={'系统设置'}
+        title={"系统设置"}
       >
         <SettingOutlined onClick={handleClick}/>
       </Tooltip>

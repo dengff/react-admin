@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Warp = styled.div`
   height: 100%;
@@ -17,7 +17,7 @@ export const Warp = styled.div`
       background: #fff;
       height: auto;
     }
-    
+
   }
 
   .layout-content {

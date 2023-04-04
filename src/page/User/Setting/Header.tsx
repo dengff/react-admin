@@ -1,11 +1,12 @@
-import styled from 'styled-components';
-import {Avatar, Button, Input, message, Space, Tag, Upload} from 'antd';
-
-import {ProDescriptions} from '@ant-design/pro-components';
-import {useSelector} from 'react-redux';
-import {useState} from 'react';
-import {CameraIcon} from '@/components/Icon';
-import React from 'react';
+import styled from "styled-components";
+import {Avatar, Button, Input, message, Space, Tag, Upload} from "antd";
+import {ProDescriptions} from "@ant-design/pro-components";
+import {useSelector} from "react-redux";
+import {useState} from "react";
+import {CameraIcon} from "@/components/Icon";
+import React from "react";
+import {selectGlobal} from "@/store/global/selectors";
+import type {ProDescriptionsItemProps} from "@ant-design/pro-components";
 
 const Warp = styled.div`
   height: 200px;
@@ -35,34 +36,135 @@ const Warp = styled.div`
   }
 `;
 
-const Header = (props) => {
-  const {userInfo} = useSelector((state:any) => state.global);
+interface IProps {
+  changeActiveKey: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Header = (props: IProps) => {
+  const {userInfo} = useSelector(selectGlobal);
   const [editePh, setEditePh] = useState(false);
   const [editeEai, setEditeEai] = useState(false);
   const [dataSource, setDataSource] = useState({
     userName: userInfo?.name,
-    realName: 'N',
-    accountId: '7802_sehjlkf_01gk',
-    phoneNumber: '15977692030',
-    registrationTime: '2021-02-10',
-    mailbox: '2539872356@qq.com',
+    realName: "N",
+    accountId: "7802_sehjlkf_01gk",
+    phoneNumber: "15977692030",
+    registrationTime: "2021-02-10",
+    mailbox: "2539872356@qq.com",
   });
 
-  function changeUserInfo(key, value) {
+  function changeUserInfo(this: any, key: string | number, value: any) {
     const _dataSource = this.dataSource;
     _dataSource[key] = value;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         this?.setDataSource(_dataSource);
-        message.success('success');
+        message.success("success");
         resolve(_dataSource);
       }, 600);
     });
   }
 
+  const columns: ProDescriptionsItemProps[] = [
+    {
+      title: "用户名",
+      key: "text",
+      dataIndex: "userName",
+    },
+    {
+      title: "实名认证",
+      key: "realName",
+      dataIndex: "realName",
+      valueType: "select",
+      valueEnum: {
+        Y: {text: "已认证", status: "Success"},
+        N: {
+          text: "未认证",
+          status: "Error",
+        },
+      },
+      render: (dom, entity, index, action, schema) => {
+        const valueEnum = schema?.valueEnum as any;
+        const text = valueEnum?.[dom as string].text;
+        if (dom === "Y") {
+          return <Space>
+            <Tag color={"rgba(207,250,207,0.95)"}><span
+              style={{color: "#26b42a"}}>{text}</span></Tag>
+            <a>详情</a>
+          </Space>;
+        }
+        return <Space>
+          <Tag color={"warning"}><span
+            style={{color: "#b49826"}}>{text}</span></Tag>
+          <a onClick={() => props?.changeActiveKey(
+            "security")}>前往认证</a>
+        </Space>;
+
+      },
+    },
+    {
+      title: "账号 ID",
+      dataIndex: "accountId",
+    },
+    {
+      title: "绑定手机号",
+      dataIndex: "phoneNumber",
+      valueType: "text",
+      render: (dom, entity, index, action, schema) => {
+        if (editePh) return <Input
+          size={"small"}
+          defaultValue={dom as string}
+          placeholder="请输入手机号"
+          onBlur={(e) => {
+            changeUserInfo.call(action, "phoneNumber", e.target?.value).then(res => setEditePh(false));
+          }}
+
+        />;
+        if (!dom) return (
+          <Space>
+            <Tag color={"error"}><span
+              style={{color: "#f56c6c"}}>未绑定</span></Tag>
+            <a onClick={() => setEditePh(true)}>前去绑定</a>
+          </Space>
+        );
+        return <Space>
+          {(dom as string).replace(/^(\d{3})\d+(\d{4})$/, "$1****$2")}
+          <a onClick={() => setEditePh(true)}>修改</a>
+        </Space>;
+      },
+    },
+
+    {
+      title: "注册时间",
+      key: "date",
+      dataIndex: "registrationTime",
+      valueType: "dateTime",
+    },
+    {
+      title: "邮箱",
+      key: "mailbox",
+      dataIndex: "mailbox",
+      valueType: "text",
+      render: (dom, entity, index, action, schema) => {
+        if (editeEai) return <Input
+          defaultValue={dom as string}
+          size={"small"}
+          placeholder="请输入邮箱"
+          onBlur={e => {
+            changeUserInfo.call(action, "mailbox", e.target?.value).then(res => setEditeEai(false));
+          }}
+        />;
+        return <Space>
+          {dom}
+          <a onClick={_ => setEditeEai(true)}>修改</a>
+        </Space>;
+      },
+    },
+  ];
+
   return (
     <Warp>
-      <Space direction={'horizontal'} className="user-mes">
+      <Space direction={"horizontal"} className="user-mes">
 
         <Upload
           name="avatar"
@@ -72,19 +174,19 @@ const Header = (props) => {
         >
           <Avatar size={120} src={userInfo?.avatar}></Avatar>
           <Button
-            shape={'circle'}
+            shape={"circle"}
             className="camera"
             icon={<CameraIcon/>}
           />
 
         </Upload>
         <span style={{
-          fontSize: '12px',
-          color: '#909399',
-        }}>{'生活其实很简单，过了今日就是明天。'}</span>
+          fontSize: "12px",
+          color: "#909399",
+        }}>{"生活其实很简单，过了今日就是明天。"}</span>
       </Space>
 
-      <div style={{display: 'grid', margin: '0 10px'}}>
+      <div style={{display: "grid", margin: "0 10px"}}>
         <ProDescriptions
           column={2}
           request={() => {
@@ -93,103 +195,7 @@ const Header = (props) => {
               success: true,
             });
           }}
-          columns={[
-            {
-              title: '用户名',
-              key: 'text',
-              dataIndex: 'userName',
-            },
-            {
-              title: '实名认证',
-              key: 'realName',
-              dataIndex: 'realName',
-              valueType: 'select',
-              valueEnum: {
-                Y: {text: '已认证', status: 'Success'},
-                N: {
-                  text: '未认证',
-                  status: 'Error',
-                },
-              },
-              render: (dom, entity, index, action, schema) => {
-                const text = schema.valueEnum[dom as string].text;
-                if (dom === 'Y') {
-                  return <Space>
-                    <Tag color={'rgba(207,250,207,0.95)'}><span
-                      style={{color: '#26b42a'}}>{text}</span></Tag>
-                    <a>详情</a>
-                  </Space>;
-                }
-                return <Space>
-                  <Tag color={'warning'}><span
-                    style={{color: '#b49826'}}>{text}</span></Tag>
-                  <a onClick={() => props?.changeActiveKey(
-                    'security')}>前往认证</a>
-                </Space>;
-
-              },
-            },
-            {
-              title: '账号 ID',
-              dataIndex: 'accountId',
-            },
-            {
-              title: '绑定手机号',
-              dataIndex: 'phoneNumber',
-              valueType: 'text',
-              render: (dom, entity, index, action, schema) => {
-                if (editePh) return <Input
-                  size={'small'}
-                  defaultValue={dom as string}
-                  placeholder="请输入手机号"
-                  onBlur={(e) => {
-                    changeUserInfo.call(action, 'phoneNumber', e.target?.value).
-                      then(res => setEditePh(false));
-                  }}
-
-                />;
-                if (!dom) return (
-                  <Space>
-                    <Tag color={'error'}><span
-                      style={{color: '#f56c6c'}}>未绑定</span></Tag>
-                    <a onClick={() => setEditePh(true)}>前去绑定</a>
-                  </Space>
-                );
-                return <Space>
-                  {(dom as string).replace(/^(\d{3})\d+(\d{4})$/, '$1****$2')}
-                  <a onClick={() => setEditePh(true)}>修改</a>
-                </Space>;
-              },
-            },
-
-            {
-              title: '注册时间',
-              key: 'date',
-              dataIndex: 'registrationTime',
-              valueType: 'dateTime',
-            },
-            {
-              title: '邮箱',
-              key: 'mailbox',
-              dataIndex: 'mailbox',
-              valueType: 'text',
-              render: (dom, entity, index, action, schema) => {
-                if (editeEai) return <Input
-                  defaultValue={dom as string}
-                  size={'small'}
-                  placeholder="请输入邮箱"
-                  onBlur={e => {
-                    changeUserInfo.call(action, 'mailbox', e.target?.value).
-                      then(res => setEditeEai(false));
-                  }}
-                />;
-                return <Space>
-                  {dom}
-                  <a onClick={_ => setEditeEai(true)}>修改</a>
-                </Space>;
-              },
-            },
-          ]}
+          columns={columns}
         >
         </ProDescriptions>
 

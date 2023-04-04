@@ -1,19 +1,19 @@
-import {DownloadOutlined} from '@ant-design/icons';
-import {ProTable} from '@ant-design/pro-components';
-import {Button, Table} from 'antd';
-import {progressEnum, provincesEnum} from '@/common/enum';
-import {request} from '@/common/api';
-import React, {useRef, useState} from 'react';
-import {useNavigate, useSearchParams} from 'react-router-dom';
+import {DownloadOutlined} from "@ant-design/icons";
+import {ProTable} from "@ant-design/pro-components";
+import {Button, Table} from "antd";
+import {progressEnum, provincesEnum} from "@/common/enum";
+import {request} from "@/common/api";
+import React, {useRef, useState} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import type {ProColumns} from "@ant-design/pro-table/es/typing";
 /*request*/
 const enumData = async () => {
 
-  const {data} = await request.post('/cityList');
+  const {data} = await request.post("/cityList");
   return data;
 };
-const fetchList = async (params) => {
-  const result = await request.post('/factory/list', params);
+const fetchList = async (params: any) => {
+  const result = await request.post("/factory/list", params);
   return {
     data: result.data.list,
     success: true,
@@ -21,25 +21,25 @@ const fetchList = async (params) => {
 };
 const result = {
   code: 0,
-  message: 'success',
+  message: "success",
   data: [
     {
-      Modified: '理想',
-      city: '广州',
-      date: '2022-02-23',
-      datetime: '2022-02-23 18:30',
+      Modified: "理想",
+      city: "广州",
+      date: "2022-02-23",
+      datetime: "2022-02-23 18:30",
     },
     {
-      Modified: '现实',
-      city: '深圳',
-      date: '2022-04-11',
-      datetime: '2022-02-11 18:45',
+      Modified: "现实",
+      city: "深圳",
+      date: "2022-04-11",
+      datetime: "2022-02-11 18:45",
     },
   ],
 };
-const fetchData: (params) => Promise<any> = (params) => {
+const fetchData: (params: any) => Promise<typeof result> = (params) => {
   return new Promise((resolve, reject) => {
-    console.log(params, 'dataparams');
+    console.log(params, "dataparams");
     setTimeout(() => {
       resolve(result);
     }, 2000);
@@ -48,21 +48,21 @@ const fetchData: (params) => Promise<any> = (params) => {
 /*config*/
 const columns: ProColumns[] = [
   {
-    title: '排序',
-    dataIndex: 'index',
-    valueType: 'index',
+    title: "排序",
+    dataIndex: "index",
+    valueType: "index",
     width: 48,
   },
   {
-    title: '城市',
-    valueType: 'select',
-    dataIndex: 'city',
-    key: 'value',
+    title: "城市",
+    valueType: "select",
+    dataIndex: "city",
+    key: "value",
     request: enumData,
   },
   {
-    title: '级联选择',
-    dataIndex: 'provinces',
+    title: "级联选择",
+    dataIndex: "provinces",
     hideInTable: true,
     // search: {
     //   transform:value=>{
@@ -70,20 +70,20 @@ const columns: ProColumns[] = [
     //   }
     //
     // },
-    valueType: 'cascader',
+    valueType: "cascader",
     request: async () => provincesEnum,
   },
   {
-    title: '状态',
-    dataIndex: 'progress',
-    valueType: 'select',
+    title: "状态",
+    dataIndex: "progress",
+    valueType: "select",
     valueEnum: progressEnum,
   },
   {
-    title: '时间区间',
-    key: 'dateTimeRange',
-    dataIndex: 'createdAtRange',
-    valueType: 'dateTimeRange',
+    title: "时间区间",
+    key: "dateTimeRange",
+    dataIndex: "createdAtRange",
+    valueType: "dateTimeRange",
     search: {
       transform: (value) => {
         return ({startTime: value[0], endTime: value[1]});
@@ -91,32 +91,32 @@ const columns: ProColumns[] = [
     },
   },
   {
-    title: '结果',
-    dataIndex: 'result',
+    title: "结果",
+    dataIndex: "result",
     ellipsis: true,
     search: false,
   },
   {
-    title: '时间',
-    tip: 'form的tip',
+    title: "时间",
+    tip: "form的tip",
     ellipsis: true,
-    tooltip: 'table的tip',
-    dataIndex: 'date',
-    valueType: 'date',
+    tooltip: "table的tip",
+    dataIndex: "date",
+    valueType: "date",
   },
   {
-    title: '修改人',
-    dataIndex: 'Modified',
+    title: "修改人",
+    dataIndex: "Modified",
   },
   {
-    title: '图片',
-    dataIndex: 'image',
-    valueType: 'image',
+    title: "图片",
+    dataIndex: "image",
+    valueType: "image",
     hideInSearch: true,
   },
   {
-    title: '备注',
-    dataIndex: 'memo',
+    title: "备注",
+    dataIndex: "memo",
     ellipsis: true,
     copyable: true,
     // renderFormItem: (
@@ -126,11 +126,11 @@ const columns: ProColumns[] = [
     // },
   },
   {
-    title: '操作',
+    title: "操作",
     width: 80,
-    key: 'option',
-    valueType: 'option',
-    fixed: 'right',
+    key: "option",
+    valueType: "option",
+    fixed: "right",
     render: (_, row, index, action) => {
       return [
         <a key="edit" onClick={() => {
@@ -147,15 +147,14 @@ const columns: ProColumns[] = [
 const SuperTable = () => {
   const navigate = useNavigate();
   const [getParams, setParams] = useSearchParams();
-  console.log(getParams.get('name'));
+  console.log(getParams.get("name"));
   const actionsRef = useRef();
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [dataSource, setDataSource] = useState([]);
-  const [selections, setSelections] = useState([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
+  const [dataSource, setDataSource] = useState<any[]>([]);
+  const [selections, setSelections] = useState<any[]>([]);
 
-  function onSelectChange(selectedRowKeys, selectedRows) {
-    debugger
+  function onSelectChange(selectedRowKeys: any[], selectedRows: any[]) {
     setSelections(selectedRows);
     setSelectedRowKeys(selectedRowKeys);
   }
@@ -164,7 +163,7 @@ const SuperTable = () => {
     <ProTable
       columns={columns}
       params={{
-        userName: 'test',
+        userName: "test",
       }}
       request={async (params, sorter, filter) => {
         // 表单搜索项会从 params 传入，传递给后端接口。
@@ -178,7 +177,7 @@ const SuperTable = () => {
         // responsive: true
       }}
       search={{
-        layout: 'horizontal',
+        layout: "horizontal",
         defaultCollapsed: true,
         optionRender: (searchConfig, props, dom) => {
           return [
@@ -186,7 +185,7 @@ const SuperTable = () => {
             <Button
               type="primary"
               icon={<DownloadOutlined/>}
-              key={'download'}>下载报表</Button>,
+              key={"download"}>下载报表</Button>,
           ];
         },
       }}
@@ -199,26 +198,26 @@ const SuperTable = () => {
           Table.SELECTION_ALL,
           Table.SELECTION_INVERT,
           {
-            key: 'other',
-            text: '其他筛选',
+            key: "other",
+            text: "其他筛选",
             onSelect: (key) => {
-              console.log(key, 'rowSelection');
+              console.log(key, "rowSelection");
             },
           },
         ],
         selectedRowKeys,
         onChange: onSelectChange,
-        type: 'radio',
+        type: "radio",
       }}
       scroll={{x: 1300}}
       dateFormatter="string"
       editable={{
         onSave: async (rowKey, data, row) => {
-          console.log(data, 'saveData');
+          console.log(data, "saveData");
         },
         onDelete: (key, row) => {
-          console.log(dataSource, 'dataSource');
-          return Promise.resolve(dataSource)
+          console.log(dataSource, "dataSource");
+          return Promise.resolve(dataSource);
 
         },
         onValuesChange: (record, recordList) => {
@@ -226,15 +225,15 @@ const SuperTable = () => {
         },
       }}
       toolbar={{
-        title: '高级表格',
-        tooltip: '这是一个标题提示',
+        title: "高级表格",
+        tooltip: "这是一个标题提示",
       }}
       toolBarRender={() => [
         <Button
           disabled={!selections?.length}
           type="primary"
           onClick={(_) => {
-            const {key = ''} = selections?.[0];
+            const {key = ""} = selections?.[0];
             navigate(`/table/detail?id=${key}`);
           }}>
           查看详情

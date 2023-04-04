@@ -1,13 +1,25 @@
-import actionsType from '@/store/topHeader/constants';
+import toHeaderAction from "@/store/topHeader/constants";
+import type {
+  ResetTopHeaderState,
+  SetLayoutItems,
+  SetLayoutMode,
+  SetTabs,
+  SetTabsActiveKey
+} from "@/store/topHeader/actionTypes";
+import type {TabList} from "@/store/topHeader/reducers";
+import type {AppThunk, RootState} from "@/store";
+import type {RouteObj} from "@/router/type";
+import type {AgnosticRouteMatch} from "@remix-run/router";
 
-export const addTabs = (route, key) => {
+export const addTabs = (route: AgnosticRouteMatch<string, RouteObj>, key: string): AppThunk => {
   return (dispatch, getState) => {
     const {topHeader} = getState();
     const {tabList} = topHeader;
     if (tabList.every(item => item.key !== key)) {
       const babInfo = {
         key: route.pathname,
-        label: route?.route?.meta?.title,
+        label: route?.route?.meta?.title!,
+        closable: false
       };
       dispatch(setTabs([...tabList, babInfo]));
     }
@@ -15,12 +27,12 @@ export const addTabs = (route, key) => {
   };
 };
 
-export const deleteCurrentTab = (key) => (dispatch, getState) => {
+export const deleteCurrentTab = (key: string): AppThunk<Promise<TabList>> => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
-    if (key === '/home') return;
+    if (key === "/home") return;
     const {topHeader} = getState();
     const {tabList} = topHeader;
-    let preIndex = null;
+    let preIndex = 0;
     const _tabList = tabList.filter((item, index) => {
       if (item.key !== key) {
         return true;
@@ -30,69 +42,57 @@ export const deleteCurrentTab = (key) => (dispatch, getState) => {
       }
     });
     const preItem = tabList[preIndex - 1];
-    dispatch(removeCurrentTabs(_tabList));
-    dispatch(setTabsActiveKey(preItem?.['key']));
+    dispatch(setTabs(_tabList));
+    dispatch(setTabsActiveKey(preItem?.["key"]));
     resolve(preItem);
   });
 };
-export const deleteOtherTab = (key) => {
+export const deleteOtherTab = (key: string): AppThunk => {
   return (dispatch, getState) => {
     const {topHeader} = getState();
     const {tabList} = topHeader;
     const _tabList = tabList.filter(
-      item => item.key === key || item.key === '/home');
-    dispatch(removeOtherTabs(_tabList));
+      item => item.key === key || item.key === "/home");
+    dispatch(setTabs(_tabList));
   };
 };
-export const deleteAllTab = (key) => (dispatch, getState) => {
+export const deleteAllTab = (key: string): AppThunk<Promise<boolean>> => (dispatch, getState: () => RootState) => {
   return new Promise((resolve, reject) => {
     const {topHeader} = getState();
     const {tabList} = topHeader;
-    const _tabList = tabList.filter(item => item.key === '/home');
-    dispatch(removeAllTabs(_tabList));
+    const _tabList = tabList.filter(item => item.key === "/home");
+    dispatch(setTabs(_tabList));
     resolve(true);
   });
 
 };
 
-export const changeLayout = (items) => dispatch => {
+export const changeLayout = (items: string[]): AppThunk => dispatch => {
   dispatch(setLayoutItems(items));
 };
-export const changeLayoutMode = layoutMode => dispatch => {
+export const changeLayoutMode = (layoutMode: string): AppThunk => dispatch => {
   dispatch(setLayoutMode(layoutMode));
 };
 
-const removeCurrentTabs = (tabList) => ({
-  type: actionsType.DELETE_CURRENT_TAB,
-  tabList: tabList,
-});
-const removeOtherTabs = (tabList) => ({
-  type: actionsType.DELETE_OTHER_TAB,
-  tabList: tabList,
-});
-const removeAllTabs = (tabList) => ({
-  type: actionsType.DELETE_ALL_TAB,
-  tabList: tabList,
-});
 
-const setTabs = (tabList) => ({
-  type: actionsType.SET_TABS,
+const setTabs = (tabList: TabList[]): SetTabs => ({
+  type: toHeaderAction.SET_TABS,
   tabList: tabList,
 });
-const setTabsActiveKey = (activeKey) => ({
-  type: actionsType.SET_TABS_ACTIVE_KEY,
+const setTabsActiveKey = (activeKey: string): SetTabsActiveKey => ({
+  type: toHeaderAction.SET_TABS_ACTIVE_KEY,
   activeKey: activeKey,
 });
-const setLayoutItems = (layoutItems) => ({
-  type: actionsType.SET_PAGE_LAYOUT_ITEMS,
+const setLayoutItems = (layoutItems: string[]): SetLayoutItems => ({
+  type: toHeaderAction.SET_PAGE_LAYOUT_ITEMS,
   layoutItems: layoutItems,
 });
-const setLayoutMode = (layoutMode) => ({
-  type: actionsType.SET_LAYOUT_MODE,
+const setLayoutMode = (layoutMode: string): SetLayoutMode => ({
+  type: toHeaderAction.SET_LAYOUT_MODE,
   layoutMode: layoutMode,
 });
-export const resetTopHeaderState = () => ({
-  type: actionsType.RESET_TOP_HEADER_STATE,
+export const resetTopHeaderState = (): ResetTopHeaderState => ({
+  type: toHeaderAction.RESET_TOP_HEADER_STATE,
 });
 
 

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {UserOutlined} from '@ant-design/icons';
+import * as React from "react";
+import {UserOutlined} from "@ant-design/icons";
 
-export const ThemeIcon = (props) => (
+export const ThemeIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -18,7 +18,7 @@ export const ThemeIcon = (props) => (
   </svg>
 );
 
-export const LayoutIcon = (props) => (
+export const LayoutIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -47,7 +47,7 @@ export const LayoutIcon = (props) => (
   </svg>
 );
 
-export const SizeIcon = (props) => (
+export const SizeIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -64,7 +64,7 @@ export const SizeIcon = (props) => (
   </svg>
 );
 
-export const CameraIcon = (props) => (
+export const CameraIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -89,7 +89,7 @@ export const CameraIcon = (props) => (
   </svg>
 );
 
-export const LogoutIcon = (props) => (
+export const LogoutIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -104,7 +104,7 @@ export const LogoutIcon = (props) => (
   </svg>
 );
 
-export const LocationIcon = (props) => (
+export const LocationIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <span role="img" aria-label="user" className="anticon">
       <svg
         viewBox="64 64 896 896"
@@ -128,7 +128,7 @@ export const LocationIcon = (props) => (
 
 );
 
-export const FormIcon = (props) => (
+export const FormIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -143,7 +143,7 @@ export const FormIcon = (props) => (
   </svg>
 );
 
-export const TableIcon = (props) => (
+export const TableIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -158,7 +158,7 @@ export const TableIcon = (props) => (
   </svg>
 );
 
-export const HomeIcon = (props) => (
+export const HomeIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -179,7 +179,7 @@ export const HomeIcon = (props) => (
   </svg>
 );
 
-export const MenuIcon = (props) => (
+export const MenuIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -194,7 +194,7 @@ export const MenuIcon = (props) => (
   </svg>
 );
 
-export const AuthIcon = (props) => (
+export const AuthIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -215,7 +215,7 @@ export const AuthIcon = (props) => (
   </svg>
 );
 
-export const SystemIcon = (props) => (
+export const SystemIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -236,7 +236,7 @@ export const SystemIcon = (props) => (
   </svg>
 );
 
-export const OthIcon = (props) => (
+export const OthIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -257,7 +257,7 @@ export const OthIcon = (props) => (
   </svg>
 );
 
-export const DashboardIcon = (props) => (
+export const DashboardIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -272,7 +272,7 @@ export const DashboardIcon = (props) => (
   </svg>
 );
 
-export const CommentsIcon = (props) => (
+export const CommentsIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -297,7 +297,7 @@ export const CommentsIcon = (props) => (
   </svg>
 );
 
-export const CommodityIcon = (props) => (
+export const CommodityIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -346,7 +346,7 @@ export const CommodityIcon = (props) => (
   </svg>
 );
 
-export const OrderIcon = (props) => (
+export const OrderIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -368,7 +368,7 @@ export const OrderIcon = (props) => (
   </svg>
 );
 
-export const BillIcon = (props) => (
+export const BillIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -389,7 +389,7 @@ export const BillIcon = (props) => (
   </svg>
 );
 
-export const LabelIcon = (props) => (
+export const LabelIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -410,7 +410,7 @@ export const LabelIcon = (props) => (
   </svg>
 );
 
-export const ProcessIcon = (props) => (
+export const ProcessIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -429,7 +429,7 @@ export const ProcessIcon = (props) => (
   </svg>
 );
 
-export const DispositionIcon = (props) => (
+export const DispositionIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -446,7 +446,7 @@ export const DispositionIcon = (props) => (
   </svg>
 );
 
-export const DayIcon = (props) => (
+export const DayIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -467,7 +467,7 @@ export const DayIcon = (props) => (
   </svg>
 );
 
-export const YearIcon = (props) => (
+export const YearIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -489,7 +489,7 @@ export const YearIcon = (props) => (
   </svg>
 );
 
-export const WeekIcon = (props) => (
+export const WeekIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -507,7 +507,7 @@ export const WeekIcon = (props) => (
   </svg>
 );
 
-export const MonthIcon = (props) => (
+export const MonthIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -528,7 +528,7 @@ export const MonthIcon = (props) => (
   </svg>
 );
 
-export const AnalyseIcon = (props) => (
+export const AnalyseIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -553,7 +553,7 @@ export const AnalyseIcon = (props) => (
   </svg>
 );
 
-export const TodoIcon = (props) => (
+export const TodoIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -586,7 +586,7 @@ export const TodoIcon = (props) => (
   </svg>
 );
 
-export const MessageIcon = (props) => (
+export const MessageIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -612,7 +612,7 @@ export const MessageIcon = (props) => (
   </svg>
 );
 
-export const ItemsIcon = (props) => (
+export const ItemsIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -653,7 +653,7 @@ export const ItemsIcon = (props) => (
   </svg>
 );
 
-export const IncreaseIcon = (props) => (
+export const IncreaseIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -678,7 +678,7 @@ export const IncreaseIcon = (props) => (
   </svg>
 );
 
-export const DataIcon = (props) => (
+export const DataIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -716,7 +716,7 @@ export const DataIcon = (props) => (
   </svg>
 );
 
-export const DeliverIcon = (props) => (
+export const DeliverIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -733,7 +733,7 @@ export const DeliverIcon = (props) => (
   </svg>
 );
 
-export const UserGroupsIcon = (props) => (
+export const UserGroupsIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="64 64 896 896"
     width="1em"
@@ -759,19 +759,19 @@ export const UserGroupsIcon = (props) => (
   </svg>
 );
 
-export const menuIcon = {
-  HomeIcon: (props) => <HomeIcon/>,
-  DashboardIcon: (props) => <DashboardIcon/>,
-  FormIcon: (props) => <FormIcon/>,
+export const menuIcon: { [key: string]: () => JSX.Element } = {
+  HomeIcon: () => <HomeIcon/>,
+  DashboardIcon: () => <DashboardIcon/>,
+  FormIcon: () => <FormIcon/>,
 
-  TableIcon: (props) => <TableIcon/>,
+  TableIcon: () => <TableIcon/>,
 
-  AuthIcon: (props) => <AuthIcon/>,
+  AuthIcon: () => <AuthIcon/>,
 
-  MenuIcon: (props) => <MenuIcon/>,
-  SystemIcon: (props) => <SystemIcon/>,
-  OthIcon: (props) => <OthIcon/>,
+  MenuIcon: () => <MenuIcon/>,
+  SystemIcon: () => <SystemIcon/>,
+  OthIcon: () => <OthIcon/>,
 
-  UserIcon: (props) => <UserOutlined/>,
+  UserIcon: () => <UserOutlined/>,
 
 };

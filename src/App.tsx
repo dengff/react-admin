@@ -1,13 +1,14 @@
-import {HashRouter} from "react-router-dom"
-import Router from "./router"
-import RequireAuth from "@/router/routeAuth"
-import "@/static/style/reset.css"
+import {HashRouter} from "react-router-dom";
+import Router from "./router";
+import RequireAuth from "@/router/routeAuth";
+import "@/static/style/reset.css";
 import React from "react";
-import {ConfigProvider} from "antd"
+import {ConfigProvider} from "antd";
 import {useSelector} from "react-redux";
+import {selectTheme} from "@/store/theme/selectors";
 
 const App = () => {
-  const {token, componentSize} = useSelector((state: any) => state.theme)
+  const {token, componentSize} = useSelector(selectTheme);
   return (
     <ConfigProvider
       componentSize={componentSize}
@@ -23,7 +24,7 @@ const App = () => {
         </RequireAuth>
       </HashRouter>
     </ConfigProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

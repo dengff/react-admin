@@ -1,8 +1,9 @@
-import React from 'react';
-import {Popover} from 'antd';
-import {SketchPicker} from 'react-color';
+import React from "react";
+import {Popover} from "antd";
+import {SketchPicker} from "react-color";
 
-import styled from 'styled-components';
+import styled from "styled-components";
+import type {ColorResult} from "react-color";
 
 export const Warp = styled.div`
   .theme-input {
@@ -22,36 +23,39 @@ export const Warp = styled.div`
   }
 `;
 const presetColors = [
-  '#409EFF',
-  '#DAA96E',
-  '#00cf74',
-  '#009688',
-  '#27ae60',
-  '#ff5c93',
-  '#e53935',
-  '#14c9c9',
-  '#e74c3c',
-  '#fd726d',
-  '#f39c12',
-  '#9b59b6'];
-const ColorPicker = (props) => {
-  const {currentColor = '#9b59b6'} = props;
-  const onColorChange = (value, event) => {
-    props?.onChange(value);
+  "#409EFF",
+  "#DAA96E",
+  "#00cf74",
+  "#009688",
+  "#27ae60",
+  "#ff5c93",
+  "#e53935",
+  "#14c9c9",
+  "#e74c3c",
+  "#fd726d",
+  "#f39c12",
+  "#9b59b6"];
+type Props = {
+  currentColor?: string
+  onChange(value: ColorResult): void;
+}
+const ColorPicker = ({onChange, currentColor = "#9b59b6", ...args}: Props) => {
+  const handleChange = (value: ColorResult, e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(value);
   };
   return (
     <Warp>
       <Popover
-        overlayInnerStyle={{padding: '0'}}
+        overlayInnerStyle={{padding: "0"}}
         trigger="click"
         content={
           <SketchPicker
             presetColors={presetColors}
-            onChange={onColorChange}
-            {...props}
+            onChange={handleChange}
+            {...args}
           />
         }
-        placement={'bottom'}
+        placement={"bottom"}
       >
         <div className="theme-input">
           <div className="theme-color"

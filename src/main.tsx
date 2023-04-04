@@ -6,8 +6,8 @@ import {persistor} from "@/store";
 import store from "@/store";
 import App from "./App";
 
-const root = document.getElementById("root") as  HTMLElement;
-createRoot(root).render(
+const root = document.getElementById("root");
+createRoot(root!).render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <App></App>

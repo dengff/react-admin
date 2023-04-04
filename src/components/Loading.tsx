@@ -1,13 +1,14 @@
-import {Spin} from 'antd';
-import styled from 'styled-components';
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
-import {useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import React from 'react';
+import {Spin} from "antd";
+import styled from "styled-components";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import {useEffect} from "react";
+import {useSelector} from "react-redux";
+import React from "react";
+import {selectTheme} from "@/store/theme/selectors";
 
 NProgress.configure({
-  easing: 'ease',
+  easing: "ease",
   speed: 500,
   showSpinner: false,
   trickleSpeed: 200,
@@ -29,14 +30,14 @@ const Warp = styled.div`
   }
 `;
 const Loading = () => {
-  const {token: {colorPrimary}} = useSelector((state: any) => state.theme);
+  const {token: {colorPrimary}} = useSelector(selectTheme);
 
   useEffect(() => {
     NProgress?.start();
     if (NProgress?.isRendered()) {
-      const barTag: HTMLElement = document.querySelector('[role="bar"]');
+      const barTag: HTMLElement = document.querySelector("[role=\"bar\"]")!;
       barTag.style.background = colorPrimary;
-      const pegTag: HTMLElement = document.querySelector('.peg');
+      const pegTag: HTMLElement = document.querySelector(".peg")!;
       pegTag.style.boxShadow = `0 0 10px ${colorPrimary}, 0 0 5px ${colorPrimary}`;
     }
     return () => {

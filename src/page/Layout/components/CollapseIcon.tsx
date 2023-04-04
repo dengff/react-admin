@@ -1,17 +1,20 @@
-import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons';
-import React from 'react';
-import {updateCollapse} from '@/store/global/actions';
-import {connect} from 'react-redux';
+import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import React from "react";
+import {updateCollapse} from "@/store/global/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {selectGlobal} from "@/store/global/selectors";
+import {AppDispatch} from "@/store";
 
-const CollapseIcon = props => {
-  const {collapsed, updateCollapse} = props;
+const CollapseIcon = () => {
+  const {collapsed} = useSelector(selectGlobal);
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <span
       style={{
-        cursor: 'pointer',
-        transition: 'color 0.3s',
+        cursor: "pointer",
+        transition: "color 0.3s",
       }}
-      onClick={() => updateCollapse(!collapsed)}
+      onClick={() => dispatch(updateCollapse(!collapsed))}
     >
       {
         collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>
@@ -20,4 +23,4 @@ const CollapseIcon = props => {
   );
 
 };
-export default connect((state:any) => state.global, {updateCollapse})(CollapseIcon);
+export default CollapseIcon;

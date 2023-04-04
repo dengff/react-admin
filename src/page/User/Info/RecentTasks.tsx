@@ -1,26 +1,26 @@
-import {Avatar, List} from 'antd';
-import {ProCard} from '@ant-design/pro-components';
-import React from 'react';
+import {Avatar, List} from "antd";
+import {ProCard} from "@ant-design/pro-components";
+import React from "react";
 
 const data = [
   {
-    title: 'System Bug Fix',
-    description: 'ASP系统***模块bug修复',
+    title: "System Bug Fix",
+    description: "ASP系统***模块bug修复",
   },
   {
-    title: 'System Feat',
-    description: 'ASP系统***新增订单模块',
+    title: "System Feat",
+    description: "ASP系统***新增订单模块",
   },
   {
-    title: 'System Feat',
-    description: 'ASP系统新增安全认证功能',
+    title: "System Feat",
+    description: "ASP系统新增安全认证功能",
   },
   {
-    title: 'Bug Fix',
-    description: 'ASP系统***修复打印显示错位异常',
+    title: "Bug Fix",
+    description: "ASP系统***修复打印显示错位异常",
   }, {
-    title: 'Bug Fix',
-    description: 'CMS系统***修复菜单显示',
+    title: "Bug Fix",
+    description: "CMS系统***修复菜单显示",
   },
 ];
 const RecentTasks = () => {

@@ -1,38 +1,41 @@
-import actionsType from './constants';
-import type {Reducer} from "react";
+import actionsType from "./constants";
+import type {Reducer} from "redux";
+import type {ThemeActions} from "@/store/theme/actionTypes";
 
-export interface InitTheme {
-  themeMode: ThemeMode
-  token: Token
-  componentSize: string
+export interface ITheme {
+  themeMode: ThemeMode;
+  token: Token;
+  componentSize: ComponentSize;
 }
 
+export type ComponentSize = "small" | "middle" | "large" | undefined
+
 export interface ThemeMode {
-  isGrey: boolean
-  isColorWeakness: boolean
+  isGrey: boolean;
+  isColorWeakness: boolean;
 }
 
 export interface Token {
-  colorPrimary: string
-  fontSize: number
+  colorPrimary: string;
+  fontSize: number;
 }
 
 
-const initTheme: InitTheme = {
+const initTheme: ITheme = {
   themeMode: {
     isGrey: false,
     isColorWeakness: false,
   },
 
   token: {
-    colorPrimary: '#1677ff',
+    colorPrimary: "#1677ff",
     fontSize: 16,
   },
-  componentSize: 'middle',
+  componentSize: "middle",
 };
 
 
-const reducer: Reducer<InitTheme, any> = (state: InitTheme = initTheme, action) => {
+const reducer: Reducer<ITheme, ThemeActions> = (state = initTheme, action) => {
   switch (action.type) {
     case actionsType.SET_COLOR_PRIMARY:
       return {
@@ -53,12 +56,9 @@ const reducer: Reducer<InitTheme, any> = (state: InitTheme = initTheme, action) 
         themeMode: action.themeMode,
       };
     case actionsType.RESET_THEME_STATE:
-      return {
-        ...state,
-        ...initTheme,
-      };
+      return initTheme;
     default :
       return state;
   }
-}
-export default reducer
+};
+export default reducer;

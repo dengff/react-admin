@@ -1,5 +1,6 @@
-import actionsType from './constants';
-import {Reducer} from "react";
+import actionsType from "./constants";
+import {Reducer} from "redux";
+import type {ToHeaderAction} from "@/store/topHeader/actionTypes";
 
 export interface TabList {
   label: string;
@@ -12,28 +13,28 @@ export interface PageConfig {
   layoutMode: string;
 }
 
-export interface ITabs {
+export interface TopHeader {
   tabList: TabList[];
   activeKey: string;
   pageConfig: PageConfig;
 }
 
-const initTabs: ITabs = {
+const initTabs: TopHeader = {
 
   tabList: [
     {
-      label: '首页',
-      key: '/home',
+      label: "首页",
+      key: "/home",
       closable: false,
     }],
-  activeKey: '/home',
+  activeKey: "/home",
   pageConfig: {
-    layoutItems: ['tabs', 'breadcrumb', 'logo', 'pageFooter'],
-    layoutMode: 'classicLayout',
+    layoutItems: ["tabs", "breadcrumb", "logo", "pageFooter"],
+    layoutMode: "classicLayout",
   },
 };
 
-const reducer: Reducer<ITabs, any> = (state = initTabs, action) => {
+const reducer: Reducer<TopHeader, ToHeaderAction> = (state = initTabs, action) => {
   switch (action.type) {
     case actionsType.SET_TABS:
       return {
@@ -41,21 +42,7 @@ const reducer: Reducer<ITabs, any> = (state = initTabs, action) => {
         tabList: action.tabList,
 
       };
-    case actionsType.DELETE_CURRENT_TAB:
-      return {
-        ...state,
-        tabList: action.tabList,
-      };
-    case actionsType.DELETE_ALL_TAB:
-      return {
-        ...state,
-        tabList: action.tabList,
-      };
-    case actionsType.DELETE_OTHER_TAB:
-      return {
-        ...state,
-        tabList: action.tabList,
-      };
+
     case actionsType.SET_TABS_ACTIVE_KEY:
       return {
         ...state,
@@ -78,12 +65,9 @@ const reducer: Reducer<ITabs, any> = (state = initTabs, action) => {
         },
       };
     case actionsType.RESET_TOP_HEADER_STATE:
-      return {
-        ...state,
-        ...initTabs
-      };
+      return initTabs;
     default :
       return state;
   }
-}
-export default reducer
+};
+export default reducer;

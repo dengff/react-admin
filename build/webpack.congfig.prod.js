@@ -37,6 +37,18 @@ const proConfig = merge(baseConfig, {
         minify: CssMinimizerPlugin.esbuildMinify,
       }),
     ],
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        reactDom: {
+          chunks: 'all',
+          name: `react-dom`,
+          test: /[\\/]node_modules[\\/]_?react-dom(.*)/,
+          priority: 10,
+          minChunks: 1,
+        },
+      },
+    },
   },
   devtool: false,
   plugins: [

@@ -1,10 +1,10 @@
-import Header from '@/page/User/Setting/Header';
-import {ProCard} from '@ant-design/pro-components';
-import InfoForm from '@/page/User/Setting/InfoForm';
-import styled from 'styled-components';
-import {useState} from 'react';
-import Security from '@/page/User/Setting/security';
-import React from 'react';
+import Header from "@/page/User/Setting/Header";
+import {ProCard} from "@ant-design/pro-components";
+import InfoForm from "@/page/User/Setting/InfoForm";
+import styled from "styled-components";
+import {useState} from "react";
+import Security from "@/page/User/Setting/security";
+import React from "react";
 
 const Warp = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Warp = styled.div`
   gap: 20px;
 `;
 const Setting = () => {
-  const [activeKey, setActiveKey] = useState('basicInfo');
+  const [activeKey, setActiveKey] = useState("basicInfo");
 
   return (<Warp>
     <Header changeActiveKey={setActiveKey}/>
@@ -22,12 +22,12 @@ const Setting = () => {
         items: [
           {
             label: `基本信息`,
-            key: 'basicInfo',
+            key: "basicInfo",
             children: <InfoForm/>,
           },
           {
             label: `安全设置`,
-            key: 'security',
+            key: "security",
             children: <Security/>,
           },
         ],

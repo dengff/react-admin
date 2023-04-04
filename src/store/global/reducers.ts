@@ -1,58 +1,63 @@
-import {getToken, getUserInfo} from '@/utils';
-import {Reducer} from "react";
-import actionTypes from "./constants";
+import {getToken, getUserInfo} from "@/utils";
+import {Reducer} from "redux";
+import globalAction from "./constants";
+import type {GlobalAction} from "./actionTypes";
 
-export interface InitUserInfo {
-  name: string
-  role: string
-  avatar: string
-  token: string | (() => string)
-  userInfo: () => {}
-  collapsed: boolean
+const token = getToken();
+const userInfo = getUserInfo();
+
+export interface GlobalState {
+  name: string;
+  role: string;
+  avatar: string;
+  token: string;
+  userInfo: IUserInfo;
+  collapsed: boolean;
+}
+
+export interface IUserInfo {
+  id: string;
+  role: string;
+  name: string;
+  avatar: string;
+  description: string;
 }
 
 
-const initUserInfo: InitUserInfo = {
-  name: '',
-  role: '',
-  avatar: '',
-  token: getToken(),
-  userInfo: getUserInfo(),
+const initUserInfo: GlobalState = {
+  name: "",
+  role: "",
+  avatar: "",
+  token: token,
+  userInfo: userInfo,
   collapsed: false,
 };
 
-const reducer: Reducer<InitUserInfo, any> = (state: InitUserInfo = initUserInfo, action) => {
+const reducer: Reducer<GlobalState, GlobalAction> = (state = initUserInfo, action) => {
   switch (action.type) {
-    case actionTypes.USER_SET_USER_TOKEN:
+    case globalAction.USER_SET_USER_TOKEN:
       return {
         ...state,
         token: action.token,
       };
-    case actionTypes.USER_SET_USER_INFO:
+    case globalAction.USER_SET_USER_INFO:
       return {
         ...state,
         userInfo: action.userInfo,
       };
-    case actionTypes.UPDATE_COLLAPSE:
+    case globalAction.UPDATE_COLLAPSE:
       return {
         ...state,
         collapsed: action.collapsed,
       };
 
-    case actionTypes.USER_RESET_USER:
-      return {
-        name: '',
-        role: '',
-        avatar: '',
-        token: "",
-        userInfo: {},
-        collapsed: false,
-      };
+    case globalAction.USER_RESET_USER:
+      return initUserInfo;
     default :
       return state;
 
   }
-}
-export default reducer
+};
+export default reducer;
 
 

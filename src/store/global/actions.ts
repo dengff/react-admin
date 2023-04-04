@@ -1,10 +1,16 @@
-import {reqLogin, reqUserInfo, reqLogout} from '@/common/api';
-import actionsType from './constants';
-import {setToken, setUserInfo as setInfo} from '@/utils';
-import {resetTopHeaderState} from '@/store/topHeader/actions';
-import {resetThemeState} from '@/store/theme/actions';
+import {reqLogin, reqUserInfo, reqLogout} from "@/common/api";
+import globalAction from "./constants";
+import {setToken, setUserInfo as setInfo} from "@/utils";
+import {resetTopHeaderState} from "@/store/topHeader/actions";
+import {resetThemeState} from "@/store/theme/actions";
+import type {UpdateCollapseAction, ResetUserInfoAction, SetUserInfoAction, SetUserTokenAction} from "./actionTypes";
+import type {UserInfo} from "@/common/api/type";
+import type {AppThunk} from "@/store";
 
-export const login = ({username, password}: { username: string, password: string }) => {
+export const login = ({
+                        username,
+                        password
+                      }: { username: string, password: string }): AppThunk<ReturnType<typeof reqLogin>> => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       reqLogin({username, password}).then(res => {
@@ -20,7 +26,7 @@ export const login = ({username, password}: { username: string, password: string
     });
   };
 };
-export const getUserInfo = (token:string) => {
+export const getUserInfo = (token: string): AppThunk => {
   return dispatch => {
     return new Promise((resolve, reject) => {
       reqUserInfo(token).then(res => {
@@ -32,39 +38,39 @@ export const getUserInfo = (token:string) => {
     });
   };
 };
-export const logout = (token:string) => {
-  return dispatch => new Promise((resolve, reject) => {
+export const logout = (token: string): AppThunk => {
+  return (dispatch) => new Promise((resolve, reject) => {
     reqLogout(token).then(res => {
       if (res?.data.status === 0) {
-        dispatch(setUserToken(undefined));
+        dispatch(setUserToken(""));
         dispatch(resetUserInfo());
         dispatch(resetTopHeaderState());
         // dispatch(resetThemeState());
         window.localStorage.clear();
         resolve(true);
       }
-    }).catch(err => reject(err));
+    }).catch(err => reject(false));
 
   });
 
 };
-export const updateCollapse = (isCollapse) => ({
-  type: actionsType.UPDATE_COLLAPSE,
+export const updateCollapse = (isCollapse: boolean): UpdateCollapseAction => ({
+  type: globalAction.UPDATE_COLLAPSE,
   collapsed: isCollapse,
 });
 
-const setUserToken = (token) => ({
-  type: actionsType.USER_SET_USER_TOKEN,
+const setUserToken = (token: string): SetUserTokenAction => ({
+  type: globalAction.USER_SET_USER_TOKEN,
   token: token,
 });
 
-const setUserInfo = (userInfo) => {
+const setUserInfo = (userInfo: UserInfo): SetUserInfoAction => {
   return {
-    type: actionsType.USER_SET_USER_INFO,
+    type: globalAction.USER_SET_USER_INFO,
     userInfo: userInfo,
   };
 };
 
-const resetUserInfo = () => (
-  {type: actionsType.USER_RESET_USER}
+const resetUserInfo = (): ResetUserInfoAction => (
+  {type: globalAction.USER_RESET_USER}
 );

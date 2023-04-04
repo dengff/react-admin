@@ -1,7 +1,7 @@
-import {Tag} from 'antd';
-import {ProCard} from '@ant-design/pro-components';
-import React from 'react';
-import styled from 'styled-components';
+import {Tag} from "antd";
+import {ProCard} from "@ant-design/pro-components";
+import React from "react";
+import styled from "styled-components";
 
 const Warp = styled.div`
   display: flex;
@@ -25,46 +25,46 @@ const Warp = styled.div`
 
 const data = [
   {
-    type: '活动',
-    color: '#fff3e8',
-    fontColor: '#f77234',
-    key: '1',
-    content: '内容最新优惠活动',
+    type: "活动",
+    color: "#fff3e8",
+    fontColor: "#f77234",
+    key: "1",
+    content: "内容最新优惠活动",
   },
   {
-    type: '消息',
-    color: '#e8fffb',
-    fontColor: '#14c9c9',
+    type: "消息",
+    color: "#e8fffb",
+    fontColor: "#14c9c9",
 
-    key: '2',
-    content: '新增内容尚未通过审核，详情请点击查看。',
+    key: "2",
+    content: "新增内容尚未通过审核，详情请点击查看。",
   },
   {
-    type: '通知',
-    color: '#e8f3ff',
-    fontColor: '#165dff',
-    key: '3',
-    content: '当前产品试用期即将结束，如需续费请点击查看。',
+    type: "通知",
+    color: "#e8f3ff",
+    fontColor: "#165dff",
+    key: "3",
+    content: "当前产品试用期即将结束，如需续费请点击查看。",
   },
   {
-    type: '通知',
-    color: '#e8f3ff',
-    fontColor: '#165dff',
-    key: '4',
-    content: '1 月新系统升级计划通知',
+    type: "通知",
+    color: "#e8f3ff",
+    fontColor: "#165dff",
+    key: "4",
+    content: "1 月新系统升级计划通知",
   },
   {
-    type: '消息',
-    color: '#e8fffb',
-    fontColor: '#14c9c9',
-    key: '5',
-    content: '新增内容已经通过审核，详情请点击查看。',
+    type: "消息",
+    color: "#e8fffb",
+    fontColor: "#14c9c9",
+    key: "5",
+    content: "新增内容已经通过审核，详情请点击查看。",
   },
 ];
 export const Announcement = () => {
 
   return (
-    <ProCard style={{margin: '10px 0'}} title="公告" extra={<a>查看更多</a>}>
+    <ProCard style={{margin: "10px 0"}} title="公告" extra={<a>查看更多</a>}>
       {data.map(item => <Warp key={item.key}>
         <Tag style={{
           color: item.fontColor,

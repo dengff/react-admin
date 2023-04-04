@@ -1,5 +1,5 @@
-import {Button, Result, Tooltip} from 'antd';
-import React from 'react';
+import {Button, Result, Tooltip} from "antd";
+import React from "react";
 
 export default () => {
   return (
@@ -16,5 +16,5 @@ export default () => {
           onClick={_ => history.go(-1)}
         >Go Back</Button>}
     />
-  )
+  );
 }

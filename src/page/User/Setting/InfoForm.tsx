@@ -1,29 +1,29 @@
-import {ProForm, ProFormCascader, ProFormSelect, ProFormText, ProFormTextArea,} from '@ant-design/pro-components';
-import {provincesEnum} from '@/common/enum';
-import {message, Space} from 'antd';
-import React from 'react';
+import {ProForm, ProFormCascader, ProFormSelect, ProFormText, ProFormTextArea,} from "@ant-design/pro-components";
+import {provincesEnum} from "@/common/enum";
+import {message, Space} from "antd";
+import React from "react";
 
 const InfoForm = () => {
   return (
-    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
+    <div style={{display: "grid", gridTemplateColumns: "1fr 1fr"}}>
       <ProForm
-        layout={'horizontal'}
+        layout={"horizontal"}
         labelCol={{span: 4}}
         submitter={{
           onSubmit: () => {
-            message.success('success');
+            message.success("success");
           },
           render: (props, dom) => <Space style={{
-            width: '100%',
-            justifyContent: 'center',
+            width: "100%",
+            justifyContent: "center",
           }}>
             {dom}
           </Space>,
         }}
       >
         <ProForm.Item
-          label={'邮箱'}
-          name={'mailbox'}
+          label={"邮箱"}
+          name={"mailbox"}
         >
 
           <ProFormText>
@@ -31,8 +31,8 @@ const InfoForm = () => {
           </ProFormText>
         </ProForm.Item>
         <ProForm.Item
-          label={'昵称'}
-          name={'nickname'}
+          label={"昵称"}
+          name={"nickname"}
 
         >
 
@@ -43,21 +43,21 @@ const InfoForm = () => {
           </ProFormText>
         </ProForm.Item>
         <ProForm.Item
-          label={'国家/地区'}
-          name={'country'}
+          label={"国家/地区"}
+          name={"country"}
         >
 
           <ProFormSelect
             fieldProps={{
-              options: [{label: '中国', value: 'zh'}],
+              options: [{label: "中国", value: "zh"}],
             }}>
 
           </ProFormSelect>
         </ProForm.Item>
 
         <ProForm.Item
-          label={'所在区域'}
-          name={'Region'}
+          label={"所在区域"}
+          name={"Region"}
         >
           <ProFormCascader
             fieldProps={{
@@ -66,16 +66,16 @@ const InfoForm = () => {
           </ProFormCascader>
         </ProForm.Item>
         <ProForm.Item
-          label={'具体地址'}
-          name={'specificAddress'}
+          label={"具体地址"}
+          name={"specificAddress"}
         >
           <ProFormText
           >
           </ProFormText>
         </ProForm.Item>
         <ProForm.Item
-          label={'备注'}
-          name={'remark'}
+          label={"备注"}
+          name={"remark"}
         >
           <ProFormTextArea
           >

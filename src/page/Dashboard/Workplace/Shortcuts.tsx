@@ -1,16 +1,16 @@
-import {ProCard} from '@ant-design/pro-components';
-import {UserOutlined} from '@ant-design/icons';
-import React from 'react';
-import styled from 'styled-components';
-import {message} from 'antd';
+import {ProCard} from "@ant-design/pro-components";
+import {UserOutlined} from "@ant-design/icons";
+import React from "react";
+import styled from "styled-components";
+import {message} from "antd";
 import {
   AuthIcon,
   DashboardIcon,
   FormIcon,
   SystemIcon,
   TableIcon,
-} from '@/components/Icon';
-import {useNavigate} from 'react-router-dom';
+} from "@/components/Icon";
+import {useNavigate} from "react-router-dom";
 
 const Warp = styled.div`
   display: grid;
@@ -31,26 +31,30 @@ const Warp = styled.div`
   }
 
 `;
-
-const shortcuts = [
-  {title: '个人中心', icon: <UserOutlined/>,path:"/user/info"},
-  {title: '主控台', icon: <DashboardIcon/>},
-  {title: '表单', icon: <FormIcon/>},
-  {title: '权限管理', icon: <AuthIcon/>,path: "/auth/comp"},
-  {title: '系统设置', icon: <SystemIcon/>},
-  {title: '表格', icon: <TableIcon/>},
+type Shortcuts = {
+  title: string
+  icon: JSX.Element
+  path?: string
+}[]
+const shortcuts: Shortcuts = [
+  {title: "个人中心", icon: <UserOutlined/>, path: "/user/info"},
+  {title: "主控台", icon: <DashboardIcon/>},
+  {title: "表单", icon: <FormIcon/>},
+  {title: "权限管理", icon: <AuthIcon/>, path: "/auth/comp"},
+  {title: "系统设置", icon: <SystemIcon/>},
+  {title: "表格", icon: <TableIcon/>},
 ];
 const recentShortcuts = [
-  {title: '系统设置', icon: <SystemIcon/>},
-  {title: '表格', icon: <TableIcon/>},
-  {title: '表单', icon: <FormIcon/>},
-  {title: '权限管理', icon: <AuthIcon/>,path: "/auth/comp"},
+  {title: "系统设置", icon: <SystemIcon/>},
+  {title: "表格", icon: <TableIcon/>},
+  {title: "表单", icon: <FormIcon/>},
+  {title: "权限管理", icon: <AuthIcon/>, path: "/auth/comp"},
 ];
-const Item = (props) => {
-  const navigate = useNavigate()
+const Item = (props: { list: Shortcuts }) => {
+  const navigate = useNavigate();
   const {list = []} = props;
-  const handelClick = ({title,path}) => {
-    path && navigate(path)
+  const handelClick = ({title, path}: { title: string, path?: string }) => {
+    path && navigate(path);
     message.info(title);
 
   };
@@ -59,9 +63,9 @@ const Item = (props) => {
       <Warp>
         {list.map(item => (
           <div onClick={() => handelClick(item)} key={item.title}
-               className={'item'}>
+               className={"item"}>
             <div>{item.icon}</div>
-            <div style={{fontSize:"12px"}}>{item.title}</div>
+            <div style={{fontSize: "12px"}}>{item.title}</div>
 
           </div>))}
       </Warp>
@@ -72,7 +76,7 @@ const Item = (props) => {
 export const Shortcuts = () => {
   return (
     <ProCard.Group>
-      <ProCard split={'horizontal'}>
+      <ProCard split={"horizontal"}>
         <ProCard title="快捷入口" extra={<a>查看更多</a>}>
           <Item list={shortcuts}/>
         </ProCard>

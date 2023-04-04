@@ -1,23 +1,14 @@
-import {useImperativeHandle, useRef, useState} from 'react';
-import {Button, message, Popconfirm, Space, Tag} from 'antd';
-import {DeleteOutlined, EditOutlined, PlusOutlined} from '@ant-design/icons';
-import {
-  ModalForm,
-  ProFormSwitch,
-  ProFormText,
-  ProFormTreeSelect,
-  ProTable,
-} from '@ant-design/pro-components';
-import routes from '@/router/routes';
-import {menuIcon} from '@/components/Icon';
-import React from 'react';
-import type {ProColumns,ProFormInstance} from "@ant-design/pro-components"
+import React, {useImperativeHandle, useRef, useState} from "react";
+import {Button, message, Popconfirm, Space, Tag} from "antd";
+import {DeleteOutlined, EditOutlined, PlusOutlined} from "@ant-design/icons";
+import type {ProColumns} from "@ant-design/pro-components";
+import {ModalForm, ProFormSwitch, ProFormText, ProFormTreeSelect, ProTable,} from "@ant-design/pro-components";
+import routes from "@/router/routes";
+import {menuIcon} from "@/components/Icon";
+import type {ModalFormProps, SetModalVisit} from "@/page/System/type";
+import type {RouteObj} from "@/router/type";
 
-interface InformRef extends ProFormInstance{
-  setModalVisit: (b: boolean)=>void
-}
-
-const toFlatRoutes = (routes) => {
+const toFlatRoutes = (routes: RouteObj[]): any[] => {
   return routes.map(item => {
     return {
       ...item,
@@ -27,9 +18,9 @@ const toFlatRoutes = (routes) => {
   });
 };
 const result = toFlatRoutes(routes);
-const ModalFormComp = ({formRef, formTitle, rowData, ...args}) => {
+const ModalFormComp = ({modalFormRef, formTitle, rowData}: ModalFormProps) => {
   const [modalVisit, setModalVisit] = useState(false);
-  useImperativeHandle(formRef, () => {
+  useImperativeHandle(modalFormRef, () => {
     return {
       setModalVisit,
     };
@@ -38,23 +29,23 @@ const ModalFormComp = ({formRef, formTitle, rowData, ...args}) => {
 
     title={formTitle}
     open={modalVisit}
-    layout={'horizontal'}
+    layout={"horizontal"}
     onOpenChange={setModalVisit}
     modalProps={{
       destroyOnClose: true,
     }}
     initialValues={{
       ...rowData,
-      status: rowData?.['status'] === 0,
+      status: rowData?.["status"] === 0,
     }}
     labelCol={{span: 3}}
     onFinish={async (values) => {
       const data = {
         ...values,
-        status: values?.['status'] ? 0 : 1,
+        status: values?.["status"] ? 0 : 1,
       };
       console.log(data);
-      message.success('提交成功');
+      message.success("提交成功");
       return true;
     }}
   >
@@ -63,8 +54,8 @@ const ModalFormComp = ({formRef, formTitle, rowData, ...args}) => {
       label="上一级菜单"
       fieldProps={{
         fieldNames: {
-          label: 'deptName',
-          value: 'id',
+          label: "deptName",
+          value: "id",
         },
       }}
     />
@@ -83,91 +74,91 @@ const ModalFormComp = ({formRef, formTitle, rowData, ...args}) => {
 };
 
 const Menu = () => {
-  const formRef = useRef<InformRef>();
-  const [formTitle, setFormTitle] = useState('');
+  const modalFormRef = useRef<SetModalVisit>(null);
+  const [formTitle, setFormTitle] = useState("");
   const [rowData, setRowData] = useState(null);
-  const columns:ProColumns[] = [
+  const columns: ProColumns[] = [
 
     {
-      title: '菜单名称',
-      valueType: 'text',
-      dataIndex: 'title',
+      title: "菜单名称",
+      valueType: "text",
+      dataIndex: "title",
     },
     {
-      title: '菜单地址',
-      dataIndex: 'path',
+      title: "菜单地址",
+      dataIndex: "path",
     },
     {
-      title: '创建者',
-      dataIndex: 'creator',
-      valueType: 'select',
+      title: "创建者",
+      dataIndex: "creator",
+      valueType: "select",
       hideInTable: true,
       valueEnum: {
-        admin: {text: 'Admin'},
+        admin: {text: "Admin"},
         guest: {
-          text: 'guest',
+          text: "guest",
         },
       },
     },
     {
-      title: '菜单图标',
-      valueType: 'text',
+      title: "菜单图标",
+      valueType: "text",
       search: false,
-      dataIndex: 'icon',
+      dataIndex: "icon",
       render: (_, {icon}, index, action) => {
         return <Space>{menuIcon[icon] && menuIcon[icon]()}</Space>;
       },
     },
     {
-      title: '是否隐藏菜单',
-      valueType: 'switch',
-      dataIndex: 'hideInMenu',
+      title: "是否隐藏菜单",
+      valueType: "switch",
+      dataIndex: "hideInMenu",
       render: (_, row, index, action) => {
         return <Space>
-          {row['hideInMenu'] ?
-            <Tag color={'warning'}> 隐藏 </Tag>
+          {row["hideInMenu"] ?
+            <Tag color={"warning"}> 隐藏 </Tag>
             :
-            <Tag color={'success'}> 显示 </Tag>
+            <Tag color={"success"}> 显示 </Tag>
           }
         </Space>;
 
       },
     },
     {
-      title: '操作',
+      title: "操作",
       // width: 80,
-      key: 'option',
-      valueType: 'option',
-      fixed: 'right',
+      key: "option",
+      valueType: "option",
+      fixed: "right",
       render: (_, row, index, action) => {
         return <Space>
           <Button
-            type={'text'}
+            type={"text"}
             key="edit"
-            size={'small'}
-            icon={<PlusOutlined style={{color: '#9b59b6'}}/>} onClick={() => {
-            setFormTitle('新增菜单');
-            setRowData({});
-            formRef.current?.setModalVisit(true);
+            size={"small"}
+            icon={<PlusOutlined style={{color: "#9b59b6"}}/>} onClick={() => {
+            setFormTitle("新增菜单");
+            setRowData(null);
+            modalFormRef.current?.setModalVisit(true);
           }
           }></Button>
 
           <Button
-            type={'text'}
-            size={'small'}
-            icon={<EditOutlined style={{color: '#52c41a'}}/>}
+            type={"text"}
+            size={"small"}
+            icon={<EditOutlined style={{color: "#52c41a"}}/>}
             key="add" onClick={() => {
-            setFormTitle('编辑菜单');
+            setFormTitle("编辑菜单");
             setRowData(row);
-            formRef.current?.setModalVisit(true);
+            modalFormRef.current?.setModalVisit(true);
           }
           }></Button>
           <Popconfirm
             title="删除此行"
           >
             <Button
-              type={'text'}
-              size={'small'}
+              type={"text"}
+              size={"small"}
               danger icon={<DeleteOutlined/>}
               key="delete"></Button>
           </Popconfirm>
@@ -182,7 +173,7 @@ const Menu = () => {
       <ProTable
         columns={columns}
         request={() => {
-          message.success('success');
+          message.success("success");
           return Promise.resolve({
             data: result,
             total: result.length,
@@ -196,18 +187,18 @@ const Menu = () => {
           showQuickJumper: true,
         }}
         search={{
-          filterType: 'light',
+          filterType: "light",
         }}
         cardProps={{bordered: true}}
         headerTitle={
           <Button
             icon={<PlusOutlined/>}
             key="set"
-            type={'primary'}
+            type={"primary"}
             onClick={() => {
-              setFormTitle('新增菜单');
-              setRowData({});
-              formRef.current?.setModalVisit(true);
+              setFormTitle("新增菜单");
+              setRowData(null);
+              modalFormRef.current?.setModalVisit(true);
             }}
           >
             新增菜单
@@ -216,7 +207,7 @@ const Menu = () => {
         options={false}
         dateFormatter="string"
       />
-      <ModalFormComp {...{formRef, formTitle, rowData}}/>
+      <ModalFormComp {...{modalFormRef, formTitle, rowData}}/>
 
     </>
 

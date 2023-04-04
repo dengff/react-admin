@@ -1,16 +1,12 @@
-import React from 'react';
-import SystemSettings
-  from '@/page/Layout/components/SettingsDrawer';
-import FullScreenIcon
-  from '@/page/Layout/components/FullScreenIcon';
-import UserAvatar
-  from '@/page/Layout/components/UserAvatar';
-import AssemblySize
-  from '@/page/Layout/components/AssemblySize';
+import React from "react";
+import SystemSettings from "@/page/Layout/components/SettingsDrawer";
+import FullScreenIcon from "@/page/Layout/components/FullScreenIcon";
+import UserAvatar from "@/page/Layout/components/UserAvatar";
+import AssemblySize from "@/page/Layout/components/AssemblySize";
 
-const HeaderRight = (props) => {
+const HeaderRight = () => {
   return (
-    <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
+    <div style={{display: "flex", alignItems: "center", gap: "16px"}}>
       <AssemblySize/>
       <FullScreenIcon/>
       <SystemSettings/>

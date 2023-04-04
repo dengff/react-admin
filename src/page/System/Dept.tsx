@@ -1,3 +1,4 @@
+import type {ProColumns} from "@ant-design/pro-components";
 import {
   ModalForm,
   ProFormDigit,
@@ -5,19 +6,15 @@ import {
   ProFormText,
   ProFormTreeSelect,
   ProTable,
-} from '@ant-design/pro-components';
-import {Button, message, Popconfirm, Space} from 'antd';
-import {DeleteOutlined, EditOutlined, PlusOutlined} from '@ant-design/icons';
-import {useImperativeHandle, useRef, useState} from 'react';
-import React from 'react';
-import type {ProColumns,ProFormInstance} from "@ant-design/pro-components"
+} from "@ant-design/pro-components";
+import {Button, message, Popconfirm, Space} from "antd";
+import {DeleteOutlined, EditOutlined, PlusOutlined} from "@ant-design/icons";
+import React, {useImperativeHandle, useRef, useState} from "react";
+import type {ModalFormProps, SetModalVisit} from "@/page/System/type";
 
-interface InformRef extends ProFormInstance{
-  setModalVisit: (b: boolean)=>void
-}
-const ModalFormComp = ({formRef, formTitle, rowData, ...args}) => {
+const ModalFormComp = ({modalFormRef, formTitle, rowData, ...args}: ModalFormProps) => {
   const [modalVisit, setModalVisit] = useState(false);
-  useImperativeHandle(formRef, () => {
+  useImperativeHandle(modalFormRef, () => {
     return {
       setModalVisit,
     };
@@ -26,38 +23,36 @@ const ModalFormComp = ({formRef, formTitle, rowData, ...args}) => {
 
     title={formTitle}
     open={modalVisit}
-    layout={'horizontal'}
+    layout={"horizontal"}
     onOpenChange={setModalVisit}
     modalProps={{
       destroyOnClose: true,
     }}
     initialValues={{
       ...rowData,
-      status: rowData?.['status'] === 0,
+      status: rowData?.["status"] === 0,
     }}
     labelCol={{span: 3}}
     onFinish={async (values) => {
       const data = {
         ...values,
-        status: values?.['status'] ? 0 : 1,
+        status: values?.["status"] ? 0 : 1,
       };
       console.log(data);
-      message.success('提交成功');
+      message.success("提交成功");
       return true;
     }}
   >
     <ProFormTreeSelect
       name="parentId"
       label="上级部门"
-      proFieldProps={{
-
-      }}
+      proFieldProps={{}}
       fieldProps={{
         fieldNames: {
-          label: 'deptName',
-          value: 'id',
+          label: "deptName",
+          value: "id",
         },
-        treeData:[
+        treeData: [
           {
             deptName: `公司 I`,
             id: 97,
@@ -138,66 +133,66 @@ const result = [
     id: 103,
     creationTime: 1603698994055,
   },
-]
+];
 const Dept = () => {
-  const formRef = useRef<InformRef>();
-  const [formTitle, setFormTitle] = useState('');
+  const modalFormRef = useRef<SetModalVisit>(null);
+  const [formTitle, setFormTitle] = useState("");
   const [rowData, setRowData] = useState(null);
   const columns: ProColumns[] = [
 
     {
-      title: '部门名称',
-      valueType: 'text',
-      dataIndex: 'deptName',
+      title: "部门名称",
+      valueType: "text",
+      dataIndex: "deptName",
     },
     {
-      title: '排序',
+      title: "排序",
       search: false,
-      dataIndex: 'key',
+      dataIndex: "key",
     },
     {
-      title: '创建时间',
+      title: "创建时间",
       search: false,
-      valueType: 'date',
-      dataIndex: 'creationTime',
+      valueType: "date",
+      dataIndex: "creationTime",
     },
     {
-      title: '状态',
-      valueType: 'select',
-      dataIndex: 'status',
+      title: "状态",
+      valueType: "select",
+      dataIndex: "status",
       valueEnum: {
-        0: {text: '正常', status: 'success'},
-        1: {text: '禁用', status: 'Error'},
+        0: {text: "正常", status: "success"},
+        1: {text: "禁用", status: "Error"},
       },
     },
     {
-      title: '操作',
+      title: "操作",
       // width: 80,
-      key: 'option',
-      valueType: 'option',
-      fixed: 'right',
+      key: "option",
+      valueType: "option",
+      fixed: "right",
       render: (_, row, index, action) => {
         return <Space>
           <Button
-            type={'text'}
+            type={"text"}
             key="edit"
-            size={'small'}
-            icon={<PlusOutlined style={{color: '#9b59b6'}}/>} onClick={() => {
-            setFormTitle('新增部门');
-            setRowData({});
-            formRef.current?.setModalVisit(true);
+            size={"small"}
+            icon={<PlusOutlined style={{color: "#9b59b6"}}/>} onClick={() => {
+            setFormTitle("新增部门");
+            setRowData(null);
+            modalFormRef.current?.setModalVisit(true);
           }
           }></Button>
 
           {row.parentId &&
             <Button
-              type={'text'}
-              size={'small'}
-              icon={<EditOutlined style={{color: '#52c41a'}}/>}
+              type={"text"}
+              size={"small"}
+              icon={<EditOutlined style={{color: "#52c41a"}}/>}
               key="add" onClick={() => {
-              setFormTitle('编辑部门');
+              setFormTitle("编辑部门");
               setRowData(row);
-              formRef.current?.setModalVisit(true);
+              modalFormRef.current?.setModalVisit(true);
             }
             }></Button>
           }
@@ -207,8 +202,8 @@ const Dept = () => {
             title="删除此行"
           >
             <Button
-              type={'text'}
-              size={'small'}
+              type={"text"}
+              size={"small"}
               danger icon={<DeleteOutlined/>}
               key="delete"></Button>
           </Popconfirm>
@@ -235,11 +230,11 @@ const Dept = () => {
           <Button
             icon={<PlusOutlined/>}
             key="set"
-            type={'primary'}
+            type={"primary"}
             onClick={() => {
-              setFormTitle('新增部门');
-              setRowData({});
-              formRef.current?.setModalVisit(true);
+              setFormTitle("新增部门");
+              setRowData(null);
+              modalFormRef.current?.setModalVisit(true);
             }}
           >
             新增部门
@@ -248,7 +243,7 @@ const Dept = () => {
         options={false}
         dateFormatter="string"
       />
-      <ModalFormComp {...{formRef, formTitle, rowData}}/>
+      <ModalFormComp {...{modalFormRef, formTitle, rowData}}/>
 
     </>
 

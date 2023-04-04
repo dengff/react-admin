@@ -1,10 +1,10 @@
-import {ProCard, StatisticCard} from '@ant-design/pro-components';
+import {ProCard, StatisticCard} from "@ant-design/pro-components";
 
-import React from 'react';
-import * as echarts from 'echarts';
-import {useEcharts} from '@/hooks';
-import {Avatar, Space} from 'antd';
-import {useSelector} from 'react-redux';
+import React from "react";
+import * as echarts from "echarts";
+import {useEcharts} from "@/hooks";
+import {Avatar, Space} from "antd";
+import {useSelector} from "react-redux";
 import {
   CommentsIcon,
   DataIcon,
@@ -13,62 +13,63 @@ import {
   ItemsIcon,
   MessageIcon,
   TodoIcon,
-} from '@/components/Icon';
+} from "@/components/Icon";
+import {selectGlobal} from "@/store/global/selectors";
 
 const {Divider} = ProCard;
 
 const option = {
-  backgroundColor: '#fff',
+  backgroundColor: "#fff",
   title: {
     textStyle: {
       fontSize: 12,
       fontWeight: 400,
     },
-    left: 'center',
-    top: '5%',
+    left: "center",
+    top: "5%",
   },
   legend: {
-    icon: 'circle',
-    top: '5%',
-    right: '5%',
+    icon: "circle",
+    top: "5%",
+    right: "5%",
     itemWidth: 6,
     itemGap: 20,
     textStyle: {
-      color: '#556677',
+      color: "#556677",
     },
   },
   tooltip: {
-    trigger: 'axis',
+    trigger: "axis",
     axisPointer: {
       label: {
         show: true,
-        backgroundColor: '#fff',
-        color: '#556677',
-        borderColor: 'rgba(0,0,0,0)',
-        shadowColor: 'rgba(0,0,0,0)',
+        backgroundColor: "#fff",
+        color: "#556677",
+        borderColor: "rgba(0,0,0,0)",
+        shadowColor: "rgba(0,0,0,0)",
         shadowOffsetY: 0,
       },
       lineStyle: {
         width: 0,
       },
     },
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     textStyle: {
-      color: '#5c6c7c',
+      color: "#5c6c7c",
     },
     padding: [10, 10],
-    extraCssText: 'box-shadow: 1px 0 2px 0 rgba(163,163,163,0.5)',
+    extraCssText: "box-shadow: 1px 0 2px 0 rgba(163,163,163,0.5)",
   },
   grid: {
-    top: '15%',
+    top: "15%",
   },
   xAxis: [
     {
-      type: 'category',
-      data: ['北京', '上海', '广州', '深圳', '香港', '澳门', '台湾'],
+      type: "category",
+      data: ["北京", "上海", "广州", "深圳", "香港", "澳门", "台湾"],
       axisLine: {
         lineStyle: {
-          color: '#DCE2E8',
+          color: "#DCE2E8",
         },
       },
       axisTick: {
@@ -77,7 +78,7 @@ const option = {
       axisLabel: {
         interval: 0,
         textStyle: {
-          color: '#556677',
+          color: "#556677",
         },
         fontSize: 12,
         margin: 15,
@@ -88,7 +89,7 @@ const option = {
           margin: 15,
           fontSize: 12,
           backgroundColor: {
-            type: 'linear',
+            type: "linear",
             x: 0,
             y: 0,
             x2: 0,
@@ -96,16 +97,16 @@ const option = {
             colorStops: [
               {
                 offset: 0,
-                color: '#fff',
+                color: "#fff",
               }, {
                 offset: 0.86,
-                color: '#fff',
+                color: "#fff",
               }, {
                 offset: 0.86,
-                color: '#33c0cd',
+                color: "#33c0cd",
               }, {
                 offset: 1,
-                color: '#33c0cd',
+                color: "#33c0cd",
               }],
             global: false,
           },
@@ -115,41 +116,41 @@ const option = {
     }],
   yAxis: [
     {
-      type: 'value',
+      type: "value",
       axisTick: {
         show: false,
       },
       axisLine: {
         show: true,
         lineStyle: {
-          color: '#DCE2E8',
+          color: "#DCE2E8",
         },
       },
       axisLabel: {
         textStyle: {
-          color: '#556677',
+          color: "#556677",
         },
       },
       splitLine: {
         show: false,
       },
     }, {
-      type: 'value',
-      position: 'right',
+      type: "value",
+      position: "right",
       show: true,
       axisTick: {
         show: false,
       },
       axisLabel: {
         textStyle: {
-          color: '#556677',
+          color: "#556677",
         },
-        formatter: '{value}',
+        formatter: "{value}",
       },
       axisLine: {
         show: true,
         lineStyle: {
-          color: '#DCE2E8',
+          color: "#DCE2E8",
         },
       },
       splitLine: {
@@ -158,11 +159,11 @@ const option = {
     }],
   series: [
     {
-      name: '线上总数据',
-      type: 'line',
+      name: "线上总数据",
+      type: "line",
       data: [10, 10, 30, 12, 15, 3, 7],
       symbolSize: 1,
-      symbol: 'circle',
+      symbol: "circle",
       smooth: true,
       yAxisIndex: 0,
       showSymbol: false,
@@ -171,29 +172,29 @@ const option = {
         color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
           {
             offset: 0,
-            color: '#9effff',
+            color: "#9effff",
           },
           {
             offset: 1,
-            color: '#9E87FF',
+            color: "#9E87FF",
           },
         ]),
-        shadowColor: 'rgba(158,135,255, 0.3)',
+        shadowColor: "rgba(158,135,255, 0.3)",
         shadowBlur: 10,
         shadowOffsetY: 20,
       },
       itemStyle: {
         normal: {
-          color: '#9E87FF',
-          borderColor: '#9E87FF',
+          color: "#9E87FF",
+          borderColor: "#9E87FF",
         },
       },
     }, {
-      name: '投放中的内容',
-      type: 'line',
+      name: "投放中的内容",
+      type: "line",
       data: [5, 12, 11, 14, 25, 16, 10],
       symbolSize: 1,
-      symbol: 'circle',
+      symbol: "circle",
       smooth: true,
       yAxisIndex: 0,
       showSymbol: false,
@@ -202,31 +203,31 @@ const option = {
         color: new echarts.graphic.LinearGradient(1, 1, 0, 0, [
           {
             offset: 0,
-            color: '#73DD39',
+            color: "#73DD39",
           },
           {
             offset: 1,
-            color: '#73DDFF',
+            color: "#73DDFF",
           },
         ]),
-        shadowColor: 'rgba(115,221,255, 0.3)',
+        shadowColor: "rgba(115,221,255, 0.3)",
         shadowBlur: 10,
         shadowOffsetY: 20,
       },
       itemStyle: {
         normal: {
-          color: '#73DDFF',
-          borderColor: '#73DDFF',
+          color: "#73DDFF",
+          borderColor: "#73DDFF",
         },
       },
     },
     {
-      name: '日新增评论',
-      type: 'line',
+      name: "日新增评论",
+      type: "line",
       data: [150, 120, 170, 140, 500, 160, 110],
       symbolSize: 1,
       yAxisIndex: 1,
-      symbol: 'circle',
+      symbol: "circle",
       smooth: true,
       showSymbol: false,
       lineStyle: {
@@ -234,31 +235,31 @@ const option = {
         color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
           {
             offset: 0,
-            color: '#fe9a',
+            color: "#fe9a",
           },
           {
             offset: 1,
-            color: '#fe9a8b',
+            color: "#fe9a8b",
           },
         ]),
-        shadowColor: 'rgba(254,154,139, 0.3)',
+        shadowColor: "rgba(254,154,139, 0.3)",
         shadowBlur: 10,
         shadowOffsetY: 20,
       },
       itemStyle: {
         normal: {
-          color: '#fe9a8b',
-          borderColor: '#fe9a8b',
+          color: "#fe9a8b",
+          borderColor: "#fe9a8b",
         },
       },
     },
     {
-      name: '较昨日新增',
-      type: 'line',
+      name: "较昨日新增",
+      type: "line",
       data: [30, 60, 400, 180, 320, 666, 367],
       symbolSize: 1,
       yAxisIndex: 1,
-      symbol: 'circle',
+      symbol: "circle",
       smooth: true,
       showSymbol: false,
       lineStyle: {
@@ -266,21 +267,21 @@ const option = {
         color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
           {
             offset: 0,
-            color: 'pink',
+            color: "pink",
           },
           {
             offset: 1,
-            color: 'pink',
+            color: "pink",
           },
         ]),
-        shadowColor: 'pink',
+        shadowColor: "pink",
         shadowBlur: 10,
         shadowOffsetY: 20,
       },
       itemStyle: {
         normal: {
-          color: 'pink',
-          borderColor: 'pink',
+          color: "pink",
+          borderColor: "pink",
         },
       },
     },
@@ -289,18 +290,18 @@ const option = {
 
 export const Overview = () => {
   const [echartsRef] = useEcharts(option);
-  const {userInfo} = useSelector((state: any) => state.global);
+  const {userInfo} = useSelector(selectGlobal);
   const Title = () => {
 
     return <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px',
-      paddingLeft: '24px',
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      paddingLeft: "24px",
     }}>
       <Avatar
         style={{
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
         size={40}
         src={<img src={userInfo?.avatar} alt="avatar"/>}
@@ -312,30 +313,30 @@ export const Overview = () => {
     </div>;
 
   };
-  const Extra = () => <div style={{minWidth: '360px'}}>
+  const Extra = () => <div style={{minWidth: "360px"}}>
     <ProCard ghost bordered={false}>
       <StatisticCard
         ghost
-        layout={'center'}
+        layout={"center"}
         statistic={{
           title: <Space>
-            <span style={{fontSize: '16px'}}>
+            <span style={{fontSize: "16px"}}>
             <ItemsIcon/>
           </span>
-            {'项目数'}
+            {"项目数"}
           </Space>,
           value: 24,
         }}
       />
       <StatisticCard
         ghost
-        layout={'center'}
+        layout={"center"}
         statistic={{
-          title: <Space align={'center'}>
-            <span style={{fontSize: '16px'}}>
+          title: <Space align={"center"}>
+            <span style={{fontSize: "16px"}}>
             <TodoIcon/>
           </span>
-            {'待办'}
+            {"待办"}
           </Space>,
           value: 15,
         }}
@@ -344,7 +345,7 @@ export const Overview = () => {
       statistic={{
         title: <Space>
 
-          <span style={{fontSize: '16px'}}>
+          <span style={{fontSize: "16px"}}>
         <MessageIcon/>
       </span>
           <span>
@@ -359,22 +360,22 @@ export const Overview = () => {
   return (
     <ProCard
       headerBordered
-      split={'horizontal'}
+      split={"horizontal"}
       ghost
-      headStyle={{background: '#fff'}}
+      headStyle={{background: "#fff"}}
       title={<Title/>}
       extra={<Extra/>}
     >
-      <ProCard split={'horizontal'} gutter={[0, 20]} ghost>
-        <ProCard split={'vertical'}>
+      <ProCard split={"horizontal"} gutter={[0, 20]} ghost>
+        <ProCard split={"vertical"}>
           <ProCard.Group title="">
             <ProCard hoverable>
               <StatisticCard
                 statistic={{
-                  title: '线上总数据',
+                  title: "线上总数据",
                   value: 79.0,
                   icon: (
-                    <span style={{fontSize: '32px'}}><DataIcon/></span>
+                    <span style={{fontSize: "32px"}}><DataIcon/></span>
                   ),
                 }}
               />
@@ -384,11 +385,11 @@ export const Overview = () => {
               <StatisticCard
                 statistic={{
                   style: {
-                    width: '89px',
+                    width: "89px",
                   },
-                  title: '投放中的内容',
+                  title: "投放中的内容",
                   value: 112893.0,
-                  icon: <span style={{fontSize: '32px'}}><DeliverIcon/></span>,
+                  icon: <span style={{fontSize: "32px"}}><DeliverIcon/></span>,
                 }}
               />
             </ProCard>
@@ -396,10 +397,10 @@ export const Overview = () => {
             <ProCard hoverable>
               <StatisticCard
                 statistic={{
-                  title: '日新增评论',
+                  title: "日新增评论",
                   value: 93,
                   icon: <span
-                    style={{fontSize: '32px'}}> <CommentsIcon/></span>,
+                    style={{fontSize: "32px"}}> <CommentsIcon/></span>,
                 }}
               />
             </ProCard>
@@ -407,9 +408,9 @@ export const Overview = () => {
             <ProCard hoverable>
               <StatisticCard
                 statistic={{
-                  title: '较昨日新增',
+                  title: "较昨日新增",
                   value: 112893.0,
-                  icon: <span style={{fontSize: '32px'}}>
+                  icon: <span style={{fontSize: "32px"}}>
                     <IncreaseIcon/>
                   </span>,
                 }}
@@ -419,8 +420,8 @@ export const Overview = () => {
           </ProCard.Group>
         </ProCard>
         <ProCard
-          layout={'center'} ref={echartsRef}
-          style={{width: '100%', height: '300px'}}>
+          layout={"center"} ref={echartsRef}
+          style={{width: "100%", height: "300px"}}>
         </ProCard>
       </ProCard>
 

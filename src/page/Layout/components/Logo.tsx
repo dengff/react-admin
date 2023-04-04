@@ -1,11 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import Auth from '@/components/Auth';
-import {useSelector} from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import {AuthControl} from "@/components/Auth";
+import {useSelector} from "react-redux";
+import {selectTopHeader} from "@/store/topHeader/selectors";
 
-const logo = 'https://www.logosc.cn/logomrdata/2017/12/13/ff616ad1-0a2e-40a4-8842-9b0b97ea55e4.png';
-const Warp = styled.div`
-  width: ${props => props.mode === 'horizontal' ? '200px' : false};
+const logo = "https://www.logosc.cn/logomrdata/2017/12/13/ff616ad1-0a2e-40a4-8842-9b0b97ea55e4.png";
+const Warp = styled.div<{ mode?: string }>`
+  width: ${props => props.mode === "horizontal" ? "200px" : false};
   display: flex;
   align-items: center;
 
@@ -21,20 +22,19 @@ const Warp = styled.div`
   }
 `;
 
-export const Logo = (props) => {
-  const {pageConfig} = useSelector((state:any) => state.topHeader);
+export const Logo = (props: { mode: string }) => {
+  const {pageConfig} = useSelector(selectTopHeader);
   const {layoutItems} = pageConfig ?? {};
   return (
-    <Auth
-      auth={layoutItems?.includes('logo')}
-      render={() =>
-        <Warp {...props}>
-          <div className={'logo'}>
-            <img src={logo}/>
-          </div>
-        </Warp>
-      }
-    />
+    <AuthControl
+      permissionControl={() => layoutItems?.includes("logo")}
+    >
+      <Warp {...props}>
+        <div className={"logo"}>
+          <img src={logo} alt="logo"/>
+        </div>
+      </Warp>
+    </AuthControl>
 
   );
 };

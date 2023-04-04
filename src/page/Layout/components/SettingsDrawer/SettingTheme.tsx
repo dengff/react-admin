@@ -1,33 +1,31 @@
-import {Divider, Form, Space, Switch} from 'antd';
-import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
-import React, {memo, useLayoutEffect} from 'react';
-import {changeColorPrimary, changeTheme} from '@/store/theme/actions';
-import {connect, shallowEqual, useSelector} from 'react-redux';
-import {ThemeIcon} from '@/components/Icon';
-import ColorPicker from '@/components/ColorPicker';
+import {Divider, Form, Space, Switch} from "antd";
+import {CheckOutlined, CloseOutlined} from "@ant-design/icons";
+import React, {memo, useLayoutEffect} from "react";
+import {changeColorPrimary, changeTheme} from "@/store/theme/actions";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import {ThemeIcon} from "@/components/Icon";
+import ColorPicker from "@/components/ColorPicker";
+import {selectTheme} from "@/store/theme/selectors";
+import type {ITheme} from "@/store/theme/reducers";
+import type {AppDispatch, RootState} from "@/store";
 
-interface IProps {
-  changeColorPrimary: (hex: string) => void,
-  changeTheme: (params) => void,
-}
-
-const SettingTheme = memo((props: IProps) => {
-
-  const {changeColorPrimary, changeTheme} = props;
+const SettingTheme = memo(() => {
+  const dispatch = useDispatch<AppDispatch>();
   const {
     token: {colorPrimary},
     themeMode: {
       isGrey,
       isColorWeakness,
-    },
-  } = useSelector((state: any) => state.theme, shallowEqual);
+    }
+  } = useSelector<RootState, ITheme>(selectTheme, shallowEqual);
 
   // TODO 有bug 待解决
   useLayoutEffect(() => {
-    changeTheme({
+    dispatch(changeTheme({
       isGrey: isGrey,
       isColorWeakness: isColorWeakness,
-    });
+    }));
+
   }, []);
 
   return (
@@ -42,45 +40,46 @@ const SettingTheme = memo((props: IProps) => {
           isColorWeakness: isColorWeakness,
         }}
       >
-        <Form.Item valuePropName={'color'} name="colorPrimary"
+        <Form.Item valuePropName={"color"} name="colorPrimary"
                    label="主题色">
           <ColorPicker currentColor={colorPrimary} onChange={(value) => {
             console.log(value);
-            changeColorPrimary(value.hex);
+            dispatch(changeColorPrimary(value.hex));
+
           }}/>
         </Form.Item>
         <Space style={{
-          justifyContent: 'space-between',
-          width: '100%',
+          justifyContent: "space-between",
+          width: "100%",
         }}>
           <div>灰色模式：</div>
-          <Form.Item name="isGrey" valuePropName={'checked'}>
+          <Form.Item name="isGrey" valuePropName={"checked"}>
             <Switch
               checkedChildren={<CheckOutlined/>}
               unCheckedChildren={<CloseOutlined/>}
               checked={isGrey}
               onChange={(value) =>
                 changeTheme({
-                  'isGrey': value,
-                  'isColorWeakness': false,
+                  "isGrey": value,
+                  "isColorWeakness": false,
                 })
               }
             />
           </Form.Item>
         </Space>
         <Space style={{
-          justifyContent: 'space-between',
-          width: '100%',
+          justifyContent: "space-between",
+          width: "100%",
         }}>
           <div>色弱模式：</div>
-          <Form.Item name={'isColorWeakness'} valuePropName={'checked'}>
+          <Form.Item name={"isColorWeakness"} valuePropName={"checked"}>
             <Switch
               checkedChildren={<CheckOutlined/>}
               unCheckedChildren={<CloseOutlined/>}
               onChange={(value) =>
                 changeTheme({
-                  'isColorWeakness': value,
-                  'isGrey': false,
+                  "isColorWeakness": value,
+                  "isGrey": false,
                 })
               }
             />
@@ -91,4 +90,4 @@ const SettingTheme = memo((props: IProps) => {
   );
 });
 
-export default connect(null, {changeTheme, changeColorPrimary})(SettingTheme);
+export default SettingTheme;

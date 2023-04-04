@@ -1,21 +1,21 @@
-import {lazy} from 'react';
-import {lazyLoad} from '@/utils/lazyload';
+import {lazy} from "react";
+import {lazyLoad} from "@/utils/lazyload";
 import type {RouteObj} from "@/router/type";
-import React from 'react';
+import React from "react";
 
 const routes: RouteObj[] = [
   {
-    path: '/home',
-    element: lazyLoad(lazy(() => import('@/page/Home'))),
+    path: "/home",
+    element: lazyLoad(lazy(() => import("@/page/Home"))),
     meta: {
-      title: '首页',
+      title: "首页",
       icon: "HomeIcon"
     },
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     meta: {
-      title: '仪表盘',
+      title: "仪表盘",
       icon: "DashboardIcon"
     },
     children: [
@@ -38,129 +38,129 @@ const routes: RouteObj[] = [
   },
   {
     // element: <>表单</>,
-    path: '/form',
+    path: "/form",
     meta: {
-      title: '表单',
+      title: "表单",
       icon: "FormIcon"
     },
     children: [
       {
-        path: '/form/dynamic',
-        element: lazyLoad(lazy(() => import('@/page/Form/DynamicForms'))),
+        path: "/form/dynamic",
+        element: lazyLoad(lazy(() => import("@/page/Form/DynamicForms"))),
         meta: {
-          title: '动态表单',
+          title: "动态表单",
         },
       },
       {
-        path: '/form/steps',
-        element: lazyLoad(lazy(() => import('@/page/Form/StepsForm'))),
+        path: "/form/steps",
+        element: lazyLoad(lazy(() => import("@/page/Form/StepsForm"))),
         meta: {
-          title: '分步表单',
+          title: "分步表单",
         },
       },
     ],
   },
   {
-    path: '/table',
+    path: "/table",
     meta: {
-      title: '表格 Table',
+      title: "表格 Table",
       icon: "TableIcon"
     },
     children: [
       {
-        path: '/table/pro',
+        path: "/table/pro",
         element: lazyLoad(
-          lazy(() => import('@/page/Table/ProTable/proTable'))),
+          lazy(() => import("@/page/Table/ProTable/proTable"))),
         meta: {
-          title: '查询表格',
+          title: "查询表格",
         },
       },
       {
-        path: '/table/detail',
+        path: "/table/detail",
         element: lazyLoad(
-          lazy(() => import('@/page/Table/ProTable/tableDetail'))),
+          lazy(() => import("@/page/Table/ProTable/tableDetail"))),
         meta: {
           hideInMenu: true,
-          title: '表格详情',
+          title: "表格详情",
         },
       },
       {
-        path: '/table/edit',
-        element: lazyLoad(lazy(() => import('@/page/Table/editTable'))),
+        path: "/table/edit",
+        element: lazyLoad(lazy(() => import("@/page/Table/editTable"))),
         meta: {
-          title: '编辑表格',
+          title: "编辑表格",
         },
       },
     ],
   },
   {
-    path: '/auth',
+    path: "/auth",
     meta: {
-      title: '权限管理',
+      title: "权限管理",
       icon: "AuthIcon"
     },
     children: [
       {
-        path: '/auth/page',
+        path: "/auth/page",
         element: lazyLoad(
-          lazy(() => import('@/page/Auth/PermissionPage'))),
+          lazy(() => import("@/page/Auth/PermissionPage"))),
         meta: {
-          title: '界面权限',
+          title: "界面权限",
         },
       },
       {
-        path: '/auth/comp',
+        path: "/auth/comp",
         element: lazyLoad(
-          lazy(() => import('@/page/Auth/PermissionComponent'))),
+          lazy(() => import("@/page/Auth/PermissionComponent"))),
         meta: {
-          title: '按钮等其他权限控制',
+          title: "按钮等其他权限控制",
           auth: {
-            permissionBtn: ['save'],
+            permissionControl: ["save"],
           },
         },
       },
       {
-        path: '/auth/admin',
+        path: "/auth/admin",
         element: lazyLoad(
-          lazy(() => import('@/page/Auth/PermissionPage/Admin'))),
+          lazy(() => import("@/page/Auth/PermissionPage/Admin"))),
         meta: {
-          title: 'Auth-Admin-page',
+          title: "Auth-Admin-page",
           auth: {
-            roles: ['admin'],
+            roles: ["admin"],
           },
         },
       },
       {
-        path: '/auth/editor',
+        path: "/auth/editor",
         element: lazyLoad(
-          lazy(() => import('@/page/Auth/PermissionPage/Editor'))),
+          lazy(() => import("@/page/Auth/PermissionPage/Editor"))),
         meta: {
-          title: 'Auth-Editor-Page',
+          title: "Auth-Editor-Page",
           auth: {
-            roles: ['editor'],
+            roles: ["editor"],
           },
         },
       },
       {
-        path: '/auth/guest',
+        path: "/auth/guest",
         element: lazyLoad(
-          lazy(() => import('@/page/Auth/PermissionPage/Guest'))),
+          lazy(() => import("@/page/Auth/PermissionPage/Guest"))),
         meta: {
-          title: 'Auth-Guest-Page',
+          title: "Auth-Guest-Page",
           auth: {
-            roles: ['guest'],
+            roles: ["guest"],
           },
         },
       },
       {
-        path: '/auth/editor-guest',
+        path: "/auth/editor-guest",
         element: lazyLoad(
-          lazy(() => import('@/page/Auth/PermissionPage/EditorGuest'))),
+          lazy(() => import("@/page/Auth/PermissionPage/EditorGuest"))),
 
         meta: {
-          title: 'Auth-Editor & Guest-Page',
+          title: "Auth-Editor & Guest-Page",
           auth: {
-            roles: ['guest', 'editor'],
+            roles: ["guest", "editor"],
           },
         },
       },
@@ -168,60 +168,60 @@ const routes: RouteObj[] = [
 
   },
   {
-    path: '/menu',
+    path: "/menu",
     meta: {
-      title: '菜单嵌套',
+      title: "菜单嵌套",
       icon: "MenuIcon"
     },
     children: [
       {
-        path: '/menu/menu-1',
+        path: "/menu/menu-1",
         element: <h2>menu-1</h2>,
         meta: {
-          title: '菜单 menu-1',
+          title: "菜单 menu-1",
         },
       }, {
-        path: '/menu/menu-2',
+        path: "/menu/menu-2",
         meta: {
-          title: '菜单 menu-2',
+          title: "菜单 menu-2",
         },
         children: [
           {
-            path: '/menu/menu-2/menu-2-1',
+            path: "/menu/menu-2/menu-2-1",
             element: <h2>menu-2-1</h2>,
             meta: {
-              title: 'menu-2-1',
+              title: "menu-2-1",
             },
           },
           {
-            path: '/menu/menu-2/menu-2-2',
+            path: "/menu/menu-2/menu-2-2",
             element: <h2>menu-2-2</h2>,
             meta: {
-              title: 'menu-2-2',
+              title: "menu-2-2",
             },
           },
           {
-            path: '/menu/menu-2/menu-2-3',
+            path: "/menu/menu-2/menu-2-3",
             element: <h2>menu-2-3</h2>,
             meta: {
-              title: 'menu-2-3',
+              title: "menu-2-3",
             },
           },
         ],
       },
       {
-        path: '/menu/menu-3',
+        path: "/menu/menu-3",
         element: <h2>menu-3</h2>,
         meta: {
-          title: '菜单 menu-3',
+          title: "菜单 menu-3",
         },
       },
     ],
   },
   {
-    path: '/system',
+    path: "/system",
     meta: {
-      title: '系统管理',
+      title: "系统管理",
       icon: "SystemIcon"
     },
     children: [
@@ -233,33 +233,33 @@ const routes: RouteObj[] = [
         }
       },
       {
-        path: '/system/role-management',
+        path: "/system/role-management",
         element: lazyLoad(lazy(() => import("@/page/System/Role"))),
         meta: {
-          title: '角色管理',
+          title: "角色管理",
         },
       },
       {
-        path: '/system/menu',
+        path: "/system/menu",
         element: lazyLoad(lazy(() => import("@/page/System/Menu"))),
         meta: {
-          title: '菜单管理',
+          title: "菜单管理",
         },
       },
     ],
   },
   {
-    path: '/other',
+    path: "/other",
     meta: {
-      title: '其他',
+      title: "其他",
       icon: "OthIcon"
     },
     children: [
       {
-        path: '/other/file-download',
+        path: "/other/file-download",
         element: <h2>文件下载</h2>,
         meta: {
-          title: '文件下载',
+          title: "文件下载",
         },
       },
     ],
