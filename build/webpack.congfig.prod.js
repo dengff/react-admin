@@ -18,6 +18,7 @@ const proConfig = merge(baseConfig, {
     clean: true,
   },
   optimization: {
+    moduleIds: 'deterministic',
     runtimeChunk: true,
     minimize: true,
     minimizer: [
