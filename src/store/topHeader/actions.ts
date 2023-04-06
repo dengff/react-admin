@@ -71,6 +71,7 @@ export const changeLayout = (items: string[]): AppThunk => dispatch => {
   dispatch(setLayoutItems(items));
 };
 export const changeLayoutMode = (layoutMode: string): AppThunk => dispatch => {
+  if(!layoutMode) return
   dispatch(setLayoutMode(layoutMode));
 };
 

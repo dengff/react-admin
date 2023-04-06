@@ -7,7 +7,10 @@ import type {UpdateCollapseAction, ResetUserInfoAction, SetUserInfoAction, SetUs
 import type {UserInfo} from "@/common/api/type";
 import type {AppThunk} from "@/store";
 
-export const login = ({username, password}: { username: string, password: string }): AppThunk<ReturnType<typeof reqLogin>> => {
+export const login = ({
+                        username,
+                        password
+                      }: { username: string, password: string }): AppThunk<ReturnType<typeof reqLogin>> => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       reqLogin({username, password}).then(res => {
@@ -39,8 +42,9 @@ export const logout = (token: string): AppThunk => {
   return (dispatch) => new Promise((resolve, reject) => {
     reqLogout(token).then(res => {
       if (res?.data.status === 0) {
-        localStorage.removeItem('token')
+        localStorage.removeItem("token");
         dispatch(resetUserInfo());
+        dispatch(setUserToken(""));
         dispatch(resetTopHeaderState());
         // dispatch(resetThemeState());
         resolve(true);

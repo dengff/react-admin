@@ -28,7 +28,7 @@ const initTheme: ITheme = {
   },
 
   token: {
-    colorPrimary: "#1677ff",
+    colorPrimary: "#d81b60",
     fontSize: 16,
   },
   componentSize: "middle",

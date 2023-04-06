@@ -59,10 +59,11 @@ const SettingTheme = memo(() => {
               unCheckedChildren={<CloseOutlined/>}
               checked={isGrey}
               onChange={(value) =>
-                changeTheme({
-                  "isGrey": value,
-                  "isColorWeakness": false,
-                })
+                dispatch(changeTheme({
+                    "isGrey": value,
+                    "isColorWeakness": false,
+                  })
+                )
               }
             />
           </Form.Item>
@@ -77,10 +78,12 @@ const SettingTheme = memo(() => {
               checkedChildren={<CheckOutlined/>}
               unCheckedChildren={<CloseOutlined/>}
               onChange={(value) =>
-                changeTheme({
-                  "isColorWeakness": value,
-                  "isGrey": false,
-                })
+                dispatch(
+                  changeTheme({
+                    "isColorWeakness": value,
+                    "isGrey": false,
+                  })
+                )
               }
             />
           </Form.Item>

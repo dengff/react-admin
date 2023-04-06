@@ -1,10 +1,12 @@
-import {Col, Divider, Row, Space} from "antd";
+import {Col, Divider, Row, Space, Tooltip} from "antd";
 import React from "react";
 import {CheckCard, ProForm, ProFormCheckbox} from "@ant-design/pro-components";
 import {changeLayout, changeLayoutMode} from "@/store/topHeader/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {LayoutIcon} from "@/components/Icon";
 import {selectTopHeader} from "@/store/topHeader/selectors";
+import {selectTheme} from "@/store/theme/selectors";
+import {Warp} from "@/page/Layout/components/SettingsDrawer/style";
 import type {AppDispatch} from "@/store";
 
 const showComps = [
@@ -28,11 +30,12 @@ const showComps = [
 
 const SettingPage = () => {
   const {pageConfig} = useSelector(selectTopHeader);
+  const {token: {colorPrimary}} = useSelector(selectTheme);
   const dispatch = useDispatch<AppDispatch>();
   const {layoutItems, layoutMode} = pageConfig;
 
   return (
-    <>
+    <Warp colorPrimary={colorPrimary}>
       <Divider><Space style={{alignItems: "center"}}>
         <LayoutIcon/>界面显示
       </Space></Divider>
@@ -58,37 +61,44 @@ const SettingPage = () => {
           }
           value={layoutMode} size={"small"} style={{width: "100%"}}>
 
-          <Row gutter={20}>
-            <Col span={12}>
-              <CheckCard
-                title="布局"
-                description="经典布局"
-                value="classicLayout"
-                style={{width: 170, height: 80}}
-              />
-            </Col>
-            <Col span={12}>
-              <CheckCard
-                title="布局"
-                style={{width: 170, height: 80}}
-                description="横向布局"
-                value="landscapeLayout"
-              />
-            </Col>
-            <Col span={11}>
-              <CheckCard
-                title="布局"
-                style={{width: 170, height: 80}}
-                description="纵向布局"
-                value="portraitLayout"
-              />
-            </Col>
-
+          <Row gutter={20} style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr"}}>
+            <Tooltip title={"经典布局"}>
+              <Col>
+                <CheckCard
+                  className="classicLayout"
+                  title="布局"
+                  description="经典布局"
+                  value="classicLayout"
+                  style={{width: 90, height: 60}}
+                />
+              </Col>
+            </Tooltip>
+            <Tooltip title={"横向布局"}>
+              <Col>
+                <CheckCard
+                  className="landscapeLayout"
+                  title="布局"
+                  style={{width: 90, height: 60}}
+                  description="横向布局"
+                  value="landscapeLayout"
+                />
+              </Col>
+            </Tooltip>
+            <Tooltip title={"纵向布局"}>
+              <Col>
+                <CheckCard
+                  className="portraitLayout"
+                  title="布局"
+                  style={{width: 90, height: 60}}
+                  description="纵向布局"
+                  value="portraitLayout"
+                />
+              </Col>
+            </Tooltip>
           </Row>
         </CheckCard.Group>
-
       </ProForm>
-    </>
+    </Warp>
   );
 };
 
