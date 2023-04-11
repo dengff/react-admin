@@ -4,7 +4,8 @@ import type {
   SetLayoutItems,
   SetLayoutMode,
   SetTabs,
-  SetTabsActiveKey
+  SetTabsActiveKey,
+  UpdateCollapseAction
 } from "@/store/topHeader/actionTypes";
 import type {TabList} from "@/store/topHeader/reducers";
 import type {AppThunk, RootState} from "@/store";
@@ -70,7 +71,7 @@ export const deleteAllTab = (key: string): AppThunk<Promise<boolean>> => (dispat
 export const changeLayout = (items: string[]): AppThunk => dispatch => {
   dispatch(setLayoutItems(items));
 };
-export const changeLayoutMode = (layoutMode: string): AppThunk => dispatch => {
+export const changeLayoutMode = (layoutMode: any): AppThunk => dispatch => {
   if(!layoutMode) return
   dispatch(setLayoutMode(layoutMode));
 };
@@ -88,12 +89,16 @@ const setLayoutItems = (layoutItems: string[]): SetLayoutItems => ({
   type: toHeaderAction.SET_PAGE_LAYOUT_ITEMS,
   layoutItems: layoutItems,
 });
-const setLayoutMode = (layoutMode: string): SetLayoutMode => ({
+const setLayoutMode = (layoutMode:   "classicLayout" | "landscapeLayout"|"portraitLayout"): SetLayoutMode => ({
   type: toHeaderAction.SET_LAYOUT_MODE,
   layoutMode: layoutMode,
 });
 export const resetTopHeaderState = (): ResetTopHeaderState => ({
   type: toHeaderAction.RESET_TOP_HEADER_STATE,
+});
+export const updateCollapse = (isCollapse: boolean): UpdateCollapseAction => ({
+  type: toHeaderAction.UPDATE_COLLAPSE,
+  collapsed: isCollapse,
 });
 
 

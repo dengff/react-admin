@@ -1,11 +1,6 @@
 import globalAction from "@/store/global/constants";
 import type {IUserInfo} from "@/store/global/reducers";
 
-export type UpdateCollapseAction = {
-  type: typeof globalAction.UPDATE_COLLAPSE,
-  collapsed: boolean,
-}
-
 export type SetUserTokenAction = {
   type: typeof globalAction.USER_SET_USER_TOKEN,
   token: string,
@@ -22,7 +17,6 @@ export type ResetUserInfoAction = {
 }
 
 export type GlobalAction =
-  | UpdateCollapseAction
   | SetUserTokenAction
   | SetUserInfoAction
   | ResetUserInfoAction

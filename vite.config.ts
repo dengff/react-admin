@@ -2,6 +2,7 @@ import {fileURLToPath, URL} from 'node:url';
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import postcssPresetEnv from 'postcss-preset-env';
+import { createHtmlPlugin } from 'vite-plugin-html'
 import externalGlobals from 'rollup-plugin-external-globals';
 import {resolve} from "path";
 import {visualizer} from 'rollup-plugin-visualizer';
@@ -20,9 +21,14 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    externalGlobals({
-      echarts: 'echarts',
-    }),
+    createHtmlPlugin({
+      minify: true,
+      template: './index.html',
+      entry: '/src/main.tsx',
+    })
+    // externalGlobals({
+    //   echarts: 'echarts',
+    // }),
     // visualizer(),
   ],
   resolve: {

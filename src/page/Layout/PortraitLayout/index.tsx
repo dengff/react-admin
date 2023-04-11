@@ -8,13 +8,13 @@ import PortraitHeader from "@/page/Layout/PortraitLayout/Header";
 import HeaderTabs from "@/page/Layout/components/NavTabs";
 import {shallowEqual, useSelector} from "react-redux";
 import {useDefaultOpenKeys} from "@/page/Layout/components/SiderMenu/hooks";
-import {selectGlobal} from "@/store/global/selectors";
-import type {GlobalState} from "@/store/global/reducers";
+import {selectTopHeader} from "@/store/topHeader/selectors";
+import {TopHeader} from "@/store/topHeader/reducers";
 
 const {Header, Sider} = Layout;
 
 export const PortraitLayout = () => {
-  const {collapsed} = useSelector<any, GlobalState>(selectGlobal, shallowEqual);
+  const {collapsed} = useSelector<any, TopHeader>(selectTopHeader, shallowEqual);
   const [ref] = useDefaultOpenKeys();
   return (
     <Warp>

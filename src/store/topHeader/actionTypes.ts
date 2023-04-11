@@ -16,10 +16,14 @@ export type SetLayoutItems = {
 }
 export type SetLayoutMode = {
   type: typeof toHeaderAction.SET_LAYOUT_MODE,
-  layoutMode: string,
+  layoutMode:  "classicLayout" | "landscapeLayout"|"portraitLayout",
 }
 export type ResetTopHeaderState = {
   type: typeof toHeaderAction.RESET_TOP_HEADER_STATE,
+}
+export type UpdateCollapseAction = {
+  type: typeof toHeaderAction.UPDATE_COLLAPSE,
+  collapsed: boolean,
 }
 export type ToHeaderAction =
   | SetTabs
@@ -27,3 +31,4 @@ export type ToHeaderAction =
   | SetLayoutItems
   | SetLayoutMode
   | ResetTopHeaderState
+  | UpdateCollapseAction

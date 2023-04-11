@@ -6,7 +6,7 @@ import {
 } from "@ant-design/pro-components";
 import React, {useEffect, useRef, useState} from "react";
 import {AuthControl} from "@/components/Auth";
-import {Button, Divider, Space} from "antd";
+import {Button, Divider, message, Space} from "antd";
 import {currentRoute} from "@/utils";
 import type {FormInstance} from "@ant-design/pro-components";
 
@@ -52,6 +52,10 @@ const PermissionBtn = [
   {
     text: "Reset",
     permission: ["reset"],
+    backup: <Button
+      size={"small"}
+      type={"default"}
+      onClick={_ => message.warning("请前往配置权限!")}>无Reset权限回显(可点可见)</Button>
   },
   {
     text: "Edit",
@@ -128,8 +132,18 @@ const PermissionComponent = () => {
                   permissionControl={() => !!item.permission.filter(inner => permissions.includes(inner))?.length}
                   backup={item.backup}
                 >
-                  <Button size={"small"} type={"primary"}>{item.text}</Button>
-
+                  {item.text === "Reset"
+                    ? (hasPermission) => {
+                      return <>
+                        {hasPermission
+                          ? <Button size={"small"} type={"primary"}>{item.text}</Button>
+                          : item.backup
+                        }
+                      </>;
+                    }
+                    :
+                    <Button size={"small"} type={"primary"}>{item.text}</Button>
+                  }
                 </AuthControl>
               ))
             }

@@ -1,14 +1,18 @@
-import {Drawer, Tooltip} from "antd";
-import {SettingOutlined} from "@ant-design/icons";
+import {Button, Divider, Drawer, Space, Tooltip} from "antd";
+import {SettingOutlined, SyncOutlined} from "@ant-design/icons";
 import React, {useState} from "react";
 import SettingPage
   from "@/page/Layout/components/SettingsDrawer/SettingPage";
 import SettingTheme
   from "@/page/Layout/components/SettingsDrawer/SettingTheme";
+import {useDispatch} from "react-redux";
+import type {AppDispatch} from "@/store";
+import {resetTopHeaderState} from "@/store/topHeader/actions";
+import {resetThemeState} from "@/store/theme/actions";
 
 export const SystemSettings = () => {
   const [open, setOpen] = useState(false);
-
+  const dispatch = useDispatch<AppDispatch>();
   const onClose = () => {
     setOpen(false);
   };
@@ -34,7 +38,16 @@ export const SystemSettings = () => {
       >
         <SettingPage/>
         <SettingTheme/>
-
+        <Divider></Divider>
+        <Space style={{width: "100%"}} direction={"vertical"}>
+          <Button
+            icon={<SyncOutlined/>} type={"primary"} style={{width: "100%"}}
+            onClick={() => {
+              dispatch(resetThemeState());
+              dispatch(resetTopHeaderState());
+            }}
+          >重置</Button>
+        </Space>
       </Drawer>
     </>
   );

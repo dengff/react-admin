@@ -9,11 +9,12 @@ import {selectGlobal} from "@/store/global/selectors";
 import type {GlobalState} from "@/store/global/reducers";
 import type {RouteObj} from "@/router/type";
 import type {IProps} from "@/page/Layout/components/SiderMenu/type";
+import type {RootState} from "@/store";
 
 const MenuLayout = ({menuRef, ...args}: IProps) => {
   const navigate = useNavigate();
   const [openKeys, setOpenKeys] = useState<string[]>([]);
-  const {userInfo} = useSelector<any, GlobalState>(selectGlobal, shallowEqual);
+  const {userInfo} = useSelector<RootState, GlobalState>(selectGlobal, shallowEqual);
   const {pathname} = useLocation();
 
   const toMenuList = (list: RouteObj[]): any[] => {

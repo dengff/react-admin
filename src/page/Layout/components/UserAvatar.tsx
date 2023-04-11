@@ -1,48 +1,94 @@
-import {Avatar, Dropdown, Modal} from "antd";
+import {Avatar, Dropdown, message, Modal, Space} from "antd";
 import React from "react";
 import {ExclamationCircleFilled, UserOutlined} from "@ant-design/icons";
-import {logout} from "@/store/global/actions";
+import {getUserInfo, login, logout} from "@/store/global/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {LogoutIcon} from "@/components/Icon";
+import {LogoutIcon, SwitchIcon} from "@/components/Icon";
 import {selectGlobal} from "@/store/global/selectors";
+import type {MenuProps} from "antd";
+import {AppDispatch} from "@/store";
 
 const {confirm} = Modal;
 
 const UserAvatar = () => {
   const {userInfo, token} = useSelector(selectGlobal);
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const navigator = useNavigate();
-  const items = [
+  const onClick = (key: string) => {
+    dispatch(login({username: key, password: "123456"})).then(res => {
+      const {token} = res?.data;
+      dispatch(getUserInfo(token)).then(res => message.success("success"));
+    });
+  };
+  const items: MenuProps["items"] = [
     {
-      label: <span onClick={(e) => {
-        navigator("/user/info");
-      }
-      }>
-        个人中心
-      </span>,
-      key: "/user/info",
-      icon: <UserOutlined/>,
+      label: <Space>
+        <SwitchIcon/>
+        切换角色
+      </Space>,
+      key: "switchRoles",
+      children: [
+        {
+          label: (<Space onClick={event => onClick("admin")}>
+            <UserOutlined/>
+            Admin
+          </Space>),
+          key: "admin",
+          disabled:token === 'admin'
+        },
+        {
+          label: (<Space onClick={event => onClick("editor")}>
+            <UserOutlined/>
+            Editor
+          </Space>),
+          key: "editor",
+          disabled:token === 'editor'
+        },
+        {
+          label: (<Space onClick={event => onClick("guest")}>
+            <UserOutlined/>
+            Guest
+          </Space>),
+          key: "guest",
+          disabled:token === 'guest'
+        },
+      ]
     },
     {
-      label: <span onClick={() => {
-        confirm({
-          title: "温馨提示",
-          icon: <ExclamationCircleFilled/>,
-          content: "是否确认退出",
-          onOk() {
-            dispatch(logout(token));
-          },
-        });
-      }}>
+      label: (<Space
+        onClick={(e) => {
+          navigator("/user/info");
+        }}>
+        <UserOutlined/>
+        个人中心
+      </Space>),
+      key: "/user/info",
+    },
+    {
+      type: "divider",
+      key: "divider"
+    },
+    {
+      label: (<Space
+        onClick={() => {
+          confirm({
+            title: "温馨提示",
+            icon: <ExclamationCircleFilled/>,
+            content: "是否确认退出",
+            onOk() {
+              dispatch(logout(token));
+            },
+          });
+        }}>
+        <LogoutIcon/>
         退出登录
-      </span>,
+      </Space>),
       key: "logout",
-      icon: <LogoutIcon/>,
     },
   ];
   return (
-    <Dropdown trigger={["click"]} placement={"bottomLeft"} menu={{items}}>
+    <Dropdown placement={"bottomLeft"} menu={{items}}>
       <Avatar
         style={{
           cursor: "pointer",

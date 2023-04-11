@@ -12,7 +12,6 @@ export interface GlobalState {
   avatar: string;
   token: string;
   userInfo: IUserInfo;
-  collapsed: boolean;
 }
 
 export interface IUserInfo {
@@ -30,7 +29,6 @@ const initUserInfo: GlobalState = {
   avatar: "",
   token: token,
   userInfo: userInfo,
-  collapsed: false,
 };
 
 const reducer: Reducer<GlobalState, GlobalAction> = (state = initUserInfo, action) => {
@@ -45,12 +43,6 @@ const reducer: Reducer<GlobalState, GlobalAction> = (state = initUserInfo, actio
         ...state,
         userInfo: action.userInfo,
       };
-    case globalAction.UPDATE_COLLAPSE:
-      return {
-        ...state,
-        collapsed: action.collapsed,
-      };
-
     case globalAction.USER_RESET_USER:
       return initUserInfo;
     default :

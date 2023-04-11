@@ -8,12 +8,12 @@ import LayoutFooter from "@/page/Layout/Footer";
 import React from "react";
 import {shallowEqual, useSelector} from "react-redux";
 import {useDefaultOpenKeys} from "@/page/Layout/components/SiderMenu/hooks";
-import {selectGlobal} from "@/store/global/selectors";
+import {selectTopHeader} from "@/store/topHeader/selectors";
 
 const {Header, Sider} = Layout;
 
 export const ClassicLayout = () => {
-  const {collapsed} = useSelector(selectGlobal, shallowEqual);
+  const {collapsed} = useSelector(selectTopHeader, shallowEqual);
   const [ref] = useDefaultOpenKeys();
   return (
 

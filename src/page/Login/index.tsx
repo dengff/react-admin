@@ -5,6 +5,7 @@ import {getUserInfo, login} from "@/store/global/actions";
 import {LoginForm, ProFormText} from "@ant-design/pro-components";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import React from "react";
+import logo from '@/static/img/logo.png'
 import type {AppDispatch} from "@/store";
 
 interface ILoginForm {
@@ -23,7 +24,7 @@ const Login = () => {
     <div className={"login"}>
       <LoginForm<ILoginForm>
         onFinish={values => onFinish(values)}
-        logo="https://www.logosc.cn/logomrdata/2017/12/13/ff616ad1-0a2e-40a4-8842-9b0b97ea55e4.png"
+        logo={logo}
         title="Admin"
         subTitle=" "
         initialValues={{

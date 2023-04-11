@@ -18,11 +18,11 @@ const FullScreenIcon = () => {
       <Tooltip
         title={fullscreen ? "取消全屏" : "全屏"}
       >
-        <span style={{cursor: "pointer"}} onClick={e => screenfull.toggle()}>
+        <div style={{cursor: "pointer"}} onClick={e => screenfull.toggle()}>
           {fullscreen ? <FullscreenExitOutlined/>
             : <FullscreenOutlined/>
           }
-        </span>
+        </div>
 
       </Tooltip>
     </AuthControl>

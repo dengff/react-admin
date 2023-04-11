@@ -38,18 +38,33 @@ const proConfig = merge(baseConfig, {
         minify: CssMinimizerPlugin.esbuildMinify,
       }),
     ],
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        reactDom: {
-          chunks: 'all',
-          name: `react-dom`,
-          test: /[\\/]node_modules[\\/]_?react-dom(.*)/,
-          priority: 10,
-          minChunks: 1,
+      splitChunks: {
+        chunks: 'all',
+        minSize: 40000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        automaticNameDelimiter: '~',
+        enforceSizeThreshold: 50000,
+        cacheGroups: {
+          antd_icons: {
+            test: /[\\/]node_modules[\\/](?:(?:@ant-design\/icons))[\\/]/,
+            name: 'antd_icons',
+            priority: -10,
+          },
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-color|redux|react-redux|redux-thunk|redux-persist)[\\/]/,
+            name: 'react',
+            priority: -10,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            priority: -20,
+          },
         },
       },
-    },
   },
   devtool: false,
   plugins: [

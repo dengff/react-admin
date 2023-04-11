@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" type="image/svg+xml"
-        href="https://www.logosc.cn/logomrdata/2017/12/13/ff616ad1-0a2e-40a4-8842-9b0b97ea55e4.png"/>
+  <link rel="icon" type="image/svg+xml" href="https://i.hd-r.cn/a181ab7add80e26a4ed9a248a7b1a786.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>React Admin</title>
   <style>
@@ -15,7 +14,45 @@
 </head>
 <body>
 <div id="root"></div>
-<script crossorigin="anonymous" integrity="sha512-aOcqo6zSq6Fceh7v+bo/k632iJs6A3PkJWJu6a25lsquaB7vvTht+/eLBKUfDkh89Bvd56W6rUQogKt/xgc3Pg==" src="https://lib.baomitu.com/echarts/5.4.1/echarts.common.js"></script>
-<script type="module" src="/src/main.tsx"></script>
+<!--<script crossorigin="anonymous" integrity="sha512-aOcqo6zSq6Fceh7v+bo/k632iJs6A3PkJWJu6a25lsquaB7vvTht+/eLBKUfDkh89Bvd56W6rUQogKt/xgc3Pg==" src="https://lib.baomitu.com/echarts/5.4.1/echarts.common.js"></script>-->
+<script>
+  const cdnLinks = [
+    'https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js',
+    'https://lib.baomitu.com/echarts/5.4.1/echarts.common.js',
+    'https://cdn.bootcdn.net/ajax/libs/echarts/5.4.1/echarts.common.js',
+  ];
+
+  function getCdnLink() {
+    return new Promise((resolve, reject) => {
+      const len = cdnLinks.length;
+      let index = 0;
+      const checkLink = () => {
+        const script = document.createElement('script');
+        script.src = cdnLinks[index];
+        script.onload = () => {
+          resolve(cdnLinks[index]);
+        };
+        script.onerror = () => {
+          index++;
+          if (index < len) {
+            checkLink();
+          } else {
+            reject('所有cdn链接均不可用');
+          }
+        };
+        document.head.appendChild(script);
+      };
+      checkLink();
+    });
+  }
+
+  window.addEventListener('load', async () => {
+    const cdnLink = await getCdnLink();
+    const script = document.createElement('script');
+    script.src = cdnLink;
+    document.head.appendChild(script);
+  });
+</script>
+
 </body>
 </html>

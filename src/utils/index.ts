@@ -12,10 +12,10 @@ export const currentRoute = () => {
   };
 };
 export const getToken = () => {
-  const token = JSON.parse(localStorage.getItem("token")!);
-  if (token) return token;
-  return undefined;
+  const token = localStorage.getItem("token");
+  if (token !== null) return JSON.parse(token);
 
+  return undefined;
 };
 
 export const setToken = (token: string) => {
@@ -30,8 +30,8 @@ export const setUserInfo = (info: UserInfo) => {
 
 };
 export const getUserInfo = () => {
-  const userInfo = JSON.parse(localStorage.getItem("user-info")!);
-  if (userInfo) return userInfo;
+  const userInfo = localStorage.getItem("user-info");
+  if (userInfo !== null) return JSON.parse(userInfo);
   return undefined;
 
 };

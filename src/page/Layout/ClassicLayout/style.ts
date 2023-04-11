@@ -7,7 +7,6 @@ export const Warp = styled.div`
     align-items: center;
     gap: 10px;
     height: 48px;
-
     .classic-header-content {
       display: flex;
       justify-content: space-between;

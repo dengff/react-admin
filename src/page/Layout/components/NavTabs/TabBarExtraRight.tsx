@@ -7,49 +7,60 @@ import React from "react";
 import {AppDispatch} from "@/store";
 import styled from "styled-components";
 import {selectTheme} from "@/store/theme/selectors";
+import {CloseAllIcon, CloseCurIcon, CloseOtherIcon} from "@/components/Icon";
 
 const Warp = styled.div<{ colorPrimary: string }>`
   .ant-space-item {
     cursor: pointer;
-    transform: rotate(136deg);
-    transition: all .3s .1s;
   }
 
   .ant-space-item:hover {
-    transform: rotate(180deg) scale(1);
     color: ${props => props.colorPrimary};
+    background-color: #f7f8fa;
   }
 `;
-const items = [
-  {
-    label: "关闭当前",
-    key: "current",
-  },
-  {
-    label: "关闭其他",
-    key: "other",
-  },
-  {
-    label: "关闭所有",
-    key: "all",
-  },
-];
 const TabBarExtraRight = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {pathname} = useLocation();
   const navigate = useNavigate();
   const {token: {colorPrimary}} = useSelector(selectTheme);
-  const onClick = ({key}: { key: string }) => {
-    if (key === "current") {
-      return dispatch(deleteCurrentTab(pathname)).then(({key}) => navigate(key));
-    }
-    if (key === "other") return dispatch(deleteOtherTab(pathname));
-    if (key === "all") return dispatch(deleteAllTab(pathname)).finally(() => {
-      navigate("/home");
-    });
-  };
+  const items = [
+    {
+      label: (<Space
+        onClick={() => {
+          dispatch(deleteCurrentTab(pathname)).then(({key}) => navigate(key));
+        }}
+      >
+        <CloseCurIcon/>
+        关闭当前
+      </Space>),
+      key: "current",
+    },
+    {
+      label: (<Space
+        onClick={() => {
+          dispatch(deleteOtherTab(pathname));
+        }}>
+        <CloseOtherIcon/>
+        关闭其他
+      </Space>),
+      key: "other",
+    },
+    {
+      label: (<Space
+        onClick={() => {
+          dispatch(deleteAllTab(pathname)).finally(() => {
+            navigate("/home");
+          });
+        }}
+      >
+        <CloseAllIcon/>
+        关闭所有</Space>),
+      key: "all",
+    },
+  ];
   return (<Warp colorPrimary={colorPrimary}><Space align={"center"}>
-      <Dropdown menu={{items, onClick}}>
+      <Dropdown menu={{items}}>
         <Space>
           <DownOutlined/>
         </Space>

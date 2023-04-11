@@ -59,6 +59,10 @@ export const Warp = styled.div`
     border-radius: 10px;
   }
 
+  .ant-layout-header {
+    line-height: inherit;
+  }
+
   .layout-footer {
     text-align: center;
     background: rgb(240, 242, 245);

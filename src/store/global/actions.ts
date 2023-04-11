@@ -3,14 +3,11 @@ import globalAction from "./constants";
 import {setToken, setUserInfo as setInfo} from "@/utils";
 import {resetTopHeaderState} from "@/store/topHeader/actions";
 import {resetThemeState} from "@/store/theme/actions";
-import type {UpdateCollapseAction, ResetUserInfoAction, SetUserInfoAction, SetUserTokenAction} from "./actionTypes";
+import type { ResetUserInfoAction, SetUserInfoAction, SetUserTokenAction} from "./actionTypes";
 import type {UserInfo} from "@/common/api/type";
 import type {AppThunk} from "@/store";
 
-export const login = ({
-                        username,
-                        password
-                      }: { username: string, password: string }): AppThunk<ReturnType<typeof reqLogin>> => {
+export const login = ({username, password}: { username: string, password: string }): AppThunk<ReturnType<typeof reqLogin>> => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       reqLogin({username, password}).then(res => {
@@ -26,7 +23,7 @@ export const login = ({
     });
   };
 };
-export const getUserInfo = (token: string): AppThunk => {
+export const getUserInfo = (token: string): AppThunk<ReturnType<typeof reqUserInfo>> => {
   return dispatch => {
     return new Promise((resolve, reject) => {
       reqUserInfo(token).then(res => {
@@ -54,11 +51,6 @@ export const logout = (token: string): AppThunk => {
   });
 
 };
-export const updateCollapse = (isCollapse: boolean): UpdateCollapseAction => ({
-  type: globalAction.UPDATE_COLLAPSE,
-  collapsed: isCollapse,
-});
-
 const setUserToken = (token: string): SetUserTokenAction => ({
   type: globalAction.USER_SET_USER_TOKEN,
   token: token,

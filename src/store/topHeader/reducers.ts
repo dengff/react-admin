@@ -10,12 +10,13 @@ export interface TabList {
 
 export interface PageConfig {
   layoutItems: string[];
-  layoutMode: string;
+  layoutMode: "classicLayout" | "landscapeLayout"|"portraitLayout";
 }
 
 export interface TopHeader {
   tabList: TabList[];
   activeKey: string;
+  collapsed: boolean;
   pageConfig: PageConfig;
 }
 
@@ -28,6 +29,7 @@ const initTabs: TopHeader = {
       closable: false,
     }],
   activeKey: "/home",
+  collapsed: false,
   pageConfig: {
     layoutItems: ["tabs", "breadcrumb", "logo", "pageFooter"],
     layoutMode: "classicLayout",
@@ -63,6 +65,11 @@ const reducer: Reducer<TopHeader, ToHeaderAction> = (state = initTabs, action) =
           ...state.pageConfig,
           layoutMode: action.layoutMode,
         },
+      };
+    case actionsType.UPDATE_COLLAPSE:
+      return {
+        ...state,
+        collapsed: action.collapsed,
       };
     case actionsType.RESET_TOP_HEADER_STATE:
       return initTabs;

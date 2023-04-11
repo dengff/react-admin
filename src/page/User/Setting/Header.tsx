@@ -53,12 +53,12 @@ const Header = (props: IProps) => {
     mailbox: "2539872356@qq.com",
   });
 
-  function changeUserInfo(this: any, key: string | number, value: any) {
-    const _dataSource = this.dataSource;
+  function changeUserInfo(action: any, key: string | number, value: any) {
+    const _dataSource = action.dataSource;
     _dataSource[key] = value;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        this?.setDataSource(_dataSource);
+        action?.setDataSource(_dataSource);
         message.success("success");
         resolve(_dataSource);
       }, 600);
@@ -84,8 +84,8 @@ const Header = (props: IProps) => {
         },
       },
       render: (dom, entity, index, action, schema) => {
-        const valueEnum = schema?.valueEnum as any;
-        const text = valueEnum?.[dom as string].text;
+        const valueEnum = schema?.valueEnum;
+        const text = valueEnum?.[dom as keyof typeof valueEnum]?.["text"];
         if (dom === "Y") {
           return <Space>
             <Tag color={"rgba(207,250,207,0.95)"}><span
@@ -116,7 +116,7 @@ const Header = (props: IProps) => {
           defaultValue={dom as string}
           placeholder="请输入手机号"
           onBlur={(e) => {
-            changeUserInfo.call(action, "phoneNumber", e.target?.value).then(res => setEditePh(false));
+            changeUserInfo(action, "phoneNumber", e.target?.value).then(res => setEditePh(false));
           }}
 
         />;
@@ -151,7 +151,7 @@ const Header = (props: IProps) => {
           size={"small"}
           placeholder="请输入邮箱"
           onBlur={e => {
-            changeUserInfo.call(action, "mailbox", e.target?.value).then(res => setEditeEai(false));
+            changeUserInfo(action, "mailbox", e.target?.value).then(res => setEditeEai(false));
           }}
         />;
         return <Space>

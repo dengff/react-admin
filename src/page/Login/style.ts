@@ -66,6 +66,9 @@ export const Warp = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    .ant-pro-form-login-logo>img{
+      height: 100%;
+    }
   }
 
   .ant-pro-form-login-container {

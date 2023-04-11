@@ -38,9 +38,9 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
     },
   },
-  externals: {
-    'echarts': 'echarts',
-  },
+  // externals: {
+  //   'echarts': 'echarts',
+  // },
   module: {
     rules: [
       {
@@ -168,10 +168,14 @@ module.exports = {
       filename: 'index.html',
       template: 'index.html',
       inject: true,
+      excludeChunks: ['main.tsx'],
       minify: {
         removeAttributeQuotes: true,//压缩 去掉引号
         collapseWhitespace: true,
       },
+    }),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/main\.tsx$/,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
