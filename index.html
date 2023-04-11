@@ -1,4 +1,39 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><link rel=icon type=image/svg+xml href=https://www.logosc.cn/logomrdata/2017/12/13/ff616ad1-0a2e-40a4-8842-9b0b97ea55e4.png><meta name=viewport content="width=device-width,initial-scale=1"><title>React Admin</title><style>#root {
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><link rel=icon type=image/svg+xml href=https://i.hd-r.cn/a181ab7add80e26a4ed9a248a7b1a786.png><meta name=viewport content="width=device-width,initial-scale=1"><title>React Admin</title><style>#root {
           height: 100%;
           width: 100%;
-      }</style><script defer=defer src=static/js/runtime~app.29cfe34d2ef3e233b449.js></script><script defer=defer src=static/js/react-dom.c3f017671bb8b8d0f60a.js></script><script defer=defer src=static/js/7311.7f5b718924fd486a71d0.js></script><script defer=defer src=static/js/app.859f7a174fce3e77a2a4.js></script><link href=static/css/app.3f6ea4c03bcf250daf58.css rel=stylesheet></head><body><div id=root></div><script crossorigin=anonymous integrity="sha512-aOcqo6zSq6Fceh7v+bo/k632iJs6A3PkJWJu6a25lsquaB7vvTht+/eLBKUfDkh89Bvd56W6rUQogKt/xgc3Pg==" src=https://lib.baomitu.com/echarts/5.4.1/echarts.common.js></script><script type=module src=/src/main.tsx></script></body></html>
+      }</style><script defer=defer src=static/js/runtime~app.99b1e581ccfffcbcb133.js></script><script defer=defer src=static/js/antd_icons.7b5edea32c64ef369fa0.js></script><script defer=defer src=static/js/react~13426c44.9ea6ec4fb46abcc72e90.js></script><script defer=defer src=static/js/react~eb8252a0.6d86c6184652198dd54d.js></script><script defer=defer src=static/js/react~f80d2ba7.de0eb3219e642ce8461e.js></script><script defer=defer src=static/js/react~6a635d65.9d3e8ede7f74cbd128a0.js></script><script defer=defer src=static/js/react~e5bca7e4.4cac3638caf7cb2dbecf.js></script><script defer=defer src=static/js/react~49ceb22a.a73203c83ef807eb2f56.js></script><script defer=defer src=static/js/3208.5d0a1751a73e73909348.js></script><script defer=defer src=static/js/2612.cf5fa22ccaa7d6045193.js></script><script defer=defer src=static/js/1264.04dd91e132866eaa0934.js></script><script defer=defer src=static/js/1998.900cb6eac26fff95c1a3.js></script><script defer=defer src=static/js/9780.ca501a8c081e1fe13d73.js></script><script defer=defer src=static/js/5689.0b6881022693d9e93254.js></script><script defer=defer src=static/js/6544.b8bb7edc6e91a8305a11.js></script><script defer=defer src=static/js/4081.df2dcafedc43932ddf67.js></script><script defer=defer src=static/js/9250.ac94d18d4f666a40b89a.js></script><script defer=defer src=static/js/2599.659e9970110f48f7916e.js></script><script defer=defer src=static/js/64.4d5ee64c4303fe7e24f4.js></script><script defer=defer src=static/js/app.2283f4d246506964c3a8.js></script><link href=static/css/app.3f6ea4c03bcf250daf58.css rel=stylesheet></head><body><div id=root></div><!--<script crossorigin="anonymous" integrity="sha512-aOcqo6zSq6Fceh7v+bo/k632iJs6A3PkJWJu6a25lsquaB7vvTht+/eLBKUfDkh89Bvd56W6rUQogKt/xgc3Pg==" src="https://lib.baomitu.com/echarts/5.4.1/echarts.common.js"></script>--><script>const cdnLinks = [
+    'https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js',
+    'https://lib.baomitu.com/echarts/5.4.1/echarts.common.js',
+    'https://cdn.bootcdn.net/ajax/libs/echarts/5.4.1/echarts.common.js',
+  ];
+
+  function getCdnLink() {
+    return new Promise((resolve, reject) => {
+      const len = cdnLinks.length;
+      let index = 0;
+      const checkLink = () => {
+        const script = document.createElement('script');
+        script.src = cdnLinks[index];
+        script.onload = () => {
+          resolve(cdnLinks[index]);
+        };
+        script.onerror = () => {
+          index++;
+          if (index < len) {
+            checkLink();
+          } else {
+            reject('所有cdn链接均不可用');
+          }
+        };
+        document.head.appendChild(script);
+      };
+      checkLink();
+    });
+  }
+
+  window.addEventListener('load', async () => {
+    const cdnLink = await getCdnLink();
+    const script = document.createElement('script');
+    script.src = cdnLink;
+    document.head.appendChild(script);
+  });</script></body></html>
