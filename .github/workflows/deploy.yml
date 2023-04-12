@@ -1,32 +1,38 @@
 name: Build and Deploy
-on:
+on: # 监听 master 分支上的 push 事件
   push:
     branches:
       - master
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 构建环境使用 ubuntu
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
 
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: '14.20.0'
 
-      - name: Install dependencies
-        run: npm install
+          #- name: Install and Build # 下载依赖 打包项目
+          # with:
+          # run: |
+          # npm install
+          # npm run build
+
+      - name: Install
+        run: npm install # 安装依赖
 
       - name: Build
-        run: npm run build
+        run: npm run build # 打包
 
-      - name: Deploy to jsDelivr
-        uses: chriscorchado/jsdelivr-action@v1.1
-        with:
-          files: dist/**
-          dir: /
-          endpoint: jsdelivr
-          zone_id: ${{ secrets.REACT_ADMIN }}
-          token: ${{ secrets.REACT_ADMIN }}
-          fallback: '/index.html'
+      - name: Deploy # 将打包内容发布到 github page
+        uses: JamesIves/github-pages-deploy-action@releases/v3 # 使用别人写好的 actions
+        with: # 自定义环境变量
+          ACCESS_TOKEN: ${{ secrets.REACT_ADMIN }}
+          BRANCH: test
+          FOLDER: dist
+          # REPOSITORY_NAME: dengff.github.io/vue-super-admin # 这是我的 github page 地址
+          #TARGET_FOLDER: build # 打包的文件将放到静态服务器 github-actions-demo 目录下

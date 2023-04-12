@@ -77,7 +77,7 @@ const UserPanel = () => {
           </Space>
 
           <Space><GithubOutlined/>
-            <a>https://github.com/</a>
+            <a target={'_blank'} href={'https://github.com/dengff/react-admin'}>https://github.com/dengff/react-admin</a>
           </Space>
 
         </div>
