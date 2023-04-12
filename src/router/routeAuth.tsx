@@ -10,18 +10,22 @@ const RequireAuth: React.FC<{ children: ReactElement }> = (props) => {
   const {pathname} = useLocation();
   const {route: {route: curRoute}} = currentRoute();
   const {token, userInfo} = globalState;
+  const redirectToLogin = () => navigate("/login", { replace: true });
+  const redirectToDashboard = () => navigate("/", { replace: true });
+  const redirectToErrorPage = () => navigate("/error", { replace: true });
   useEffect(() => {
-    if (!token && pathname !== "/login") {
-      return navigate("/login", {replace: true});
+    if (!token) {
+      return redirectToLogin();
+    } else if (pathname === "/login") {
+      return redirectToDashboard();
+    } else if (
+      userInfo?.role !== "admin" &&
+      curRoute?.meta?.auth?.roles?.length &&
+      !curRoute?.meta?.auth?.roles?.includes(userInfo.role)
+    ) {
+      return redirectToErrorPage();
     }
-    if (token && pathname === "/login") {
-      return navigate("/", {replace: true});
-    }
-    if (userInfo?.role !== "admin" && curRoute?.meta?.auth?.roles?.length &&
-      !curRoute?.meta?.auth?.roles?.includes(userInfo.role)) {
-      return navigate("/error", {replace: true});
-    }
-  }, [token, pathname]);
+  }, [token, userInfo, curRoute]);
   return props.children;
 };
 

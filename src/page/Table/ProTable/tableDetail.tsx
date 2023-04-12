@@ -1,26 +1,33 @@
 import {reqTableDetail} from "@/common/api";
-import {useState} from "react";
-import {useSearchParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useLocation, useSearchParams} from "react-router-dom";
 import {ProDescriptions} from "@ant-design/pro-components";
 import {progressEnum, provincesEnum} from "@/common/enum";
 import {Button, message} from "antd";
 import React from "react";
 import type {ProDescriptionsItemProps} from "@ant-design/pro-components";
 
-const DETAIL_INFO = async (id: string) => {
-  const {details} = await reqTableDetail({id: id});
-  return {
-    data: details,
-    success: true,
-  };
-
-};
 
 const TableDetail = () => {
   const [getParams] = useSearchParams();
+  const {state} = useLocation();
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
-  const id = getParams.get("id") as string;
+  const id = getParams.get("id");
+  useEffect(() => {
+    const fetchDetailInfo = async () => {
+      if (!id) {
+        return {
+          data: {},
+          success: false,
+        };
+      }
+      const {details} = await reqTableDetail({id: id});
+      setDataSource(details);
+    };
+
+    fetchDetailInfo();
+  }, [id]);
   const columns: ProDescriptionsItemProps[] = [
     {
       title: "排序",
@@ -143,9 +150,8 @@ const TableDetail = () => {
         padding: "6px 6px"
       }}
       title={"列表详情"}
-      onDataSourceChange={setDataSource}
       columns={columns}
-      request={() => DETAIL_INFO(id)}
+      dataSource={dataSource}
       editable={{}}
     >
     </ProDescriptions>

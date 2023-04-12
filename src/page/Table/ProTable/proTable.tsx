@@ -234,7 +234,9 @@ const SuperTable = () => {
           type="primary"
           onClick={(_) => {
             const {key = ""} = selections?.[0];
-            navigate(`/table/detail?id=${key}`);
+            navigate(`/table/detail?id=${key}`, {
+              state: {...selections?.[0]}
+            });
           }}>
           查看详情
         </Button>,
